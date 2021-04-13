@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Font Google -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="kelola-pemilih.css" />
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+    integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+
+  <title>Kelola Kandidat</title>
+</head>
+
+<body>
+  <input type="checkbox" id="nav-toggle" />
+
+  <div class="sidebar">
+    <div class="sidebar-brand">
+      <label for="nav-toggle" class="bars">
+        <i class="fas fa-bars"></i>
+      </label>
+      <span>VOLMA</span>
+    </div>
+
+    <div class="sidebar-menu">
+      <ul class="align">
+        <div class="items">
+          <li>
+            <a href="#" class="navigate-link">
+              <div class="row">
+                <div class="col-2">
+                  <i class="fas fa-tachometer-alt"></i>
+                </div>
+                <div class="col-10">
+                  <span>Dashboard</span>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="navigate-link">
+              <div class="row">
+                <div class="col-2">
+                  <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="col-10">
+                  <span>Kandidat</span>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="navigate-link active">
+              <div class="row">
+                <div class="col-2">
+                  <i class="fas fa-user-friends"></i>
+                </div>
+                <div class="col-10">
+                  <span>Pemilih</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        </div>
+
+        <div class="items logout">
+          <li>
+            <a href="#">
+              <div class="row">
+                <div class="col-2">
+                  <i class="fas fa-sign-out-alt"></i>
+                </div>
+                <div class="col-10">
+                  <span>Log Out</span>
+                </div>
+              </div>
+            </a>
+          </li>
+        </div>
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="main-content">
+    <header>
+      <nav class="navbar navbar-light fixed-top">
+        <!-- <span><i class="fas fa-chevron-left te"></i></span> -->
+        <span class="navbar-brand mb-0 h4 text-right">
+          <img src="user.jpg" alt="" />
+          Jhon Doe
+        </span>
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+          aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <span class="navbar-brand mb-0 h4 text-center d-block">
+            <img src="user.jpg" alt="" />
+            Jhon Doe
+          </span>
+          <div class="navbar-nav text-center">
+            <a class="nav-item nav-link" href="#">Dashboard</a>
+            <a class="nav-item nav-link" href="#">Kandidat</a>
+            <a class="nav-item nav-link" href="#">Pemilih</a>
+            <a class="nav-item nav-link" href="#">Sign Out</a>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <main>
+      <div class="container main-kandidat">
+        <h2 class="mb-4">Kelola Kandidat</h2>
+        <div class="row">
+          <div class="col-lg-8 col-md-12 col-sm-12">
+
+          </div>
+          <div class="col-lg-4 col-md-12 col-sm-12">
+            <div class="search-container">
+            </div>
+          </div>
+        </div>
+
+        <section class="table-pemilih">
+          <div class="card border-0 rounded">
+            <div class="row">
+              <div class="wrapper2">
+                <div class="row100">
+                  <div class="col">
+                    <div class="inputBox2">
+                      <input type="text" name="" required="required">
+                      <span class="text">No Urut</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="wrapper3">
+                <div class="row100">
+                  <div class="col">
+                    <div class="inputBox2">
+                      <textarea class="textarea1" cols="30" rows="3"></textarea>
+                      <span class="text">Visi</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="wrapper4">
+                <div class="row100">
+                  <div class="col">
+                    <div class="inputBox2">
+                      <textarea class="textarea1" cols="30" rows="3"></textarea>
+                      <span class="text">Misi</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <h3 class="">Kandidat Ketua</h3>
+            <div class="row">
+              <div class="column d-flex">
+                <img class="imgProfile d-none d-lg-block" src="profile.jpg" alt="picture" />
+              </div>
+              <div class="wrapper">
+                <div class="row100">
+                  <div class="col">
+                    <div class="inputBox">
+                      <input type="text" name="" required="required">
+                      <span class="text">Nama</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="inputBox">
+                      <input type="text" name="" required="required">
+                      <span class="text">NIM</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="inputBox">
+                      <input type="text" name="" required="required">
+                      <span class="text">Angkatan</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="inputBox">
+                      <input type="text" name="" required="required">
+                      <span class="text">Jurusan</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="inputBox">
+                      <input type="text" name="" required="required">
+                      <span class="text">Fakultas</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h3 class="">Kandidat Wakil Ketua</h3>
+            <div class="row">
+              <div class="column d-flex">
+                <img class="imgProfile d-none d-lg-block" src="profile2.png" alt="picture" />
+
+              </div>
+              <div class="wrapper">
+                <div class="row100">
+                  <div class="col">
+                    <div class="inputBox">
+                      <input type="text" name="" required="required">
+                      <span class="text">Nama</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="inputBox">
+                      <input type="text" name="" required="required">
+                      <span class="text">NIM</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="inputBox">
+                      <input type="text" name="" required="required">
+                      <span class="text">Angkatan</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="inputBox">
+                      <input type="text" name="" required="required">
+                      <span class="text">Jurusan</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="inputBox">
+                      <input type="text" name="" required="required">
+                      <span class="text">Password</span>
+                      <span class="line"></span>
+                    </div>
+                  </div>
+                </div>
+                <div class="row100">
+                  <div class="col">
+                    <div class="btn-hover color-9">
+                      <input type="submit" name="" Value="Simpan">
+                      <i class="far fa-plus fa-lg"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <!-- Optional JavaScript -->
+  <script src="kelola-pemilih.js"></script>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
