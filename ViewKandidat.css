@@ -56,16 +56,7 @@ h2{
     position: relative;
 }
 
-/* .profile-card-5::before {
-    content: "";
-    position: absolute;
-    top: -60px;
-    right: 0px;
-    left: 0px;
-    height: 170px;
-    background-color: #c1dac8;
-    transform: skewY(-20deg);
-} */
+
 
 .profile-card-5 .profile-name {
     padding-top: 15px;
