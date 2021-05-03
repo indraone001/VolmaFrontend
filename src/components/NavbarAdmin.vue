@@ -1,7 +1,7 @@
 <template>
   <div>
     <nav class="navbar navbar-light fixed-top">
-      <!-- <span><i class="fas fa-chevron-left te"></i></span> -->
+      <!-- Nama Admin -->
       <span class="navbar-brand mb-0 h4 ml-auto">
         Jhon Doe
       </span>
@@ -16,6 +16,7 @@
       >
         <span class="navbar-toggler-icon"></span>
       </button>
+      <!-- Navbar jika ukuran layar kecil -->
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <span class="navbar-brand mb-0 h4 text-center d-block">
           <!-- <img src="user.jpg" alt="" /> -->
@@ -39,9 +40,7 @@ export default {
   name: "navbar-admin",
   data() {
     return {};
-  },
-  created() {},
-  methods: {},
+  }
 };
 </script>
 

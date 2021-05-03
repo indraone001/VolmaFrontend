@@ -25,12 +25,24 @@
               Sign In
             </h3>
             <div class="line-form d-inline-block"></div>
+            <div v-if="cekError" class="alert alert-warning alert-dismissible fade show text-left" role="alert">
+              Gagal melakukan login, periksa kembali nim dan password anda.
+              <button
+                type="button"
+                class="close"
+                data-dismiss="alert"
+                aria-label="Close"
+                @click="setCekError()"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
             <form @submit.prevent="login()">
               <input
                 type="text"
                 id="fname"
                 name="fname"
-                placeholder="Username"
+                placeholder="NIM"
                 v-model="nim"
               />
 
@@ -59,15 +71,20 @@ export default {
     return {
       nim: "",
       password: "",
+      cekError: false
     };
   },
   methods: {
+    /*
+    * 
+    *
+    */
     login: function() {
       if (this.nim && this.password) {
         let nim = this.nim;
         let password = this.password;
         const options = {
-          url: "http://localhost:3000/login",
+          url: "https://volma01.herokuapp.com/login",
           method: "post",
           data: {
             nim,
@@ -91,11 +108,18 @@ export default {
           })
           .catch((e) => {
             console.log(e);
-            let error = true;
-            this.error = error;
+            let error = true
+            this.cekError = error
           });
       }
     },
+    /*
+    *
+    *
+    */
+    setCekError: function() {
+      this.cekError = false
+    }
   },
 };
 </script>

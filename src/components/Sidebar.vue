@@ -41,7 +41,6 @@
               >
                 <div class="row">
                   <div class="col-2">
-                    <!-- <i class="fas fa-user-tie"></i> -->
                     <font-awesome-icon :icon="['fas', 'user-tie']" />
                   </div>
                   <div class="col-8">
@@ -59,7 +58,6 @@
               >
                 <div class="row">
                   <div class="col-2">
-                    <!-- <i class="fas fa-user-friends"></i> -->
                     <font-awesome-icon :icon="['fas', 'user-friends']" />
                   </div>
                   <div class="col-8">
@@ -79,7 +77,6 @@
                 class="navigate-link">
                 <div class="row">
                   <div class="col-2">
-                    <!-- <i class="fas fa-sign-out-alt"></i> -->
                     <font-awesome-icon :icon="['fas', 'sign-out-alt']" />
                   </div>
                   <div class="col-8">

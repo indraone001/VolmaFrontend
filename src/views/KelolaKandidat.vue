@@ -6,6 +6,7 @@
       <header>
         <navbar-admin />
       </header>
+
       <main>
         <div class="container main-kandidat">
           <h2 class="mb-4">Kelola Kandidat</h2>
@@ -77,6 +78,7 @@
           </section>
         </div>
       </main>
+      
     </div>
   </div>
 </template>
@@ -102,6 +104,9 @@ export default {
     this.getKandidat();
   },
   methods: {
+    /*
+    * @return dataset kandidat yang telah didaftarkan oleh admin.
+    */
     getKandidat() {
       const options = {
         url: "https://volma01.herokuapp.com/kandidat",
@@ -121,8 +126,6 @@ export default {
 </script>
 
 <style scoped>
-
-
 .main-content {
   height: 100%;
   margin-left: 16%;
