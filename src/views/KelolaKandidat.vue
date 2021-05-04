@@ -106,6 +106,7 @@ export default {
   methods: {
     /*
     * @return dataset kandidat yang telah didaftarkan oleh admin.
+    *
     */
     getKandidat() {
       const options = {
