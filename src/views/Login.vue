@@ -97,16 +97,6 @@ export default {
           .then((response) => {
             const token = response;
             console.log(token)
-            // localStorage.setItem("access_token", token);
-            // if (token) {
-            //   this.$router.push({
-            //     name: "Kelola-Pemilih",
-            //     params: {
-            //       token: token,
-            //     },
-            //   });
-            // }
-
           })
           .catch((e) => {
             console.log(e);
