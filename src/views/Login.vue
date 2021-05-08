@@ -76,8 +76,10 @@ export default {
   },
   methods: {
     /*
-    * 
-    *
+    * @return status true / false
+    * Fungsi login melakukan pengecekan terlebih dahulu pada variable nim dan password
+    * kemudian post data yang sudah di di cek kedalam API dengan menggunakan axios
+    * @exception jika memasukan data yang salah kemudian set variable cekError menjadi true 
     */
     login: function() {
       if (this.nim && this.password) {
@@ -95,16 +97,6 @@ export default {
           .then((response) => {
             const token = response;
             console.log(token)
-            // localStorage.setItem("access_token", token);
-            // if (token) {
-            //   this.$router.push({
-            //     name: "Kelola-Pemilih",
-            //     params: {
-            //       token: token,
-            //     },
-            //   });
-            // }
-
           })
           .catch((e) => {
             console.log(e);
@@ -114,8 +106,8 @@ export default {
       }
     },
     /*
-    *
-    *
+    * @return cekError
+    * Jika terdapat error maka akan set cekError menjadi false untuk menampilkan notifikasi
     */
     setCekError: function() {
       this.cekError = false

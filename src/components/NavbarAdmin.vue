@@ -19,7 +19,6 @@
       <!-- Navbar jika ukuran layar kecil -->
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <span class="navbar-brand mb-0 h4 text-center d-block">
-          <!-- <img src="user.jpg" alt="" /> -->
           Jhon Doe
         </span>
         <div class="navbar-nav text-center">
@@ -34,7 +33,6 @@
 </template>
 
 <script>
-// import axios from "axios";
 
 export default {
   name: "navbar-admin",
@@ -49,20 +47,10 @@ export default {
   background-color: #fff;
 }
 
-/* .navbar-brand img {
-  width: 2.5%;
-  border-radius: 50%;
-  margin-right: 0.5rem;
-} */
-
 .navbar-toggler {
   display: none;
 }
-/* @media only screen and (max-width: 1024px) {
-  .navbar-brand img {
-    width: 4%;
-  }
-} */
+
 @media only screen and (max-width: 768px) {
   .navbar-toggler {
     display: inline-block;

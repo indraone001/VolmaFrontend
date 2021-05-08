@@ -21,7 +21,6 @@
                 <form>
                   <input type="text" placeholder="Search.." name="search" />
                   <button type="submit">
-                    <!-- <i class="fa fa-search"></i> -->
                     <font-awesome-icon :icon="['fas', 'search']" />
                   </button>
                 </form>
@@ -106,6 +105,7 @@ export default {
   methods: {
     /*
     * @return dataset kandidat yang telah didaftarkan oleh admin.
+    *
     */
     getKandidat() {
       const options = {
@@ -138,9 +138,6 @@ export default {
 .main-kandidat h2 {
   font-weight: 600;
 }
-/* .main-kandidat .search-container {
-  float: right;
-} */
 
 .main-kandidat input[type="text"] {
   width: 75%;
@@ -174,26 +171,6 @@ export default {
 }
 
 
-/* .bars {
-  cursor: pointer;
-} */
-
-/* responsive */
-/* #nav-toggle {
-  display: none;
-}
-#nav-toggle:checked + .sidebar {
-  width: 75px;
-}
-#nav-toggle:checked ~ .main-content {
-  margin-left: 75px;
-}
-
-#nav-toggle:checked + .sidebar .sidebar-brand span:last-child,
-#nav-toggle:checked + .sidebar .sidebar-menu span:last-child {
-  display: none;
-} */
-
 /* Media Queries */
 @media only screen and (max-width: 1200px) {
   /* .navbar-brand img {
@@ -212,11 +189,6 @@ export default {
   
 }
 
-/* @media only screen and (max-width: 1024px) {
-  .navbar-brand img {
-    width: 4%;
-  }
-} */
 
 @media only screen and (max-width: 768px) {
   
@@ -229,8 +201,5 @@ export default {
   .navbar-toggler {
     display: inline-block;
   }
-  /* .navbar .navbar-brand {
-    display: none;
-  } */
 }
 </style>

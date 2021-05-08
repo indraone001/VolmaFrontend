@@ -93,7 +93,6 @@
 </template>
 
 <script>
-// import axios from "axios";
 
 export default {
   name: "sidebar",
@@ -154,9 +153,6 @@ export default {
   padding: 1rem 1.7rem;
   background-color: #7bb4ff;
 }
-/* .sidebar-menu ul li a i {
-  margin-left: 0.5rem;
-} */
 
 .align {
   height: 82vh;
