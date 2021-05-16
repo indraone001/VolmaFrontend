@@ -41,7 +41,7 @@
               >
                 <div class="row">
                   <div class="col-2">
-                    <font-awesome-icon :icon="['fas', 'user-tie']" />
+                    <font-awesome-icon :icon="['fas', 'id-card']" />
                   </div>
                   <div class="col-8">
                     <span>Kandidat</span>
@@ -70,11 +70,12 @@
 
           <div class="items logout">
             <li>
-              <router-link 
+              <router-link
                 to="/"
                 active-class="active"
                 exact
-                class="navigate-link">
+                class="navigate-link"
+              >
                 <div class="row">
                   <div class="col-2">
                     <font-awesome-icon :icon="['fas', 'sign-out-alt']" />
@@ -93,18 +94,10 @@
 </template>
 
 <script>
-
 export default {
   name: "sidebar",
   data() {
-    return {
-        status: true
-    };
-  },
-  computed: {
-    setStatus: () => {
-      return this.status ? "active" : "";
-    },
+    return {};
   },
 };
 </script>
@@ -150,8 +143,16 @@ export default {
 }
 .sidebar-menu ul li .navigate-link:hover {
   transition: 0.3s;
-  padding: 1rem 1.7rem;
-  background-color: #7bb4ff;
+  /* padding: 1rem 1.7rem; */
+  background-color: #7fb4fa;
+
+  margin-left: 0.5rem;
+  -webkit-border-top-left-radius: 50px;
+  -webkit-border-bottom-left-radius: 50px;
+  -moz-border-radius-topleft: 50px;
+  -moz-border-radius-bottomleft: 50px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
 }
 
 .align {
@@ -161,7 +162,15 @@ export default {
   justify-content: space-between;
 }
 .active {
-  background-color: #2f80ed;
+  /* background-color: #2f80ed; */
+  margin-left: 0.5rem;
+  background-color: #7fb4fa;
+  -webkit-border-top-left-radius: 50px;
+  -webkit-border-bottom-left-radius: 50px;
+  -moz-border-radius-topleft: 50px;
+  -moz-border-radius-bottomleft: 50px;
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
 }
 
 @media only screen and (max-width: 1200px) {

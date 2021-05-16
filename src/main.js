@@ -19,7 +19,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faBars,
   faTachometerAlt,
-  faUserTie,
+  faIdCard,
   faUserFriends,
   faSignOutAlt,
   faSearch
@@ -29,7 +29,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 library.add(faBars);
 library.add(faTachometerAlt);
-library.add(faUserTie);
+library.add(faIdCard);
 library.add(faUserFriends);
 library.add(faSignOutAlt);
 library.add(faSearch);

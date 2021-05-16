@@ -2,7 +2,7 @@
   <div>
 
     <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand d-block d-sm-block d-md-none" href="#">Volma</a>
+      <a class="navbar-brand d-block d-sm-block d-md-none" href="#">VOLMA</a>
       <button
         class="navbar-toggler ml-auto"
         type="button"
@@ -70,13 +70,8 @@ export default {
   display: none;
 }
 
-@media only screen and (max-width: 768px) {
-  /* .navbar-toggler {
-    display: inline-block;
-  } */
-  /* .navbar .navbar-brand {
-    display: none;
-  } */
+.navbar-brand {
+  font-weight: 600;
 }
 
 @media only screen and (max-width: 990px) {
