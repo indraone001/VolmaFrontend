@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import Login from "../views/Login.vue";
 import KelolaKandidat from "../views/KelolaKandidat.vue";
 import KelolaPemilih from "../views/KelolaPemilih.vue";
-/* 
+/**
+* 
 * File untuk mengetur path.
 * 
 */

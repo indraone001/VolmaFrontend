@@ -1,16 +1,25 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
+
+/** 
+ * 
+ *  Import Library bootstrap 4
+ * 
+ * */
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-
-//font awesome
+/** 
+ * 
+ *  Import Library Font Awesome
+ * 
+ * */
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faBars,
   faTachometerAlt,
-  faUserTie,
+  faIdCard,
   faUserFriends,
   faSignOutAlt,
   faSearch
@@ -18,10 +27,9 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
-
 library.add(faBars);
 library.add(faTachometerAlt);
-library.add(faUserTie);
+library.add(faIdCard);
 library.add(faUserFriends);
 library.add(faSignOutAlt);
 library.add(faSearch);

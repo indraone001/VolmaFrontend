@@ -1,5 +1,38 @@
 <template>
   <div>
+    <!-- "Tag HTML yang digunakan"
+      <div>
+        Merupakan tag pembungkus dengan display: block
+      ------------------------------------------------
+      <h2>
+        Tag untuk membuat judul
+      ------------------------------------------------
+      <h3>
+        Tag membuat judul yang tidak terlalu besar
+      ------------------------------------------------
+      <p>
+        Tag untuk menuliskan paragraf
+      ------------------------------------------------
+      <button>
+        Membuat tombol untuk submit
+      ------------------------------------------------
+      <form>
+        Tag untuk membungkus input
+      ------------------------------------------------
+      <input>
+        Tag tempat untuk melakukan Binding data
+      ------------------------------------------------
+      <span>
+        Tag pembungkus dengan display: inline-block
+      ------------------------------------------------
+     -->
+    <!-- Sintax Vue
+      Event Handling:
+        v-on:click / @click
+        @submin.prevent
+      Binding Data:
+        v-model, Untuk binding data secara real-time
+     -->
     <div class="cover">
       <div class="row">
         <div class="col-lg-7 d-none d-md-none d-lg-block d-sm-none">
@@ -63,6 +96,11 @@
 </template>
 
 <script>
+/** 
+ * Import library Axios untuk menghubungkan API
+ * data: nim, password, cekError
+ * 
+*/
 import axios from "axios";
 
 export default {
@@ -75,11 +113,13 @@ export default {
     };
   },
   methods: {
-    /*
+    /**
+     * 
     * @return status true / false
     * Fungsi login melakukan pengecekan terlebih dahulu pada variable nim dan password
     * kemudian post data yang sudah di di cek kedalam API dengan menggunakan axios
     * @exception jika memasukan data yang salah kemudian set variable cekError menjadi true 
+    * 
     */
     login: function() {
       if (this.nim && this.password) {
@@ -106,7 +146,7 @@ export default {
       }
     },
     /*
-    * @return cekError
+    * @return cekError = false
     * Jika terdapat error maka akan set cekError menjadi false untuk menampilkan notifikasi
     */
     setCekError: function() {
