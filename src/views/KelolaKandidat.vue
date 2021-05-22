@@ -133,7 +133,7 @@ export default {
   background: #eefafd;
 }
 .main-kandidat {
-  padding-top: 6rem;
+  padding-top: 3rem;
 }
 .main-kandidat h2 {
   font-weight: 600;

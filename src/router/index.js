@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Login from "../views/Login.vue";
 import KelolaKandidat from "../views/KelolaKandidat.vue";
 import KelolaPemilih from "../views/KelolaPemilih.vue";
+import Dashboard from "../views/Dashboard.vue";
 /**
 * 
 * File untuk mengetur path.
@@ -25,7 +26,12 @@ const routes = [
     path: '/pemilih',
     name: 'KelolaPemilih',
     component: KelolaPemilih
-  }
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
+  },
   
 ]
 

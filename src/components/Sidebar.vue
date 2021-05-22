@@ -17,7 +17,7 @@
           <div class="items">
             <li>
               <router-link
-                to="/"
+                to="/dashboard"
                 active-class="active"
                 exact
                 class="navigate-link"
