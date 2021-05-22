@@ -18,21 +18,30 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faBars,
-  faTachometerAlt,
+  faUsers,
+  faSearch,
   faIdCard,
-  faUserFriends,
+  faPercent,
+  faUserTie,
+  faChartPie,
+  faUserClock,
   faSignOutAlt,
-  faSearch
+  faUserFriends,
+  faTachometerAlt
 } from "@fortawesome/free-solid-svg-icons";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-
 library.add(faBars);
-library.add(faTachometerAlt);
-library.add(faIdCard);
-library.add(faUserFriends);
-library.add(faSignOutAlt);
+library.add(faUsers);
 library.add(faSearch);
+library.add(faIdCard);
+library.add(faPercent);
+library.add(faUserTie);
+library.add(faChartPie);
+library.add(faUserClock);
+library.add(faSignOutAlt);
+library.add(faUserFriends);
+library.add(faTachometerAlt);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 

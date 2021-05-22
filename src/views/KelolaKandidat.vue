@@ -28,8 +28,8 @@
             </div>
           </div>
 
-          <section class="table-pemilih">
-            <div class="card border-0 rounded">
+          <section class="table-pemilih pb-4">
+            <div class="card border-0 mb-4">
               <div class="card-body">
                 <div class="container table-responsive">
                   <table class="table table-hover">
@@ -48,9 +48,9 @@
                         v-for="kandidat in kandidats"
                         :key="kandidat.id_kandidat"
                       >
-                        <th>{{ kandidat.id_kandidat }}</th>
-                        <td>{{ kandidat.id_ketua }}</td>
-                        <td>{{ kandidat.id_wakil }}</td>
+                        <th>{{ kandidat.no_urut }}</th>
+                        <td>{{ kandidat.nama }}</td>
+                        <td>{{ kandidat.nama_wakil }}</td>
                         <td>{{ kandidat.visi }}</td>
                         <td>{{ kandidat.misi }}</td>
                         <td>
@@ -133,7 +133,7 @@ export default {
   background: #eefafd;
 }
 .main-kandidat {
-  padding-top: 6rem;
+  padding-top: 3rem;
 }
 .main-kandidat h2 {
   font-weight: 600;
@@ -168,6 +168,9 @@ export default {
   width: 100%;
   margin-top: 3rem;
   padding: 1rem 0;
+  border-radius: 12px;
+  border: none;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
 

@@ -18,23 +18,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Jhon Doe
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Profile</a>
-              <!-- <a class="dropdown-item" href="#">Another action</a> -->
-              <!-- <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a> -->
-            </div>
+            <h5 class="py-2">Jhon Doe</h5>
           </li>
           <li class="nav-item d-block d-sm-block d-md-none">
             <a class="nav-link" href="#">Dashboard</a>
@@ -44,6 +28,9 @@
           </li>
           <li class="nav-item d-block d-sm-block d-md-none">
             <a class="nav-link" href="#">Pemilih</a>
+          </li>
+          <li class="nav-item d-block d-sm-block d-md-none">
+            <a class="nav-link" href="#">Logout</a>
           </li>
           
         </ul>
@@ -72,6 +59,12 @@ export default {
 
 .navbar-brand {
   font-weight: 600;
+}
+
+h5 {
+  margin-bottom: 0;
+  font-weight: 600;
+  color: rgb(39, 39, 39);
 }
 
 @media only screen and (max-width: 990px) {

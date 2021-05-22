@@ -58,7 +58,11 @@
               Sign In
             </h3>
             <div class="line-form d-inline-block"></div>
-            <div v-if="cekError" class="alert alert-warning alert-dismissible fade show text-left" role="alert">
+            <div
+              v-if="cekError"
+              class="alert alert-warning alert-dismissible fade show text-left"
+              role="alert"
+            >
               Gagal melakukan login, periksa kembali nim dan password anda.
               <button
                 type="button"
@@ -71,21 +75,31 @@
               </button>
             </div>
             <form @submit.prevent="login()">
-              <input
-                type="text"
-                id="fname"
-                name="fname"
-                placeholder="NIM"
-                v-model="nim"
-              />
+              <div class="form text-left">
+                <input
+                  type="text"
+                  id="nim"
+                  name="nim"
+                  v-model="nim"
+                  required
+                />
+                <label for="nim" class="label-name">
+                  <span class="content-name">Nim</span>
+                </label>
+              </div>
+              <div class="form mt-3 text-left">
+                <input
+                  type="password"
+                  id="pass"
+                  name="pass"
+                  v-model="password"
+                  required
+                />
+                <label for="pass" class="label-name">
+                  <span class="content-name">Password</span>
+                </label>
+              </div>
 
-              <input
-                type="password"
-                id="lpass"
-                name="lpass"
-                placeholder="Password"
-                v-model="password"
-              />
               <button class="btn">Login</button>
             </form>
           </div>
@@ -96,11 +110,11 @@
 </template>
 
 <script>
-/** 
+/**
  * Import library Axios untuk menghubungkan API
  * data: nim, password, cekError
- * 
-*/
+ *
+ */
 import axios from "axios";
 
 export default {
@@ -109,18 +123,18 @@ export default {
     return {
       nim: "",
       password: "",
-      cekError: false
+      cekError: false,
     };
   },
   methods: {
     /**
-     * 
-    * @return status true / false
-    * Fungsi login melakukan pengecekan terlebih dahulu pada variable nim dan password
-    * kemudian post data yang sudah di di cek kedalam API dengan menggunakan axios
-    * @exception jika memasukan data yang salah kemudian set variable cekError menjadi true 
-    * 
-    */
+     *
+     * @return status true / false
+     * Fungsi login melakukan pengecekan terlebih dahulu pada variable nim dan password
+     * kemudian post data yang sudah di di cek kedalam API dengan menggunakan axios
+     * @exception jika memasukan data yang salah kemudian set variable cekError menjadi true
+     *
+     */
     login: function() {
       if (this.nim && this.password) {
         let nim = this.nim;
@@ -135,23 +149,31 @@ export default {
         };
         axios(options)
           .then((response) => {
-            const token = response;
-            console.log(token)
+            const token = response.data;
+            console.log(token);
+            // Tambah session buat nyimpen data orang
+
+            if (token.admin) {
+              // kalau dia admin router ke dashboard
+              console.log("Yess")
+            } else {
+              console.log("Noo")
+            }
           })
           .catch((e) => {
             console.log(e);
-            let error = true
-            this.cekError = error
+            let error = true;
+            this.cekError = error;
           });
       }
     },
     /*
-    * @return cekError = false
-    * Jika terdapat error maka akan set cekError menjadi false untuk menampilkan notifikasi
-    */
+     * @return cekError = false
+     * Jika terdapat error maka akan set cekError menjadi false untuk menampilkan notifikasi
+     */
     setCekError: function() {
-      this.cekError = false
-    }
+      this.cekError = false;
+    },
   },
 };
 </script>
@@ -196,7 +218,7 @@ h2 {
   color: rgb(49, 49, 49);
 }
 .btn {
-  padding: 5px 30px;
+  padding: 9px 46px;
   background: #56ccf2;
   background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
   background: linear-gradient(to right, #2f80ed, #56ccf2);
@@ -204,25 +226,65 @@ h2 {
   border-radius: 20px;
   margin-top: 2.5rem;
 }
-input[type="text"],
-input[type="password"] {
-  width: 100%;
-  padding: 12px 3px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 1px solid rgb(49, 49, 49);
+.btn:hover {
+  color: white;
+  background: #5255eb;
+  background: -webkit-linear-gradient(to right, #5255eb, #56ccf2);
+  background: linear-gradient(to right, #5255eb, #56ccf2);
 }
-input[type="text"]:active,
-input[type="password"]:active {
-  width: 100%;
-  padding: 12px 3px;
-  margin: 8px 0;
-  box-sizing: border-box;
-  border: none;
-  border-bottom: 1px solid rgb(32, 32, 32);
-}
+
 form {
   margin: 0 5%;
+}
+.form {
+  width: 100%;
+  height: 50px;
+  position: relative;
+  overflow: hidden;
+}
+.form input {
+  width: 100%;
+  height: 100%;
+  color: rgb(99, 99, 99);
+  padding-top: 16px;
+  border: none;
+  outline: none;
+}
+.form label {
+  position: absolute;
+  bottom: 0px;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid black;
+}
+
+.form label::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  width: 100%;
+  height: 100%;
+  border-bottom: 3px solid #2f80ed;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+.content-name {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  transition: all 0.3s ease;
+}
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name {
+  transform: translateY(-100%);
+  font-size: 14px;
+  color: #2f80ed;
+}
+.form input:focus + .label-name::after,
+.form input:valid + .label-name::after {
+  transform: translateX(0%);
 }
 </style>
