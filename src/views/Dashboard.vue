@@ -9,57 +9,63 @@
 
       <main>
         <div class="container main-kandidat">
-          <h2 class="mb-4">Dashboard</h2>
+          <h2 class="mb-1">Dashboard</h2>
           <div class="row">
             <div class="col-6 col-sm-6 col-md-3 ">
               <div class="card py-0">
                 <div class="card-body">
                   <h3>
-                      <!-- <i class="fas fa-users"></i> -->
-                      <font-awesome-icon :icon="['fas', 'users']" />
+                    <!-- <i class="fas fa-users"></i> -->
+                    <font-awesome-icon :icon="['fas', 'users']" />
                   </h3>
                   <h6 class="card-title">Banyak Pemilih</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">50 Orang</h6>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-sm-6 col-md-3 ">
-              <div class="card py-0">
-                <div class="card-body">
-                  <h3>
-                      <!-- <i class="fas fa-chart-pie"></i> -->
-                      <font-awesome-icon :icon="['fas', 'chart-pie']" />
-                    </h3>
-                  <h6 class="card-title">Telah Memilih</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">50%</h6>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-sm-6 col-md-3 ">
-              <div class="card py-0">
-                <div class="card-body">
-                  <h3>
-                      <!-- <i class="fas fa-user-tie"></i> -->
-                      <font-awesome-icon :icon="['fas', 'user-tie']" />
-                    </h3>
-                  <h6 class="card-title">Jumlah Calon</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">3 Orang</h6>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-6 col-sm-6 col-md-3 ">
-              <div class="card py-0">
-                <div class="card-body">
-                  <h3>
-                      <!-- <i class="fas fa-user-clock"></i> -->
-                      <font-awesome-icon :icon="['fas', 'user-clock']" />
-                  </h3>
-                  <h6 class="card-title">Batas Waktu</h6>
                   <h6 class="card-subtitle mb-2 text-muted">
-                    Kamis, 21 April 2021
+                    {{ dashboard.jumlah_pemilih }} Orang
+                  </h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3 ">
+              <div class="card py-0">
+                <div class="card-body">
+                  <h3>
+                    <!-- <i class="fas fa-chart-pie"></i> -->
+                    <font-awesome-icon :icon="['fas', 'chart-pie']" />
+                  </h3>
+                  <h6 class="card-title">Telah Memilih</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    {{ dashboard.voted }}%
+                  </h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3 ">
+              <div class="card py-0">
+                <div class="card-body">
+                  <h3>
+                    <!-- <i class="fas fa-user-tie"></i> -->
+                    <font-awesome-icon :icon="['fas', 'user-tie']" />
+                  </h3>
+                  <h6 class="card-title">Jumlah Calon</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    {{ dashboard.kandidat }} Orang
+                  </h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-6 col-sm-6 col-md-3 ">
+              <div class="card py-0">
+                <div class="card-body">
+                  <h3>
+                    <!-- <i class="fas fa-user-clock"></i> -->
+                    <font-awesome-icon :icon="['fas', 'user-clock']" />
+                  </h3>
+                  <h6 class="card-title">Periode</h6>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    {{ dashboard.periode }}
                   </h6>
                 </div>
               </div>
@@ -67,14 +73,20 @@
           </div>
 
           <section class="mt-4 pt-4">
-            <h3 class="pb-4">Perolehan Masing-masing Calon</h3>
+            <h3 class="pt-3">Perolehan Masing-masing Calon</h3>
 
             <div class="row card-groups">
-              <div class="col-sm-12 col-md-12 col-lg-4 mb-4">
-                <div class="card">
+              <div
+                class="col-sm-12 col-md-12 col-lg-4 mb-4"
+                v-for="result in results"
+                :key="result.id_kandidat"
+              >
+                <div class="card card-kandidat">
                   <div class="card-body text-center">
-                    <h4 class="name-kandidat">Belva Sitompul</h4>
-                    <h6 class="no-kandidat pb-4">Nomor Urut 1</h6>
+                    <h5 class="name-kandidat">{{ result.nama_ketua }}</h5>
+                    <h6 class="no-kandidat pb-4">
+                      Nomor Urut {{ result.id_kandidat }}
+                    </h6>
 
                     <div class="container pt-4">
                       <div class="row">
@@ -89,7 +101,7 @@
 
                         <div class="col-8 text-left my-auto">
                           <h5 class="mb-0">Ketua</h5>
-                          <p class="mb-0">Belva</p>
+                          <p class="mb-0">{{ result.nama_ketua }}</p>
                         </div>
                       </div>
 
@@ -107,7 +119,7 @@
 
                         <div class="col-8 text-left my-auto">
                           <h5 class="mb-0">Wakil</h5>
-                          <p class="mb-0">Codet muhammad syahrul</p>
+                          <p class="mb-0">{{ result.nama_wakil }}</p>
                         </div>
                       </div>
                     </div>
@@ -116,19 +128,19 @@
                     <div class="row card-count">
                       <div class="col-6">
                         <h5>
-                            <!-- <i class="fas fa-user-friends"></i> -->
-                            <font-awesome-icon :icon="['fas', 'user-friends']" />
+                          <!-- <i class="fas fa-user-friends"></i> -->
+                          <font-awesome-icon :icon="['fas', 'user-friends']" />
                         </h5>
                         <h6>Jumlah Vote</h6>
-                        <p>10 orang</p>
+                        <p>{{ result.jumlah }} orang</p>
                       </div>
                       <div class="col-6">
                         <h5>
-                            <i class="fas fa-percent"></i>
-                            <font-awesome-icon :icon="['fas', 'percent']" />
+                          <!-- <i class="fas fa-percent"></i> -->
+                          <font-awesome-icon :icon="['fas', 'percent']" />
                         </h5>
                         <h6>Persentase</h6>
-                        <p>10%</p>
+                        <p>{{ result.persentase }}%</p>
                       </div>
                     </div>
                   </div>
@@ -146,7 +158,7 @@
 import NavbarAdmin from "@/components/NavbarAdmin.vue";
 import Sidebar from "@/components/Sidebar.vue";
 
-// import axios from "axios";
+import axios from "axios";
 
 export default {
   name: "KelolaKandidat",
@@ -155,14 +167,52 @@ export default {
     Sidebar,
   },
   data() {
-    return {};
+    return {
+      dashboard: [],
+      results: [],
+    };
   },
-  created() {},
+  created() {
+    this.getDashboard();
+    this.getResults();
+  },
   methods: {
     /*
-     * @return dataset kandidat yang telah didaftarkan oleh admin.
+     * @return dataset dashboard yang telah didaftarkan oleh admin.
      *
      */
+    getDashboard() {
+      const options = {
+        url: "https://volma01.herokuapp.com/dashboard",
+        method: "get",
+      };
+      axios(options)
+        .then((response) => {
+          this.dashboard = response.data.data;
+          console.log(this.dashboard);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+    /*
+     * @return dataset result yang telah didaftarkan oleh admin.
+     *
+     */
+    getResults() {
+      const options = {
+        url: "https://volma01.herokuapp.com/result",
+        method: "get",
+      };
+      axios(options)
+        .then((response) => {
+          this.results = response.data.data.kandidat;
+          console.log(this.results);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
   },
 };
 </script>
@@ -182,7 +232,7 @@ export default {
 }
 .card {
   width: 100%;
-  margin-top: 3rem;
+  margin-top: 2rem;
   padding: 1rem 0;
   border-radius: 12px;
   border: none;
@@ -197,6 +247,9 @@ export default {
 .card-profile {
   border-radius: 50%;
   width: 4rem;
+}
+.card-kandidat {
+  height: 58vh;
 }
 .name-kandidat {
   margin-top: 1.5rem;

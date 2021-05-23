@@ -18,12 +18,14 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
   faBars,
+  faHome,
   faUsers,
   faSearch,
   faIdCard,
   faPercent,
   faUserTie,
   faChartPie,
+  faShieldAlt,
   faUserClock,
   faSignOutAlt,
   faUserFriends,
@@ -32,12 +34,14 @@ import {
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 library.add(faBars);
+library.add(faHome);
 library.add(faUsers);
 library.add(faSearch);
 library.add(faIdCard);
 library.add(faPercent);
 library.add(faUserTie);
 library.add(faChartPie);
+library.add(faShieldAlt);
 library.add(faUserClock);
 library.add(faSignOutAlt);
 library.add(faUserFriends);

@@ -4,6 +4,7 @@ import Login from "../views/Login.vue";
 import KelolaKandidat from "../views/KelolaKandidat.vue";
 import KelolaPemilih from "../views/KelolaPemilih.vue";
 import Dashboard from "../views/Dashboard.vue";
+import Landing from "../views/Landing.vue";
 /**
 * 
 * File untuk mengetur path.
@@ -31,6 +32,11 @@ const routes = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard
+  },
+  {
+    path: '/landing',
+    name: 'Landing',
+    component: Landing
   },
   
 ]
