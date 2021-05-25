@@ -5,6 +5,7 @@ import KelolaKandidat from "../views/KelolaKandidat.vue";
 import KelolaPemilih from "../views/KelolaPemilih.vue";
 import Dashboard from "../views/Dashboard.vue";
 import Landing from "../views/Landing.vue";
+import StatistikVote from "../views/StatistikVote.vue";
 /**
 * 
 * File untuk mengetur path.
@@ -37,6 +38,11 @@ const routes = [
     path: '/landing',
     name: 'Landing',
     component: Landing
+  },
+  {
+    path: '/statistik-vote',
+    name: 'StatistikVote',
+    component: StatistikVote
   },
   
 ]
