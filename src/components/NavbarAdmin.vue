@@ -18,7 +18,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item dropdown">
-            <h5 class="py-2">Jhon Doe</h5>
+            <h5 class="py-2">{{ nama }}</h5>
           </li>
           <li class="nav-item d-block d-sm-block d-md-none">
             <a class="nav-link" href="#">Dashboard</a>
@@ -43,7 +43,14 @@
 export default {
   name: "navbar-admin",
   data() {
-    return {};
+    return {
+      id_mhs: "",
+      nama: ""
+    };
+  },
+  created() {
+    this.id_mhs = sessionStorage.getItem("id_mhs");
+    this.nama = sessionStorage.getItem("nama");
   },
 };
 </script>
@@ -63,7 +70,7 @@ export default {
 
 h5 {
   margin-bottom: 0;
-  font-weight: 600;
+  font-weight: 500;
   color: rgb(39, 39, 39);
 }
 .navbar-toggler {

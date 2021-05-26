@@ -93,7 +93,7 @@
                         <div class="col-4 text-right">
                           <img
                             class="card-profile"
-                            src="man.jpg"
+                            :src="result.img_ketua"
                             alt=""
                             width="100%"
                           />
@@ -111,7 +111,7 @@
                         <div class="col-4 text-right">
                           <img
                             class="card-profile"
-                            src="profile.jpg"
+                            :src="result.img_wakil"
                             alt=""
                             width="100%"
                           />

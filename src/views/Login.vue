@@ -152,10 +152,13 @@ export default {
             const token = response.data;
             console.log(token);
             // Tambah session buat nyimpen data orang
+            sessionStorage.setItem("id_mhs", token.data[0].id_mhs)
+            sessionStorage.setItem("nama", token.data[0].nama)
 
             if (token.admin) {
               // kalau dia admin router ke dashboard
               console.log("Yess")
+              this.$router.push({ path: 'dashboard' })
             } else {
               console.log("Noo")
             }
