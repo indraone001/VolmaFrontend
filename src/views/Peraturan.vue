@@ -13,54 +13,15 @@
                   <br />
                   <h4 class="text-center">Ketentuan Umum pengguna:</h4>
                   <br />
-                  <ol>
-                    <li>
-                      <p>
-                        Pengguna dinyatakan sebagai <b>mahasiswa</b> yang masih
-                        terdaftar secara sah oleh universitas.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Setiap pengguna hanya bisa memilih satu calon saja dan
-                        tidak akan bisa mengubah pilihan tersebut setelah
-                        diinputkan.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Setiap pengguna sepakat untuk tidak memperjualkan atau
-                        memberikan hak pilihnya kepada pihak lain.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Pengguna dan calon harus menerapkan asas
-                        <b>LUBER</b> dan <b>JURDIL</b>.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Setelah hasil akhir pemilihan telah didapatkan maka
-                        hasil tersebut tidak dapat diganggu gugat oleh pihak
-                        manapun.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Jika proses Pemilihan terindikasi kecurangan maka
-                        permasalahan tersebut akan dikembalikan kepada fakultas
-                        untuk ditindak lanjuti apakah pemilihan akan dilakukan
-                        ulang atau tidak.
-                      </p>
-                    </li>
-                    <li>
-                      <p>
-                        Dengan Menekan tombol
-                        <b>"Saya menyetujui persyaratan"</b> maka, Pengguna
-                        dianggap telah membaca, memahami dan menyetujui
-                        ketentuan dalam pemilihan umum.
-                      </p>
+                  <ol v-for="rule in rules" :key="rule.id">
+                    <li class="d-flex">
+                      <div>
+                        <p>{{ rule.id }}.</p>
+                      </div>
+                      <div class="divider"></div>
+                      <div>
+                        <p>{{ rule.value }}</p>
+                      </div>
                     </li>
                   </ol>
                 </div>
@@ -91,28 +52,44 @@ export default {
     NavbarUser,
   },
   data() {
-    return {};
-  },
-  created() {},
-  methods: {
-    /*
-     * @return dataset dashboard yang telah didaftarkan oleh admin.
-     *
-     */
-    // getKandidats() {
-    //   const options = {
-    //     url: "https://volma01.herokuapp.com/kandidat",
-    //     method: "get",
-    //   };
-    //   axios(options)
-    //     .then((response) => {
-    //       this.kandidats = response.data.data;
-    //       console.log(this.kandidats);
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
+    return {
+      rules: [
+        {
+          id: 1,
+          value:
+            "Pengguna dinyatakan sebagai mahasiswa yang masih terdaftar secara sah oleh universitas.",
+        },
+        {
+          id: 2,
+          value:
+            "Setiap pengguna hanya bisa memilih satu calon saja dan tidak akan bisa mengubah pilihan tersebut setelah diinputkan.",
+        },
+        {
+          id: 3,
+          value:
+            "Setiap pengguna sepakat untuk tidak memperjualkan atau memberikan hak pilihnya kepada pihak lain.",
+        },
+        {
+          id: 4,
+          value: "Pengguna dan calon harus menerapkan asas LUBER dan JURDIL.",
+        },
+        {
+          id: 5,
+          value:
+            "Setelah hasil akhir pemilihan telah didapatkan maka hasil tersebut tidak dapat diganggu gugat oleh pihak manapun.",
+        },
+        {
+          id: 6,
+          value:
+            "Jika proses Pemilihan terindikasi kecurangan maka permasalahan tersebut akan dikembalikan kepada fakultas untuk ditindak lanjuti apakah pemilihan akan dilakukan ulang atau tidak.",
+        },
+        {
+          id: 7,
+          value:
+            "Dengan Menekan tombol 'Saya menyetujui persyaratan' maka, Pengguna dianggap telah membaca, memahami dan menyetujui ketentuan dalam pemilihan umum.",
+        },
+      ],
+    };
   },
 };
 </script>
@@ -148,5 +125,8 @@ export default {
 
 .container {
   max-height: fit-content;
+}
+.divider {
+  width: 5px;
 }
 </style>

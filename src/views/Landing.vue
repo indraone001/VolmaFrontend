@@ -124,7 +124,7 @@
                       <div class="modal-body text-left">
                         <p>Anda memilih pasangan calon dengan nomor urut {{ kandidat.no_urut }}.</p>
                         <p>Dengan {{ kandidat.nama }} sebagai ketua dan {{ kandidat.nama_wakil }} sebagai wakil.</p>
-                        <p><b>Apakan anda yakin?</b></p>
+                        <p><b>Apakah anda yakin?</b></p>
                       </div>
                       <div class="modal-footer">
                         <button
