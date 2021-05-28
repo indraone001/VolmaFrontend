@@ -1,6 +1,6 @@
 <template>
   <div>
-    <nav class="navbar navbar-expand-lg navbar-light py-3">
+    <nav class="navbar navbar-expand-lg navbar-light py-1">
       <div class="container">
         <a class="navbar-brand pr-2" href="#">Volma</a>
         <button
@@ -17,17 +17,29 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item pr-2">
-              <a class="nav-link" href="#">
-                <font-awesome-icon :icon="['fas', 'home']" /> 
+            <li class="nav-item  px-2">
+              <router-link
+                to="/landing"
+                tag="a"
+                active-class="active"
+                exact
+                class="nav-link nav-outline"
+              >
+                <font-awesome-icon :icon="['fas', 'home']" />
                 Home
-              </a>
+              </router-link>
             </li>
             <li class="nav-item pr-2">
-              <a class="nav-link" href="#">
-                <font-awesome-icon :icon="['fas', 'shield-alt']" /> 
-                Peraturan</a
+              <router-link
+                to="/peraturan"
+                tag="a"
+                active-class="active"
+                exact
+                class="nav-link nav-outline"
               >
+                <font-awesome-icon :icon="['fas', 'shield-alt']" />
+                Peraturan
+              </router-link>
             </li>
           </ul>
           <ul class="navbar-nav">
@@ -80,12 +92,41 @@ export default {
 .navbar-brand {
   color: #fff;
 }
-
+.nav-item {
+  padding: 3px 2px;
+}
 .navbar button {
   color: #fff;
 }
 .navbar-toggler {
-    border: none;
+  border: none;
 }
-
+.nav-outline::after {
+  position: relative;
+  top: 10px;
+  content: '';
+  display: block;
+  width: 0;
+  height: 3px;
+  background: #2f80ed;
+  transition: width 0.3s;
+}
+.nav-outline:hover::after {
+  width: 100%;
+}
+.active {
+  color: #2f80ed;
+}
+.active::after {
+  position: relative;
+  top: 10px;
+  content: "";
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: #2f80ed;
+}
+a.nav-link.nav-outline.active {
+  color: #2f80ed;
+}
 </style>

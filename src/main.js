@@ -29,6 +29,7 @@ import {
   faUserClock,
   faSignOutAlt,
   faUserFriends,
+  faUserGraduate,
   faTachometerAlt
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -45,6 +46,7 @@ library.add(faShieldAlt);
 library.add(faUserClock);
 library.add(faSignOutAlt);
 library.add(faUserFriends);
+library.add(faUserGraduate);
 library.add(faTachometerAlt);
 
 Vue.component('font-awesome-icon', FontAwesomeIcon);

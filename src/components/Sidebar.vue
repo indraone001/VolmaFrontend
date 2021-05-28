@@ -34,6 +34,23 @@
             </li>
             <li>
               <router-link
+                to="/"
+                active-class="active"
+                exact
+                class="navigate-link btn text-left"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <font-awesome-icon :icon="['fas', 'user-graduate']" />
+                  </div>
+                  <div class="col-8">
+                    <span>Mahasiswa</span>
+                  </div>
+                </div>
+              </router-link>
+            </li>
+            <li>
+              <router-link
                 to="/kandidat"
                 active-class="active"
                 exact

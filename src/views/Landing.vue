@@ -20,7 +20,7 @@
                     <div class="col-4 text-right">
                       <img
                         class="card-profile"
-                        src="man.jpg"
+                        :src="'/profilePicture/'+kandidat.img_ketua+'.jpg'"
                         alt=""
                         width="100%"
                       />
@@ -40,7 +40,7 @@
                     <div class="col-4 text-right">
                       <img
                         class="card-profile"
-                        src="profile.jpg"
+                        :src="'/profilePicture/'+kandidat.img_wakil+'.jpg'"
                         alt=""
                         width="100%"
                       />
@@ -99,7 +99,7 @@
 
                 <!-- Modal -->
                 <div
-                  class="modal fade"
+                  class="modal fade py-auto"
                   :id="'kandidat'+kandidat.no_urut"
                   tabindex="-1"
                   role="dialog"
@@ -240,5 +240,10 @@ export default {
 .tab-content::-webkit-scrollbar {
   width: 0px;
   background: transparent;
+}
+
+.modal-content {
+  border: none;
+  border-radius: 10px;
 }
 </style>
