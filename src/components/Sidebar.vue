@@ -34,7 +34,7 @@
             </li>
             <li>
               <router-link
-                to="/"
+                to="/mahasiswa"
                 active-class="active"
                 exact
                 class="navigate-link btn text-left"
@@ -90,7 +90,7 @@
               <a
                 class="navigate-link btn text-left"
                 data-toggle="modal"
-                data-target="#exampleModal"
+                data-target="#Modal"
               >
                 <div class="row">
                   <div class="col-2">
@@ -104,7 +104,7 @@
 
               <div
                 class="modal fade"
-                id="exampleModal"
+                id="Modal"
                 tabindex="-1"
                 role="dialog"
                 aria-labelledby="exampleModalLabel"
@@ -244,7 +244,10 @@ export default {
   border-bottom-left-radius: 50px;
 }
 
-
+.modal-content {
+  border: none;
+  border-radius: 10px;
+}
 
 @media only screen and (max-width: 1200px) {
   .sidebar {
