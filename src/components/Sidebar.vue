@@ -20,7 +20,7 @@
                 to="/dashboard"
                 active-class="active"
                 exact
-                class="navigate-link"
+                class="navigate-link btn text-left"
               >
                 <div class="row">
                   <div class="col-2">
@@ -34,10 +34,27 @@
             </li>
             <li>
               <router-link
+                to="/mahasiswa"
+                active-class="active"
+                exact
+                class="navigate-link btn text-left"
+              >
+                <div class="row">
+                  <div class="col-2">
+                    <font-awesome-icon :icon="['fas', 'user-graduate']" />
+                  </div>
+                  <div class="col-8">
+                    <span>Mahasiswa</span>
+                  </div>
+                </div>
+              </router-link>
+            </li>
+            <li>
+              <router-link
                 to="/kandidat"
                 active-class="active"
                 exact
-                class="navigate-link"
+                class="navigate-link btn text-left"
               >
                 <div class="row">
                   <div class="col-2">
@@ -54,7 +71,7 @@
                 to="/pemilih"
                 active-class="active"
                 exact
-                class="navigate-link"
+                class="navigate-link btn text-left"
               >
                 <div class="row">
                   <div class="col-2">
@@ -70,11 +87,10 @@
 
           <div class="items logout">
             <li>
-              <router-link
-                to="/"
-                active-class="active"
-                exact
-                class="navigate-link"
+              <a
+                class="navigate-link btn text-left"
+                data-toggle="modal"
+                data-target="#Modal"
               >
                 <div class="row">
                   <div class="col-2">
@@ -84,7 +100,49 @@
                     <span>Log Out</span>
                   </div>
                 </div>
-              </router-link>
+              </a>
+
+              <div
+                class="modal fade"
+                id="Modal"
+                tabindex="-1"
+                role="dialog"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content ">
+                    <div class="modal-header">
+                      <h5 class="modal-title text-secondary" id="exampleModalLabel">
+                        Log Out
+                      </h5>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body text-dark">
+                      Apakah anda yakin ingin keluar?
+                    </div>
+                    <div class="modal-footer">
+                      <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-dismiss="modal"
+                      >
+                        Tidak
+                      </button>
+                      <button type="button" class="btn btn-primary" data-dismiss="modal" @click="logout">
+                        Ya, saya yakin
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </li>
           </div>
         </ul>
@@ -97,8 +155,21 @@
 export default {
   name: "sidebar",
   data() {
-    return {};
+    return {
+      id_mhs: "",
+      nama: "",
+    };
   },
+  created() {
+    this.id_mhs = sessionStorage.getItem("id_mhs");
+    this.nama = sessionStorage.getItem("nama");
+  },
+  methods: {
+    logout: function() {
+      sessionStorage.clear();
+      this.$router.push({ path: '/' })
+    },
+  }
 };
 </script>
 
@@ -171,6 +242,11 @@ export default {
   -moz-border-radius-bottomleft: 50px;
   border-top-left-radius: 50px;
   border-bottom-left-radius: 50px;
+}
+
+.modal-content {
+  border: none;
+  border-radius: 10px;
 }
 
 @media only screen and (max-width: 1200px) {

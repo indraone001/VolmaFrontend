@@ -4,6 +4,10 @@ import Login from "../views/Login.vue";
 import KelolaKandidat from "../views/KelolaKandidat.vue";
 import KelolaPemilih from "../views/KelolaPemilih.vue";
 import Dashboard from "../views/Dashboard.vue";
+import Landing from "../views/Landing.vue";
+import StatistikVote from "../views/StatistikVote.vue";
+import Peraturan from "../views/Peraturan.vue";
+import KelolaMahasiswa from "../views/KelolaMahasiswa.vue";
 /**
 * 
 * File untuk mengetur path.
@@ -32,7 +36,26 @@ const routes = [
     name: 'Dashboard',
     component: Dashboard
   },
-  
+  {
+    path: '/landing',
+    name: 'Landing',
+    component: Landing
+  },
+  {
+    path: '/statistik-vote',
+    name: 'StatistikVote',
+    component: StatistikVote
+  },
+  {
+    path: '/peraturan',
+    name: 'Peraturan',
+    component: Peraturan
+  },
+  {
+    path: '/mahasiswa',
+    name: 'KelolaMahasiswa',
+    component: KelolaMahasiswa
+  },
 ]
 
 const router = new VueRouter({

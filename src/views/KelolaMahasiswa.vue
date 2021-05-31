@@ -1,5 +1,5 @@
 <template>
-  <div id="kandidat">
+  <div>
     <sidebar />
 
     <div class="main-content">
@@ -8,61 +8,84 @@
       </header>
 
       <main>
-        <div class="container main-kandidat">
-          <h2 class="mb-4">Kelola Kandidat</h2>
+        <div class="container main-mahasiswa">
+          <h2 class="mb-4">Kelola Mahasiswa</h2>
+          <!-- <div class="row">
+          <div class="col-lg-8 col-md-12 col-sm-12">
+            <button type="button" class="btn btn-primary">
+              Tambahkan Mahasiswa
+            </button>
+          </div>
+          <div class="col-lg-4 col-md-12 col-sm-12 text-right">
+            <div class="search-container">
+              <form>
+                  <input type="text" placeholder="Cari Mahasiswa" name="search" />
+                </form>
+            </div>
+          </div>
+        </div> -->
           <div class="d-flex justify-content-between">
             <div class="item">
               <button type="button" class="btn btn-primary">
-                Tambahkan Kandidat
+                Tambahkan Mahasiswa
               </button>
             </div>
 
             <div class="item search-container">
               <form>
-                <input type="text" placeholder="Cari Ketua" v-model="search" />
+                <input
+                  type="text"
+                  placeholder="Cari Mahasiswa"
+                  v-model="search"
+                />
               </form>
             </div>
           </div>
 
-          <section class="table-kandidat pb-4">
-            <div class="card border-0 mb-4">
+          <section class="table-pemilih pb-4">
+            <div class="card border-0">
               <div class="card-body">
                 <div class="container table-responsive">
                   <table class="table table-hover">
                     <thead>
                       <tr>
-                        <th>No</th>
-                        <th>Ketua</th>
-                        <th>Wakil</th>
-                        <th>Visi</th>
-                        <th>Misi</th>
-                        <th>Aksi</th>
+                        <th scope="col">Id</th>
+                        <th scope="col">NIM</th>
+                        <th scope="col">Nama</th>
+                        <th scope="col">jurusan</th>
+                        <th scope="col">angkatan</th>
+                        <th scope="col">Password</th>
+                        <th scope="col">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr
-                        v-for="kandidat in filteredData"
-                        :key="kandidat.id_kandidat"
-                      >
-                        <th>{{ kandidat.no_urut }}</th>
-                        <td>{{ kandidat.nama }}</td>
-                        <td>{{ kandidat.nama_wakil }}</td>
-                        <td>{{ kandidat.visi }}</td>
-                        <td>{{ kandidat.misi }}</td>
+                      <tr v-for="student in filteredData" :key="student.id_mhs">
+                        <th scope="row">{{ student.id_mhs }}</th>
+                        <td>{{ student.nim }}</td>
+                        <td>{{ student.nama }}</td>
+                        <td>{{ student.jurusan }}</td>
+                        <td>{{ student.angkatan }}</td>
                         <td>
-                          <button type="button" class="btn btn-info my-3">
-                            Detail
+                          <button
+                            type="button"
+                            class="btn btn-outline-info mb-3 mr-1"
+                          >
+                            Acak Password
                           </button>
-                          <!-- <br />
-                          <button type="button" class="btn btn-primary mb-3">
+                        </td>
+                        <td>
+                          <button
+                            type="button"
+                            class="btn btn-primary mb-3 mr-1"
+                          >
                             Edit
                           </button>
                           <button
                             type="button"
-                            class="btn btn-outline-primary mb-3"
+                            class="btn btn-outline-danger mb-3"
                           >
                             Hapus
-                          </button> -->
+                          </button>
                         </td>
                       </tr>
                     </tbody>
@@ -85,34 +108,34 @@ import Sidebar from "@/components/Sidebar.vue";
 import axios from "axios";
 
 export default {
-  name: "KelolaKandidat",
+  name: "KelolaMahasiswa",
   components: {
     NavbarAdmin,
     Sidebar,
   },
   data() {
     return {
-      kandidats: [],
+      students: [],
       search: "",
     };
   },
   created() {
-    this.getKandidat();
+    this.getMahasiswa();
   },
   methods: {
     /*
      * @return dataset kandidat yang telah didaftarkan oleh admin.
      *
      */
-    getKandidat() {
+    getMahasiswa() {
       const options = {
-        url: "https://volma01.herokuapp.com/kandidat",
+        url: "https://volma01.herokuapp.com/mahasiswa",
         method: "get",
       };
       axios(options)
         .then((response) => {
-          this.kandidats = response.data.data;
-          console.log(this.kandidats);
+          this.students = response.data.data;
+          console.log(this.students);
         })
         .catch((e) => {
           console.log(e);
@@ -121,7 +144,7 @@ export default {
   },
   computed: {
     filteredData: function() {
-      return this.kandidats.filter((data) => {
+      return this.students.filter((data) => {
         let name = data.nama.toLowerCase();
         return name.match(this.search.toLowerCase());
       });
@@ -131,7 +154,6 @@ export default {
 </script>
 
 <style scoped>
-
 .main-content {
   height: 100%;
   margin-left: 16%;
@@ -142,20 +164,34 @@ export default {
   height: 50vh;
   background: #eefafd;
 }
-.main-kandidat {
+.main-mahasiswa {
   padding-top: 3rem;
 }
-.main-kandidat h2 {
+.main-mahasiswa h2 {
   font-weight: 600;
 }
 
-.main-kandidat input[type="text"] {
+.main-mahasiswa input[type="text"] {
   padding: 9px 16px;
   outline-color: #2f80ed;
   font-size: 15px;
   border: none;
   border-radius: 8px;
 }
+
+/* .main-mahasiswa .search-container button {
+  padding: 6px 10px;
+  margin-top: 8px;
+  background: #ddd;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.main-mahasiswa .search-container button:hover {
+  background: #ccc;
+} */
 
 .card {
   width: 100%;
@@ -188,8 +224,8 @@ export default {
   .main-content:hover {
     margin-left: 0;
   }
-  .navbar-toggler {
+  /* .navbar-toggler {
     display: inline-block;
-  }
+  } */
 }
 </style>

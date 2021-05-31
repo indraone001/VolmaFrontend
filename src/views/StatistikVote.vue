@@ -1,81 +1,46 @@
 <template>
   <div>
-    <sidebar />
-
     <div class="main-content">
       <header>
-        <navbar-admin />
+        <navbar-user />
       </header>
 
       <main>
-        <div class="container main-kandidat">
-          <h2 class="mb-1">Dashboard</h2>
-          <div class="row">
-            <div class="col-6 col-sm-6 col-md-3 ">
-              <div class="card py-0">
-                <div class="card-body">
-                  <h3>
-                    <!-- <i class="fas fa-users"></i> -->
-                    <font-awesome-icon :icon="['fas', 'users']" />
-                  </h3>
-                  <h6 class="card-title">Banyak Pemilih</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    {{ dashboard.jumlah_pemilih }} Orang
-                  </h6>
-                </div>
-              </div>
-            </div>
+        <div class="head-content">
+          <div class="container">
+            <h5>Hasil</h5>
+            <h3 class="pb-4">Pemilihan Umum Ketua</h3>
 
-            <div class="col-6 col-sm-6 col-md-3 ">
-              <div class="card py-0">
-                <div class="card-body">
-                  <h3>
-                    <!-- <i class="fas fa-chart-pie"></i> -->
-                    <font-awesome-icon :icon="['fas', 'chart-pie']" />
-                  </h3>
-                  <h6 class="card-title">Telah Memilih</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    {{ dashboard.voted }}%
-                  </h6>
-                </div>
+            <div class="row counting text-center">
+              <div class="col-6 col-md-6 col-lg-3 mb-3">
+                <h2><font-awesome-icon :icon="['fas', 'users']" /></h2>
+                <h6>Banyak Pemilih</h6>
+                <p>{{ dashboard.jumlah_pemilih }} Orang</p>
               </div>
-            </div>
-
-            <div class="col-6 col-sm-6 col-md-3 ">
-              <div class="card py-0">
-                <div class="card-body">
-                  <h3>
-                    <!-- <i class="fas fa-user-tie"></i> -->
-                    <font-awesome-icon :icon="['fas', 'user-tie']" />
-                  </h3>
-                  <h6 class="card-title">Jumlah Calon</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    {{ dashboard.kandidat }} Orang
-                  </h6>
-                </div>
+              <div class="col-6 col-md-6 col-lg-3 mb-3">
+                <h2><font-awesome-icon :icon="['fas', 'chart-pie']" /></h2>
+                <h6>Telah Memilih</h6>
+                <p>{{ dashboard.voted }}%</p>
               </div>
-            </div>
-
-            <div class="col-6 col-sm-6 col-md-3 ">
-              <div class="card py-0">
-                <div class="card-body">
-                  <h3>
-                    <!-- <i class="fas fa-user-clock"></i> -->
-                    <font-awesome-icon :icon="['fas', 'user-clock']" />
-                  </h3>
-                  <h6 class="card-title">Periode</h6>
-                  <h6 class="card-subtitle mb-2 text-muted">
-                    {{ dashboard.periode }}
-                  </h6>
-                </div>
+              <div class="col-6 col-md-6 col-lg-3 mb-3">
+                <h2><font-awesome-icon :icon="['fas', 'user-tie']" /></h2>
+                <h6>Jumlah Calon</h6>
+                <p>{{ dashboard.kandidat }} Orang</p>
+              </div>
+              <div class="col-6 col-md-6 col-lg-3 mb-3">
+                <h2><font-awesome-icon :icon="['fas', 'user-clock']" /></h2>
+                <h6>Periode</h6>
+                <p>{{ dashboard.periode }}</p>
               </div>
             </div>
           </div>
-
-          <section class="mt-4 pt-4">
-            <h3 class="pt-3">Perolehan Masing-masing Calon</h3>
+        </div>
+        <div class="body-content pt-4">
+          <div class="container">
+            <h3 class="pt-4">Perolehan Masing-masing Calon</h3>
 
             <div class="row card-groups">
+              <div class="row card-groups">
               <div
                 class="col-sm-12 col-md-12 col-lg-4 mb-4"
                 v-for="result in results"
@@ -147,7 +112,8 @@
                 </div>
               </div>
             </div>
-          </section>
+            </div>
+          </div>
         </div>
       </main>
     </div>
@@ -155,16 +121,14 @@
 </template>
 
 <script>
-import NavbarAdmin from "@/components/NavbarAdmin.vue";
-import Sidebar from "@/components/Sidebar.vue";
+import NavbarUser from "@/components/NavbarUser.vue";
 
 import axios from "axios";
 
 export default {
-  name: "Dashboard",
+  name: "StatistikVote",
   components: {
-    NavbarAdmin,
-    Sidebar,
+    NavbarUser,
   },
   data() {
     return {
@@ -218,39 +182,35 @@ export default {
 </script>
 
 <style scoped>
-.main-content {
-  height: 100%;
-  margin-left: 16%;
-  transition: margin-left 200ms;
+.head-content {
+  padding-top: 3rem;
+  /* background-color: #fff; */
+  background: #56ccf2;
+  background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
+  background: linear-gradient(to right, #2f80ed, #56ccf2);
+  color: #fff;
+}
+.body-content {
   background: #eefafd;
 }
-.main-kandidat {
-  padding-top: 3rem;
+.counting {
+  margin-top: 10vh;
+  padding-bottom: 3vh;
 }
-.main-kandidat h2 {
-  font-weight: 600;
-}
+
 .card {
-  width: 100%;
-  margin-top: 2rem;
-  padding: 1rem 0;
   border-radius: 12px;
   border: none;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-.col-6 .card,
-.col-lg-4 .card {
-  border-radius: 12px;
-  border: none;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+.card-groups {
+  margin-top: 3rem;
 }
 .card-profile {
   border-radius: 50%;
   width: 4rem;
 }
-.card-kandidat {
-  height: 58vh;
-}
+
 .name-kandidat {
   margin-top: 1.5rem;
   margin-bottom: 0;
@@ -261,29 +221,8 @@ export default {
   font-weight: 500;
   color: gray;
 }
+
 .card-count h6 {
   margin: 0;
-}
-
-/* Media Queries */
-@media only screen and (max-width: 1200px) {
-  .main-content {
-    margin-left: 75px;
-  }
-  .main-content:hover {
-    margin-left: 75px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
-  }
-  .main-content:hover {
-    margin-left: 0;
-  }
-  .navbar-toggler {
-    display: inline-block;
-  }
 }
 </style>

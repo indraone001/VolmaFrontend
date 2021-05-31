@@ -1,6 +1,9 @@
 <template>
   <div id="app"> 
-    <router-view/>
+    <div class="scroll">
+      <router-view/>
+
+    </div>
   </div>
 </template>
 
@@ -14,5 +17,17 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", sans-serif;
+}
+
+.scroll {
+  overflow: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+::-webkit-scrollbar {
+  /* width: 0px; 
+  background: transparent; */
+  display: none;
 }
 </style>
