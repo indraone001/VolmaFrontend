@@ -161,6 +161,15 @@ export default {
               this.$router.push({ path: 'dashboard' })
             } else {
               console.log("Noo")
+              sessionStorage.setItem("id_mhs", token.data[0].id_mhs)
+              sessionStorage.setItem("nama", token.data[0].nama)
+              sessionStorage.setItem("status", token.data[0].status)
+              
+              if (token.data[0].status == 1) {
+                this.$router.push({ path: 'statistik-vote' })
+              } else {
+                this.$router.push({ path: 'peraturan' })
+              }
             }
           })
           .catch((e) => {

@@ -58,7 +58,7 @@
                         <div class="col-4 text-right">
                           <img
                             class="card-profile"
-                            src="man.jpg"
+                            :src="'/profilePicture/'+result.img_ketua+'.jpg'"
                             alt=""
                             width="100%"
                           />
@@ -76,7 +76,7 @@
                         <div class="col-4 text-right">
                           <img
                             class="card-profile"
-                            src="profile.jpg"
+                            :src="'/profilePicture/'+result.img_wakil+'.jpg'"
                             alt=""
                             width="100%"
                           />
@@ -190,6 +190,9 @@ export default {
   background: linear-gradient(to right, #2f80ed, #56ccf2);
   color: #fff;
 }
+.body-content {
+  background: #eefafd;
+}
 .counting {
   margin-top: 10vh;
   padding-bottom: 3vh;
@@ -205,7 +208,7 @@ export default {
 }
 .card-profile {
   border-radius: 50%;
-  width: 8rem;
+  width: 4rem;
 }
 
 .name-kandidat {

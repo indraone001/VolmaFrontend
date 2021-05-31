@@ -17,7 +17,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item  px-2">
+            <li class="nav-item  px-2" v-if="status == 0">
               <router-link
                 to="/landing"
                 tag="a"
@@ -27,6 +27,18 @@
               >
                 <font-awesome-icon :icon="['fas', 'home']" />
                 Home
+              </router-link>
+            </li>
+            <li class="nav-item  px-2" v-else-if="status == 1">
+              <router-link
+                to="/statistik-vote"
+                tag="a"
+                active-class="active"
+                exact
+                class="nav-link nav-outline"
+              >
+                <font-awesome-icon :icon="['fas', 'home']" />
+                Hasil Vote
               </router-link>
             </li>
             <li class="nav-item pr-2">
@@ -53,13 +65,13 @@
                 aria-haspopup="true"
                 aria-expanded="false"
               >
-                Jhon Doe
+                {{ nama }}
               </a>
               <div
                 class="dropdown-menu dropdown-menu-right"
                 aria-labelledby="navbarDropdown"
               >
-                <a class="dropdown-item" href="#">Log Out</a>
+                <a class="dropdown-item" @click="logout">Log Out</a>
               </div>
             </li>
           </ul>
@@ -73,7 +85,22 @@
 export default {
   name: "navbar-user",
   data() {
-    return {};
+    return {
+      id_mhs: null,
+      nama: "",
+      status: null,
+    };
+  },
+  created() {
+    this.id_mhs = sessionStorage.getItem("id_mhs");
+    this.nama = sessionStorage.getItem("nama");
+    this.status = sessionStorage.getItem("status");
+  },
+  methods: {
+    logout: function() {
+      sessionStorage.clear();
+      this.$router.push({ path: "/" });
+    },
   },
 };
 </script>
@@ -104,7 +131,7 @@ export default {
 .nav-outline::after {
   position: relative;
   top: 10px;
-  content: '';
+  content: "";
   display: block;
   width: 0;
   height: 3px;
@@ -128,5 +155,8 @@ export default {
 }
 a.nav-link.nav-outline.active {
   color: #2f80ed;
+}
+.dropdown-item {
+  cursor: pointer;
 }
 </style>

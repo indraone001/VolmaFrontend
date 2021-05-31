@@ -29,6 +29,7 @@
                   to="/landing"
                   tag="button"
                   class="btn btn-primary mt-4 mb-3 px-4"
+                  v-if="status != 1"
                 >
                   Saya menyetujui persyaratan
                 </router-link>
@@ -89,8 +90,12 @@ export default {
             "Dengan Menekan tombol 'Saya menyetujui persyaratan' maka, Pengguna dianggap telah membaca, memahami dan menyetujui ketentuan dalam pemilihan umum.",
         },
       ],
+      status: null
     };
   },
+  created() {
+    this.status = sessionStorage.getItem("status");
+  }
 };
 </script>
 
