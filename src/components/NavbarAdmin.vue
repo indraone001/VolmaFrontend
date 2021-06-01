@@ -112,9 +112,9 @@
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
-                <div class="modal-dialog" role="document">
+                <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content ">
-                    <div class="modal-header">
+                    <div class="modal-header border-0">
                       <h5 class="modal-title text-secondary" id="exampleModalLabel">
                         Log Out
                       </h5>
@@ -127,10 +127,10 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body text-dark">
+                    <div class="modal-body text-dark border-0">
                       Apakah anda yakin ingin keluar?
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer border-0">
                       <button
                         type="button"
                         class="btn btn-secondary"

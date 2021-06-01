@@ -110,9 +110,9 @@
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content ">
-                    <div class="modal-header">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header border-0">
                       <h5 class="modal-title text-secondary" id="exampleModalLabel">
                         Log Out
                       </h5>
@@ -125,10 +125,10 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body text-dark">
-                      Apakah anda yakin ingin keluar?
+                    <div class="modal-body text-dark border-0">
+                      <p class="py-2 text-center">Apakah anda yakin ingin keluar?</p> 
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer border-0">
                       <button
                         type="button"
                         class="btn btn-secondary"
@@ -182,7 +182,7 @@ export default {
   left: 0;
   width: 16%;
   transition: width 300ms;
-  z-index: 999999;
+  z-index: 9999;
   background: #56ccf2;
   background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
   background: linear-gradient(to right, #2f80ed, #56ccf2);
