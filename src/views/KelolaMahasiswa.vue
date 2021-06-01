@@ -12,16 +12,16 @@
           <h2 class="mb-4">Kelola Mahasiswa</h2>
           <div class="d-flex justify-content-between">
             <div class="item">
-              <button type="button" class="btn btn-primary">
+              <router-link tag="button" to="/tambah-mahasiswa" type="button" class="btn btn-primary">
                 Tambahkan Mahasiswa
-              </button>
+              </router-link>
             </div>
 
             <div class="item search-container">
               <form>
                 <input
                   type="text"
-                  placeholder="Cari Mahasiswa"
+                  placeholder="Cari Nama"
                   v-model="search"
                 />
               </form>

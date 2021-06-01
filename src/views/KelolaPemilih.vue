@@ -18,7 +18,7 @@
 
             <div class="item search-container">
               <form>
-                <input type="text" placeholder="Cari Pemilih" v-model="search" />
+                <input type="text" placeholder="Cari Nama" v-model="search" />
               </form>
             </div>
           </div>

@@ -9,6 +9,7 @@ import StatistikVote from "../views/StatistikVote.vue";
 import Peraturan from "../views/Peraturan.vue";
 import KelolaMahasiswa from "../views/KelolaMahasiswa.vue";
 import TambahPemilih from "../views/TambahPemilih.vue";
+import TambahMahasiswa from "../views/TambahMahasiswa.vue";
 /**
 * 
 * File untuk mengetur path.
@@ -61,6 +62,11 @@ const routes = [
     path: '/tambah-pemilih',
     name: 'TambahPemilih',
     component: TambahPemilih
+  },
+  {
+    path: '/tambah-mahasiswa',
+    name: 'TambahMahasiswa',
+    component: TambahMahasiswa
   },
 ]
 
