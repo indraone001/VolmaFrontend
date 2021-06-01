@@ -76,13 +76,7 @@
             </div>
             <form @submit.prevent="login()">
               <div class="form text-left">
-                <input
-                  type="text"
-                  id="nim"
-                  name="nim"
-                  v-model="nim"
-                  required
-                />
+                <input type="text" id="nim" name="nim" v-model="nim" required />
                 <label for="nim" class="label-name">
                   <span class="content-name">Nim</span>
                 </label>
@@ -110,11 +104,6 @@
 </template>
 
 <script>
-/**
- * Import library Axios untuk menghubungkan API
- * data: nim, password, cekError
- *
- */
 import axios from "axios";
 
 export default {
@@ -128,11 +117,7 @@ export default {
   },
   methods: {
     /**
-     *
      * @return status true / false
-     * Fungsi login melakukan pengecekan terlebih dahulu pada variable nim dan password
-     * kemudian post data yang sudah di di cek kedalam API dengan menggunakan axios
-     * @exception jika memasukan data yang salah kemudian set variable cekError menjadi true
      *
      */
     login: function() {
@@ -151,24 +136,20 @@ export default {
           .then((response) => {
             const token = response.data;
             console.log(token);
-            // Tambah session buat nyimpen data orang
-            
-
             if (token.admin) {
-              // kalau dia admin router ke dashboard
-              sessionStorage.setItem("id_mhs", token.data[0].id_mhs)
-              sessionStorage.setItem("nama", token.data[0].nama)
-              this.$router.push({ path: 'dashboard' })
+              sessionStorage.setItem("id_mhs", token.data[0].id_mhs);
+              sessionStorage.setItem("nama", token.data[0].nama);
+              this.$router.push({ path: "dashboard" });
             } else {
-              console.log("Noo")
-              sessionStorage.setItem("id_mhs", token.data[0].id_mhs)
-              sessionStorage.setItem("nama", token.data[0].nama)
-              sessionStorage.setItem("status", token.data[0].status)
-              
+              console.log("Noo");
+              sessionStorage.setItem("id_mhs", token.data[0].id_mhs);
+              sessionStorage.setItem("nama", token.data[0].nama);
+              sessionStorage.setItem("status", token.data[0].status);
+
               if (token.data[0].status == 1) {
-                this.$router.push({ path: 'statistik-vote' })
+                this.$router.push({ path: "statistik-vote" });
               } else {
-                this.$router.push({ path: 'peraturan' })
+                this.$router.push({ path: "peraturan" });
               }
             }
           })
@@ -179,7 +160,7 @@ export default {
           });
       }
     },
-    /*
+    /**
      * @return cekError = false
      * Jika terdapat error maka akan set cekError menjadi false untuk menampilkan notifikasi
      */
@@ -271,7 +252,6 @@ form {
   pointer-events: none;
   border-bottom: 1px solid #666;
 }
-
 .form label::after {
   content: "";
   position: absolute;

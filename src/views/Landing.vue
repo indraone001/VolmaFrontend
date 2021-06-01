@@ -1,31 +1,34 @@
 <template>
   <div class="landing">
     <navbar-user />
+
     <main class="pb-4">
       <div class="container main-content">
         <h3 class="title text-center pb-2">PEMILIHAN KETUA UMUM</h3>
 
         <div class="row card-groups">
-          <div class="col-sm-12 col-md-6 col-lg-6 mb-4" 
-          v-for="kandidat in kandidats"
-                :key="kandidat.no_urut">
+          <div
+            class="col-sm-12 col-md-6 col-lg-6 mb-4"
+            v-for="kandidat in kandidats"
+            :key="kandidat.no_urut"
+          >
             <div class="card">
               <div class="card-body text-center">
                 <h4 class="name-kandidat">{{ kandidat.nama }}</h4>
                 <h6 class="no-kandidat">Nomor Urut {{ kandidat.no_urut }}</h6>
 
                 <div class="container pt-4">
+                  <!-- Profile Ketua -->
                   <div class="row">
                     <div class="col-1"></div>
                     <div class="col-4 text-right">
                       <img
                         class="card-profile"
-                        :src="'/profilePicture/'+kandidat.img_ketua+'.jpg'"
+                        :src="'/profilePicture/' + kandidat.img_ketua + '.jpg'"
                         alt=""
                         width="100%"
                       />
                     </div>
-
                     <div class="col-6 text-left my-auto">
                       <h5 class="mb-0">Ketua</h5>
                       <p class="mb-0">{{ kandidat.nama }}</p>
@@ -35,17 +38,17 @@
 
                   <br />
 
+                  <!-- Profile Wakil -->
                   <div class="row">
                     <div class="col-1"></div>
                     <div class="col-4 text-right">
                       <img
                         class="card-profile"
-                        :src="'/profilePicture/'+kandidat.img_wakil+'.jpg'"
+                        :src="'/profilePicture/' + kandidat.img_wakil + '.jpg'"
                         alt=""
                         width="100%"
                       />
                     </div>
-
                     <div class="col-6 text-left my-auto">
                       <h5 class="mb-0">Wakil</h5>
                       <p class="mb-0">{{ kandidat.nama_wakil }}</p>
@@ -54,31 +57,45 @@
                   </div>
                 </div>
 
+                <!-- Visi dan Misi -->
                 <div class="container navbar-tab-content my-4">
                   <ul
                     class="nav nav-tabs justify-content-center"
                     role="tablist"
                   >
                     <li class="nav-item">
-                      <a class="nav-link active" data-toggle="tab" :href="'#visi'+kandidat.no_urut"
+                      <a
+                        class="nav-link active"
+                        data-toggle="tab"
+                        :href="'#visi' + kandidat.no_urut"
                         >Visi</a
                       >
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" data-toggle="tab" :href="'#misi'+kandidat.no_urut"
+                      <a
+                        class="nav-link"
+                        data-toggle="tab"
+                        :href="'#misi' + kandidat.no_urut"
                         >Misi</a
                       >
                     </li>
                   </ul>
-                  <!-- Tab panes -->
+
+                  <!-- Tab panes Visi Misi -->
                   <div class="tab-content">
-                    <div :id="'visi'+kandidat.no_urut" class="container tab-pane active">
+                    <div
+                      :id="'visi' + kandidat.no_urut"
+                      class="container tab-pane active"
+                    >
                       <br />
                       <p class="text-justify">
                         {{ kandidat.visi }}
                       </p>
                     </div>
-                    <div :id="'misi'+kandidat.no_urut" class="container tab-pane fade">
+                    <div
+                      :id="'misi' + kandidat.no_urut"
+                      class="container tab-pane fade"
+                    >
                       <br />
                       <p class="text-justify">
                         {{ kandidat.misi }}
@@ -87,20 +104,20 @@
                   </div>
                 </div>
 
-                <!-- Button trigger modal -->
+                <!-- Button Pilih Calon -->
                 <button
                   type="button"
                   class="btn btn-primary btn-block"
                   data-toggle="modal"
-                  :data-target="'#kandidat'+kandidat.no_urut"
+                  :data-target="'#kandidat' + kandidat.no_urut"
                 >
                   Pilih Calon
                 </button>
 
-                <!-- Modal -->
+                <!-- Modal Pilih Calon -->
                 <div
                   class="modal fade py-auto"
-                  :id="'kandidat'+kandidat.no_urut"
+                  :id="'kandidat' + kandidat.no_urut"
                   tabindex="-1"
                   role="dialog"
                   aria-labelledby="exampleModalLabel"
@@ -122,8 +139,14 @@
                         </button>
                       </div>
                       <div class="modal-body text-left">
-                        <p>Anda memilih pasangan calon dengan nomor urut {{ kandidat.no_urut }}.</p>
-                        <p>Dengan {{ kandidat.nama }} sebagai ketua dan {{ kandidat.nama_wakil }} sebagai wakil.</p>
+                        <p>
+                          Anda memilih pasangan calon dengan nomor urut
+                          {{ kandidat.no_urut }}.
+                        </p>
+                        <p>
+                          Dengan {{ kandidat.nama }} sebagai ketua dan
+                          {{ kandidat.nama_wakil }} sebagai wakil.
+                        </p>
                         <p><b>Apakah anda yakin?</b></p>
                       </div>
                       <div class="modal-footer">
@@ -151,9 +174,8 @@
 </template>
 
 <script>
-import NavbarUser from "@/components/NavbarUser.vue";
-
 import axios from "axios";
+import NavbarUser from "@/components/NavbarUser.vue";
 
 export default {
   name: "Landing",
@@ -162,15 +184,15 @@ export default {
   },
   data() {
     return {
-        kandidats: []
+      kandidats: [],
     };
   },
   created() {
-      this.getKandidats();
+    this.getKandidats();
   },
   methods: {
-    /*
-     * @return dataset dashboard yang telah didaftarkan oleh admin.
+    /**
+     * @return list data Kandidat
      *
      */
     getKandidats() {
@@ -181,7 +203,7 @@ export default {
       axios(options)
         .then((response) => {
           this.kandidats = response.data.data;
-          console.log(this.kandidats);
+          console.log("Kandidat: ", this.kandidats);
         })
         .catch((e) => {
           console.log(e);
@@ -202,11 +224,9 @@ export default {
 .main-content {
   padding-top: 2rem;
 }
-
 .main-content h3 {
   color: #fff;
 }
-
 .card {
   border-radius: 12px;
   border: none;
@@ -230,7 +250,6 @@ export default {
   font-weight: 500;
   color: gray;
 }
-
 .col-6 p.mb-0 {
   color: gray;
 }

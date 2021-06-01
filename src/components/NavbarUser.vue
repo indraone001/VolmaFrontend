@@ -17,6 +17,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+            <!-- Jika pemilih belum melakukan vote -->
             <li class="nav-item  px-2" v-if="status == 0">
               <router-link
                 to="/landing"
@@ -29,6 +30,8 @@
                 Home
               </router-link>
             </li>
+
+            <!-- Jika pemilih sudah melakukan vote -->
             <li class="nav-item  px-2" v-else-if="status == 1">
               <router-link
                 to="/statistik-vote"
@@ -41,6 +44,8 @@
                 Hasil Vote
               </router-link>
             </li>
+
+            <!-- Peraturan -->
             <li class="nav-item pr-2">
               <router-link
                 to="/peraturan"
@@ -54,6 +59,8 @@
               </router-link>
             </li>
           </ul>
+
+          <!-- Dropdown LogOut -->
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a
@@ -86,14 +93,14 @@ export default {
   name: "navbar-user",
   data() {
     return {
-      id_mhs: null,
       nama: "",
+      id_mhs: null,
       status: null,
     };
   },
   created() {
-    this.id_mhs = sessionStorage.getItem("id_mhs");
     this.nama = sessionStorage.getItem("nama");
+    this.id_mhs = sessionStorage.getItem("id_mhs");
     this.status = sessionStorage.getItem("status");
   },
   methods: {
@@ -142,6 +149,7 @@ a.navbar-brand {
 .nav-outline:hover::after {
   width: 100%;
 }
+
 .active {
   color: #2f80ed;
 }

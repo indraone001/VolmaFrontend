@@ -1,7 +1,6 @@
 <template>
   <div>
     <sidebar />
-
     <div class="main-content">
       <header>
         <navbar-admin />
@@ -11,6 +10,7 @@
         <div class="container main-mahasiswa">
           <h2 class="mb-4">Kelola Mahasiswa</h2>
           <div class="d-flex justify-content-between">
+            <!-- Router to Tambah Mahasiswa -->
             <div class="item">
               <router-link
                 tag="button"
@@ -22,6 +22,7 @@
               </router-link>
             </div>
 
+            <!-- Search -->
             <div class="item search-container">
               <form>
                 <input
@@ -34,6 +35,7 @@
             </div>
           </div>
 
+          <!-- Table Pemilih -->
           <section class="table-pemilih pb-4">
             <div class="card border-0">
               <div class="card-body">
@@ -46,7 +48,6 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Jurusan</th>
                         <th scope="col">Angkatan</th>
-                        <!-- <th scope="col">Password</th> -->
                         <th scope="col">Aksi</th>
                       </tr>
                     </thead>
@@ -57,7 +58,6 @@
                         <td>{{ student.nama }}</td>
                         <td>{{ student.jurusan }}</td>
                         <td>{{ student.angkatan }}</td>
-
                         <td>
                           <!-- Button Edit Mahasiswa -->
                           <button
@@ -68,6 +68,8 @@
                           >
                             Edit
                           </button>
+
+                          <!-- Modal Edit -->
                           <div
                             class="modal fade"
                             :id="'edit' + student.id_mhs"
@@ -160,7 +162,6 @@
                                         >
                                       </label>
                                     </div>
-
                                     <button
                                       class="btn btn-primary my-4"
                                       data-dismiss="modal"
@@ -182,6 +183,8 @@
                           >
                             Hapus
                           </button>
+
+                          <!-- Modal Delete -->
                           <div
                             class="modal fade"
                             :id="'delete' + student.id_mhs"
@@ -253,33 +256,32 @@
 </template>
 
 <script>
-import NavbarAdmin from "@/components/NavbarAdmin.vue";
-import Sidebar from "@/components/Sidebar.vue";
-
 import axios from "axios";
+import Sidebar from "@/components/Sidebar.vue";
+import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
 export default {
   name: "KelolaMahasiswa",
   components: {
-    NavbarAdmin,
     Sidebar,
+    NavbarAdmin,
   },
   data() {
     return {
-      students: [],
-      search: "",
       nim: "",
       nama: "",
+      search: "",
       jurusan: "",
       angkatan: "",
+      students: [],
     };
   },
   created() {
     this.getMahasiswa();
   },
   methods: {
-    /*
-     * @return dataset kandidat yang telah didaftarkan oleh admin.
+    /**
+     * @return Daftar Mahasiswa
      *
      */
     getMahasiswa() {
@@ -290,13 +292,16 @@ export default {
       axios(options)
         .then((response) => {
           this.students = response.data.data;
-          console.log(this.students);
+          console.log("Mahasiswa: ", this.students);
         })
         .catch((e) => {
           console.log(e);
         });
     },
-
+    /**
+     * @return Data mahasiswa yang telah diedit
+     *
+     */
     updateMahasiswa: function(id_mhs) {
       if (this.nim && this.nama && this.jurusan && this.angkatan) {
         let nim = this.nim;
@@ -316,7 +321,7 @@ export default {
         };
         axios(options)
           .then((response) => {
-            console.log(response.data);
+            console.log("Update Mahasiswa: ", response.data);
             alert(response.data.message);
             this.getMahasiswa();
           })
@@ -326,7 +331,10 @@ export default {
           });
       }
     },
-
+    /**
+     * @return Data mahasiswa yang dihapus
+     *
+     */
     delMahasiswa: function(id_mhs) {
       const options = {
         url: `https://volma01.herokuapp.com/mahasiswa/${id_mhs}`,
@@ -340,10 +348,15 @@ export default {
         })
         .catch((e) => {
           console.log(e);
+          alert(e);
         });
     },
   },
   computed: {
+    /**
+     * @return data mahasiswa yang dicari
+     *
+     */
     filteredData: function() {
       return this.students.filter((data) => {
         let name = data.nama.toLowerCase();
@@ -372,7 +385,6 @@ export default {
 .main-mahasiswa h2 {
   font-weight: 600;
 }
-
 .main-mahasiswa input[type="text"].search {
   padding: 9px 16px;
   outline-color: #2f80ed;
@@ -380,7 +392,6 @@ export default {
   border: none;
   border-radius: 8px;
 }
-
 .card {
   width: 100%;
   margin-top: 3rem;
@@ -389,7 +400,6 @@ export default {
   border: none;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-
 .modal-content {
   border: none;
   border-radius: 10px;
@@ -424,7 +434,6 @@ form {
   border-bottom: 1px solid #666;
   color: #666;
 }
-
 .form label::after {
   content: "";
   position: absolute;
@@ -453,12 +462,11 @@ form {
   transform: translateX(0%);
 }
 
-/* Media Queries */
+/* Responsive */
 @media only screen and (max-width: 1200px) {
   .main-content {
     margin-left: 75px;
   }
-
   .main-content:hover {
     margin-left: 75px;
   }

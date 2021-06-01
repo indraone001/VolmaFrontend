@@ -76,16 +76,15 @@
 </template>
 
 <script>
-import NavbarAdmin from "@/components/NavbarAdmin.vue";
-import Sidebar from "@/components/Sidebar.vue";
-
 import axios from "axios";
+import Sidebar from "@/components/Sidebar.vue";
+import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
 export default {
   name: "TambahMahasiswa",
   components: {
-    NavbarAdmin,
     Sidebar,
+    NavbarAdmin,
   },
   data() {
     return {
@@ -178,7 +177,6 @@ form {
   border-bottom: 1px solid #666;
   color: #666;
 }
-
 .form label::after {
   content: "";
   position: absolute;

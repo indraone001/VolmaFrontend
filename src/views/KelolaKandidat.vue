@@ -1,7 +1,6 @@
 <template>
   <div id="kandidat">
     <sidebar />
-
     <div class="main-content">
       <header>
         <navbar-admin />
@@ -11,12 +10,14 @@
         <div class="container main-kandidat">
           <h2 class="mb-4">Kelola Kandidat</h2>
           <div class="d-flex justify-content-between">
+            <!-- Router to Tambah Kandidat -->
             <div class="item">
               <button type="button" class="btn btn-primary">
                 Tambahkan Kandidat
               </button>
             </div>
 
+            <!-- Search -->
             <div class="item search-container">
               <form>
                 <input type="text" placeholder="Cari Ketua" v-model="search" />
@@ -24,6 +25,7 @@
             </div>
           </div>
 
+          <!-- Table Kandidat -->
           <section class="table-kandidat pb-4">
             <div class="card border-0 mb-4">
               <div class="card-body">
@@ -53,16 +55,6 @@
                           <button type="button" class="btn btn-info my-3">
                             Detail
                           </button>
-                          <!-- <br />
-                          <button type="button" class="btn btn-primary mb-3">
-                            Edit
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-outline-primary mb-3"
-                          >
-                            Hapus
-                          </button> -->
                         </td>
                       </tr>
                     </tbody>
@@ -79,29 +71,28 @@
 </template>
 
 <script>
-import NavbarAdmin from "@/components/NavbarAdmin.vue";
-import Sidebar from "@/components/Sidebar.vue";
-
 import axios from "axios";
+import Sidebar from "@/components/Sidebar.vue";
+import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
 export default {
   name: "KelolaKandidat",
   components: {
-    NavbarAdmin,
     Sidebar,
+    NavbarAdmin,
   },
   data() {
     return {
-      kandidats: [],
       search: "",
+      kandidats: [],
     };
   },
   created() {
     this.getKandidat();
   },
   methods: {
-    /*
-     * @return dataset kandidat yang telah didaftarkan oleh admin.
+    /**
+     * @return daftar mahasiswa
      *
      */
     getKandidat() {
@@ -112,7 +103,7 @@ export default {
       axios(options)
         .then((response) => {
           this.kandidats = response.data.data;
-          console.log(this.kandidats);
+          console.log("Kandidat: ", this.kandidats);
         })
         .catch((e) => {
           console.log(e);
@@ -120,6 +111,10 @@ export default {
     },
   },
   computed: {
+    /**
+     * @return data kandidat yang dicari
+     *
+     */
     filteredData: function() {
       return this.kandidats.filter((data) => {
         let name = data.nama.toLowerCase();
@@ -131,7 +126,6 @@ export default {
 </script>
 
 <style scoped>
-
 .main-content {
   height: 100%;
   margin-left: 16%;
@@ -149,7 +143,6 @@ export default {
 .main-kandidat h2 {
   font-weight: 600;
 }
-
 .main-kandidat input[type="text"] {
   padding: 9px 16px;
   outline-color: #2f80ed;
@@ -157,7 +150,6 @@ export default {
   border: none;
   border-radius: 8px;
 }
-
 .card {
   width: 100%;
   margin-top: 3rem;
@@ -169,14 +161,9 @@ export default {
 
 /* Media Queries */
 @media only screen and (max-width: 1200px) {
-  /* .navbar-brand img {
-    width: 4%;
-  } */
-
   .main-content {
     margin-left: 75px;
   }
-
   .main-content:hover {
     margin-left: 75px;
   }

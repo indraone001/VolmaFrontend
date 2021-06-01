@@ -45,8 +45,6 @@
 <script>
 import NavbarUser from "@/components/NavbarUser.vue";
 
-// import axios from "axios";
-
 export default {
   name: "Peraturan",
   components: {
@@ -90,12 +88,12 @@ export default {
             "Dengan Menekan tombol 'Saya menyetujui persyaratan' maka, Pengguna dianggap telah membaca, memahami dan menyetujui ketentuan dalam pemilihan umum.",
         },
       ],
-      status: null
+      status: null,
     };
   },
   created() {
     this.status = sessionStorage.getItem("status");
-  }
+  },
 };
 </script>
 
@@ -111,11 +109,9 @@ export default {
   padding-top: 2rem;
   padding-bottom: 2cm;
 }
-
 .main-content h3 {
   color: #fff;
 }
-
 .card {
   border-radius: 12px;
   border: none;
@@ -123,12 +119,10 @@ export default {
   align-items: center;
   top: 1cm;
 }
-
 .agreement {
   overflow: auto;
   text-align: left;
 }
-
 .container {
   max-height: fit-content;
 }

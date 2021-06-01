@@ -1,15 +1,16 @@
 <template>
   <div>
     <sidebar />
-
     <div class="main-content">
       <header>
         <navbar-admin />
       </header>
+
       <main>
         <div class="container main-pemilih">
           <h2 class="mb-4">Kelola Pemilih</h2>
           <div class="d-flex justify-content-between">
+            <!-- Route to Tambah Pemilih -->
             <div class="item">
               <router-link
                 tag="button"
@@ -20,6 +21,7 @@
               </router-link>
             </div>
 
+            <!-- Search -->
             <div class="item search-container">
               <form>
                 <input type="text" placeholder="Cari Nama" v-model="search" />
@@ -27,6 +29,7 @@
             </div>
           </div>
 
+          <!-- Table Pemilih -->
           <section class="table-pemilih pb-4">
             <div class="card border-0 mb-4">
               <div class="card-body">
@@ -50,9 +53,9 @@
                         <th scope="row">{{ pemilih.id_pemilih }}</th>
                         <td>{{ pemilih.nim }}</td>
                         <td>{{ pemilih.nama }}</td>
-                        <!-- <td>*****</td> -->
                         <td>{{ pemilih.status | statusVote }}</td>
                         <td>
+                          <!-- Acak Password -->
                           <button
                             type="button"
                             class="btn btn-outline-info mb-3 mr-1"
@@ -61,6 +64,8 @@
                           >
                             Acak Password
                           </button>
+
+                          <!-- Modal Acak Password -->
                           <div
                             class="modal fade"
                             :id="'acakpassword' + pemilih.id_mhs"
@@ -128,12 +133,15 @@
                           </div>
                         </td>
                         <td>
+                          <!-- Button Edit -->
                           <button
                             type="button"
                             class="btn btn-primary my-1 mr-1"
                           >
                             Edit
                           </button>
+
+                          <!-- Button Delete -->
                           <button
                             type="button"
                             class="btn btn-outline-danger my-1"
@@ -156,21 +164,20 @@
 </template>
 
 <script>
-import NavbarAdmin from "@/components/NavbarAdmin.vue";
-import Sidebar from "@/components/Sidebar.vue";
-
 import axios from "axios";
+import Sidebar from "@/components/Sidebar.vue";
+import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
 export default {
   name: "KelolaPemilih",
   components: {
-    NavbarAdmin,
     Sidebar,
+    NavbarAdmin,
   },
   data() {
     return {
-      pemilih: [],
       search: "",
+      pemilih: [],
       passAcak: "",
     };
   },
@@ -178,6 +185,10 @@ export default {
     this.getPemilih();
   },
   methods: {
+    /**
+     * @return Daftar Pemilih
+     *
+     */
     getPemilih() {
       const options = {
         url: "https://volma01.herokuapp.com/pemilih",
@@ -186,12 +197,16 @@ export default {
       axios(options)
         .then((response) => {
           this.pemilih = response.data.data;
-          console.log(this.pemilih);
+          console.log("Pemilih: ", this.pemilih);
         })
         .catch((e) => {
           console.log(e);
         });
     },
+    /**
+     * @return 6 digit angka acak
+     *
+     */
     randomPass: function(id) {
       const options = {
         url: `https://volma01.herokuapp.com/pemilih/${id}`,
@@ -200,14 +215,18 @@ export default {
       axios(options)
         .then((response) => {
           this.passAcak = response.data.data;
-          console.log(this.passAcak);
         })
         .catch((e) => {
           console.log(e);
+          alert(e);
         });
     },
   },
   computed: {
+    /**
+     * @return Data pemilih yang dicari
+     *
+     */
     filteredData: function() {
       return this.pemilih.filter((data) => {
         let name = data.nama.toLowerCase();
@@ -216,6 +235,10 @@ export default {
     },
   },
   filters: {
+    /**
+     * @return Status vote
+     *
+     */
     statusVote: (status) => {
       let vote = "";
       if (status == 1) {
@@ -247,7 +270,6 @@ export default {
 .main-pemilih h2 {
   font-weight: 600;
 }
-
 .main-pemilih input[type="text"] {
   padding: 9px 16px;
   outline-color: #2f80ed;
@@ -255,7 +277,6 @@ export default {
   border: none;
   border-radius: 8px;
 }
-
 .card {
   width: 100%;
   margin-top: 3rem;
@@ -292,7 +313,6 @@ form {
   pointer-events: none;
   border-bottom: 1px solid #666;
 }
-
 .form label::after {
   content: "";
   position: absolute;
@@ -322,13 +342,12 @@ form {
 .form input:read-only + .label-name::after {
   transform: translateX(0%);
 }
-
 .modal-content {
   border: none;
   border-radius: 10px;
 }
 
-/* Media Queries */
+/* Responsive */
 @media only screen and (max-width: 1200px) {
   .main-content {
     margin-left: 75px;

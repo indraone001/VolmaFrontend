@@ -1,21 +1,20 @@
 <template>
   <div>
     <sidebar />
-
     <div class="main-content">
       <header>
         <navbar-admin />
       </header>
 
       <main>
-        <div class="container main-kandidat">
+        <div class="container main-dashboard">
           <h2 class="mb-1">Dashboard</h2>
           <div class="row">
+            <!-- Banyak Pemilih -->
             <div class="col-6 col-sm-6 col-md-3 ">
               <div class="card py-0">
                 <div class="card-body">
                   <h3>
-                    <!-- <i class="fas fa-users"></i> -->
                     <font-awesome-icon :icon="['fas', 'users']" />
                   </h3>
                   <h6 class="card-title">Banyak Pemilih</h6>
@@ -26,11 +25,11 @@
               </div>
             </div>
 
+            <!-- Orang yang telah memilih -->
             <div class="col-6 col-sm-6 col-md-3 ">
               <div class="card py-0">
                 <div class="card-body">
                   <h3>
-                    <!-- <i class="fas fa-chart-pie"></i> -->
                     <font-awesome-icon :icon="['fas', 'chart-pie']" />
                   </h3>
                   <h6 class="card-title">Telah Memilih</h6>
@@ -41,11 +40,11 @@
               </div>
             </div>
 
+            <!-- Jumlah calon -->
             <div class="col-6 col-sm-6 col-md-3 ">
               <div class="card py-0">
                 <div class="card-body">
                   <h3>
-                    <!-- <i class="fas fa-user-tie"></i> -->
                     <font-awesome-icon :icon="['fas', 'user-tie']" />
                   </h3>
                   <h6 class="card-title">Jumlah Calon</h6>
@@ -56,11 +55,11 @@
               </div>
             </div>
 
+            <!-- Periode pemilihan -->
             <div class="col-6 col-sm-6 col-md-3 ">
               <div class="card py-0">
                 <div class="card-body">
                   <h3>
-                    <!-- <i class="fas fa-user-clock"></i> -->
                     <font-awesome-icon :icon="['fas', 'user-clock']" />
                   </h3>
                   <h6 class="card-title">Periode</h6>
@@ -72,6 +71,7 @@
             </div>
           </div>
 
+          <!-- Jumlah suara masing masing calon -->
           <section class="mt-4 pt-4">
             <h3 class="pt-3">Perolehan Masing-masing Calon</h3>
 
@@ -89,16 +89,18 @@
                     </h6>
 
                     <div class="container pt-4">
+                      <!-- Profile Ketua -->
                       <div class="row">
                         <div class="col-4 text-right">
                           <img
                             class="card-profile"
-                            :src="'/profilePicture/'+result.img_ketua+'.jpg'"
+                            :src="
+                              '/profilePicture/' + result.img_ketua + '.jpg'
+                            "
                             alt=""
                             width="100%"
                           />
                         </div>
-
                         <div class="col-8 text-left my-auto">
                           <h5 class="mb-0">Ketua</h5>
                           <p class="mb-0">{{ result.nama_ketua }}</p>
@@ -107,16 +109,18 @@
 
                       <br />
 
+                      <!-- Profile Wakil -->
                       <div class="row">
                         <div class="col-4 text-right">
                           <img
                             class="card-profile"
-                            :src="'/profilePicture/'+result.img_wakil+'.jpg'"
+                            :src="
+                              '/profilePicture/' + result.img_wakil + '.jpg'
+                            "
                             alt=""
                             width="100%"
                           />
                         </div>
-
                         <div class="col-8 text-left my-auto">
                           <h5 class="mb-0">Wakil</h5>
                           <p class="mb-0">{{ result.nama_wakil }}</p>
@@ -125,10 +129,11 @@
                     </div>
 
                     <hr />
+
+                    <!-- Hasil -->
                     <div class="row card-count">
                       <div class="col-6">
                         <h5>
-                          <!-- <i class="fas fa-user-friends"></i> -->
                           <font-awesome-icon :icon="['fas', 'user-friends']" />
                         </h5>
                         <h6>Jumlah Vote</h6>
@@ -136,7 +141,6 @@
                       </div>
                       <div class="col-6">
                         <h5>
-                          <!-- <i class="fas fa-percent"></i> -->
                           <font-awesome-icon :icon="['fas', 'percent']" />
                         </h5>
                         <h6>Persentase</h6>
@@ -155,21 +159,20 @@
 </template>
 
 <script>
-import NavbarAdmin from "@/components/NavbarAdmin.vue";
-import Sidebar from "@/components/Sidebar.vue";
-
 import axios from "axios";
+import Sidebar from "@/components/Sidebar.vue";
+import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
 export default {
   name: "Dashboard",
   components: {
-    NavbarAdmin,
     Sidebar,
+    NavbarAdmin,
   },
   data() {
     return {
-      dashboard: [],
       results: [],
+      dashboard: [],
     };
   },
   created() {
@@ -177,8 +180,8 @@ export default {
     this.getResults();
   },
   methods: {
-    /*
-     * @return dataset dashboard yang telah didaftarkan oleh admin.
+    /**
+     * @return Hasil perolehan vote
      *
      */
     getDashboard() {
@@ -189,14 +192,14 @@ export default {
       axios(options)
         .then((response) => {
           this.dashboard = response.data.data;
-          console.log(this.dashboard);
+          console.log("Dashboard: ", this.dashboard);
         })
         .catch((e) => {
           console.log(e);
         });
     },
-    /*
-     * @return dataset result yang telah didaftarkan oleh admin.
+    /**
+     * @return Hasil perolehan setiap kandidat
      *
      */
     getResults() {
@@ -207,7 +210,7 @@ export default {
       axios(options)
         .then((response) => {
           this.results = response.data.data.kandidat;
-          console.log(this.results);
+          console.log("Result: ", this.results);
         })
         .catch((e) => {
           console.log(e);
@@ -225,10 +228,10 @@ export default {
   background: #eefafd;
   color: rgb(66, 66, 66);
 }
-.main-kandidat {
+.main-dashboard {
   padding-top: 3rem;
 }
-.main-kandidat h2 {
+.main-dashboard h2 {
   font-weight: 600;
 }
 .card {
@@ -266,7 +269,7 @@ export default {
   margin: 0;
 }
 
-/* Media Queries */
+/* Responsive */
 @media only screen and (max-width: 1200px) {
   .main-content {
     margin-left: 75px;

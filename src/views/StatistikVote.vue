@@ -12,21 +12,28 @@
             <h3 class="pb-4">Pemilihan Umum Ketua</h3>
 
             <div class="row counting text-center">
+              <!-- Jumlah Pemilih -->
               <div class="col-6 col-md-6 col-lg-3 mb-3">
                 <h2><font-awesome-icon :icon="['fas', 'users']" /></h2>
                 <h6>Banyak Pemilih</h6>
                 <p>{{ dashboard.jumlah_pemilih }} Orang</p>
               </div>
+
+              <!-- Telah Memilih -->
               <div class="col-6 col-md-6 col-lg-3 mb-3">
                 <h2><font-awesome-icon :icon="['fas', 'chart-pie']" /></h2>
                 <h6>Telah Memilih</h6>
                 <p>{{ dashboard.voted }}%</p>
               </div>
+
+              <!-- Jumlah Kandidat -->
               <div class="col-6 col-md-6 col-lg-3 mb-3">
                 <h2><font-awesome-icon :icon="['fas', 'user-tie']" /></h2>
                 <h6>Jumlah Calon</h6>
                 <p>{{ dashboard.kandidat }} Orang</p>
               </div>
+
+              <!-- Periode -->
               <div class="col-6 col-md-6 col-lg-3 mb-3">
                 <h2><font-awesome-icon :icon="['fas', 'user-clock']" /></h2>
                 <h6>Periode</h6>
@@ -41,77 +48,83 @@
 
             <div class="row card-groups">
               <div class="row card-groups">
-              <div
-                class="col-sm-12 col-md-12 col-lg-4 mb-4"
-                v-for="result in results"
-                :key="result.id_kandidat"
-              >
-                <div class="card card-kandidat">
-                  <div class="card-body text-center">
-                    <h5 class="name-kandidat">{{ result.nama_ketua }}</h5>
-                    <h6 class="no-kandidat pb-4">
-                      Nomor Urut {{ result.id_kandidat }}
-                    </h6>
+                <div
+                  class="col-sm-12 col-md-12 col-lg-4 mb-4"
+                  v-for="result in results"
+                  :key="result.id_kandidat"
+                >
+                  <div class="card card-kandidat">
+                    <div class="card-body text-center">
+                      <h5 class="name-kandidat">{{ result.nama_ketua }}</h5>
+                      <h6 class="no-kandidat pb-4">
+                        Nomor Urut {{ result.id_kandidat }}
+                      </h6>
 
-                    <div class="container pt-4">
-                      <div class="row">
-                        <div class="col-4 text-right">
-                          <img
-                            class="card-profile"
-                            :src="'/profilePicture/'+result.img_ketua+'.jpg'"
-                            alt=""
-                            width="100%"
-                          />
+                      <div class="container pt-4">
+                        <!-- Ketua -->
+                        <div class="row">
+                          <div class="col-4 text-right">
+                            <img
+                              class="card-profile"
+                              :src="
+                                '/profilePicture/' + result.img_ketua + '.jpg'
+                              "
+                              alt=""
+                              width="100%"
+                            />
+                          </div>
+                          <div class="col-8 text-left my-auto">
+                            <h5 class="mb-0">Ketua</h5>
+                            <p class="mb-0">{{ result.nama_ketua }}</p>
+                          </div>
                         </div>
 
-                        <div class="col-8 text-left my-auto">
-                          <h5 class="mb-0">Ketua</h5>
-                          <p class="mb-0">{{ result.nama_ketua }}</p>
+                        <br />
+
+                        <!-- Wakil -->
+                        <div class="row">
+                          <div class="col-4 text-right">
+                            <img
+                              class="card-profile"
+                              :src="
+                                '/profilePicture/' + result.img_wakil + '.jpg'
+                              "
+                              alt=""
+                              width="100%"
+                            />
+                          </div>
+                          <div class="col-8 text-left my-auto">
+                            <h5 class="mb-0">Wakil</h5>
+                            <p class="mb-0">{{ result.nama_wakil }}</p>
+                          </div>
                         </div>
                       </div>
 
-                      <br />
+                      <hr />
 
-                      <div class="row">
-                        <div class="col-4 text-right">
-                          <img
-                            class="card-profile"
-                            :src="'/profilePicture/'+result.img_wakil+'.jpg'"
-                            alt=""
-                            width="100%"
-                          />
+                      <!-- Hasil vote masing-masing kandidat -->
+                      <div class="row card-count">
+                        <div class="col-6">
+                          <h5>
+                            <font-awesome-icon
+                              :icon="['fas', 'user-friends']"
+                            />
+                          </h5>
+                          <h6>Jumlah Vote</h6>
+                          <p>{{ result.jumlah }} orang</p>
                         </div>
-
-                        <div class="col-8 text-left my-auto">
-                          <h5 class="mb-0">Wakil</h5>
-                          <p class="mb-0">{{ result.nama_wakil }}</p>
+                        <div class="col-6">
+                          <h5>
+                            <font-awesome-icon :icon="['fas', 'percent']" />
+                          </h5>
+                          <h6>Persentase</h6>
+                          <p>{{ result.persentase }}%</p>
                         </div>
-                      </div>
-                    </div>
-
-                    <hr />
-                    <div class="row card-count">
-                      <div class="col-6">
-                        <h5>
-                          <!-- <i class="fas fa-user-friends"></i> -->
-                          <font-awesome-icon :icon="['fas', 'user-friends']" />
-                        </h5>
-                        <h6>Jumlah Vote</h6>
-                        <p>{{ result.jumlah }} orang</p>
-                      </div>
-                      <div class="col-6">
-                        <h5>
-                          <!-- <i class="fas fa-percent"></i> -->
-                          <font-awesome-icon :icon="['fas', 'percent']" />
-                        </h5>
-                        <h6>Persentase</h6>
-                        <p>{{ result.persentase }}%</p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             </div>
           </div>
         </div>
@@ -121,9 +134,8 @@
 </template>
 
 <script>
-import NavbarUser from "@/components/NavbarUser.vue";
-
 import axios from "axios";
+import NavbarUser from "@/components/NavbarUser.vue";
 
 export default {
   name: "StatistikVote",
@@ -132,8 +144,8 @@ export default {
   },
   data() {
     return {
-      dashboard: [],
       results: [],
+      dashboard: [],
     };
   },
   created() {
@@ -141,7 +153,7 @@ export default {
     this.getResults();
   },
   methods: {
-    /*
+    /**
      * @return dataset dashboard yang telah didaftarkan oleh admin.
      *
      */
@@ -159,7 +171,7 @@ export default {
           console.log(e);
         });
     },
-    /*
+    /**
      * @return dataset result yang telah didaftarkan oleh admin.
      *
      */
@@ -184,7 +196,6 @@ export default {
 <style scoped>
 .head-content {
   padding-top: 3rem;
-  /* background-color: #fff; */
   background: #56ccf2;
   background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
   background: linear-gradient(to right, #2f80ed, #56ccf2);
@@ -198,7 +209,6 @@ export default {
   margin-top: 10vh;
   padding-bottom: 3vh;
 }
-
 .card {
   border-radius: 12px;
   border: none;
@@ -211,11 +221,9 @@ export default {
   border-radius: 50%;
   width: 4rem;
 }
-
 p.mb-0 {
   color: gray;
 }
-
 .name-kandidat {
   margin-top: 1.5rem;
   margin-bottom: 0;
@@ -226,7 +234,6 @@ p.mb-0 {
   font-weight: 500;
   color: gray;
 }
-
 .card-count h6 {
   margin: 0;
 }
