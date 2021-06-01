@@ -12,18 +12,19 @@
           <h2 class="mb-4">Kelola Mahasiswa</h2>
           <div class="d-flex justify-content-between">
             <div class="item">
-              <router-link tag="button" to="/tambah-mahasiswa" type="button" class="btn btn-primary">
+              <router-link
+                tag="button"
+                to="/tambah-mahasiswa"
+                type="button"
+                class="btn btn-primary"
+              >
                 Tambahkan Mahasiswa
               </router-link>
             </div>
 
             <div class="item search-container">
               <form>
-                <input
-                  type="text"
-                  placeholder="Cari Nama"
-                  v-model="search"
-                />
+                <input type="text" placeholder="Cari Nama" v-model="search" />
               </form>
             </div>
           </div>
@@ -40,7 +41,7 @@
                         <th scope="col">Nama</th>
                         <th scope="col">Jurusan</th>
                         <th scope="col">Angkatan</th>
-                        <th scope="col">Password</th>
+                        <!-- <th scope="col">Password</th> -->
                         <th scope="col">Aksi</th>
                       </tr>
                     </thead>
@@ -51,34 +52,40 @@
                         <td>{{ student.nama }}</td>
                         <td>{{ student.jurusan }}</td>
                         <td>{{ student.angkatan }}</td>
+
                         <td>
                           <button
                             type="button"
-                            class="btn btn-outline-info mb-3 mr-1"
-                            data-toggle="modal"
-                            :data-target="'#acakpassword' + student.id_mhs"
+                            class="btn btn-primary mb-3 mr-1"
                           >
-                            Acak Password
+                            Edit
+                          </button>
+
+                          <!-- Button Delete Mahasiswa -->
+                          <button
+                            type="button"
+                            class="btn btn-outline-danger mb-3"
+                            data-toggle="modal"
+                            :data-target="'#delete' + student.id_mhs"
+                          >
+                            Hapus
                           </button>
                           <div
                             class="modal fade"
-                            :id="'acakpassword' + student.id_mhs"
+                            :id="'delete' + student.id_mhs"
                             tabindex="-1"
                             role="dialog"
-                            aria-labelledby="exampleModalLongTitle"
+                            aria-labelledby="exampleModalLabel"
                             aria-hidden="true"
                           >
-                            <div
-                              class="modal-dialog modal-dialog-centered"
-                              role="document"
-                            >
+                            <div class="modal-dialog" role="document">
                               <div class="modal-content">
-                                <div class="modal-header border-0">
+                                <div class="modal-header">
                                   <h5
                                     class="modal-title"
-                                    id="exampleModalLongTitle"
+                                    id="exampleModalLabel"
                                   >
-                                    Acak Password
+                                    Hapus mahasiswa
                                   </h5>
                                   <button
                                     type="button"
@@ -89,56 +96,32 @@
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
-                                <div class="modal-body border-0">
-                                  <p>{{ student.nama }} ({{ student.nim }})</p>
-                                  
-                                  <div class="form text-left my-4">
-                                    <input
-                                      type="text"
-                                      id="passAcak"
-                                      name="passAcak"
-                                      class="pl-0"
-                                      v-model="passAcak"
-                                      readonly
-                                    />
-                                    <label for="passAcak" class="label-name">
-                                      <span class="content-name">Password</span>
-                                    </label>
-                                  </div>
-                                  <button
-                                    type="button"
-                                    class="btn btn-primary btn-block mt-4"
-                                    @click="randomPass(student.id_mhs)"
-                                  >
-                                    Acak Password
-                                  </button>
+                                <div class="modal-body">
+                                  <p>
+                                    Apakah anda yakin ingin menghapus
+                                    <b>{{ student.nama }}</b> ?
+                                  </p>
                                 </div>
-                                <div class="modal-footer border-0">
+                                <div class="modal-footer">
                                   <button
                                     type="button"
                                     class="btn btn-secondary"
                                     data-dismiss="modal"
                                   >
-                                    Close
+                                    Tidak
+                                  </button>
+                                  <button
+                                    type="button"
+                                    class="btn btn-primary"
+                                    data-dismiss="modal"
+                                    @click="delMahasiswa(student.id_mhs)"
+                                  >
+                                    Ya, saya yakin.
                                   </button>
                                 </div>
                               </div>
                             </div>
                           </div>
-                        </td>
-                        <td>
-                          <button
-                            type="button"
-                            class="btn btn-primary mb-3 mr-1"
-                          >
-                            Edit
-                          </button>
-                          <button
-                            type="button"
-                            class="btn btn-outline-danger mb-3"
-                          >
-                            Hapus
-                          </button>
                         </td>
                       </tr>
                     </tbody>
@@ -170,7 +153,6 @@ export default {
     return {
       students: [],
       search: "",
-      passAcak: "",
     };
   },
   created() {
@@ -195,15 +177,17 @@ export default {
           console.log(e);
         });
     },
-    randomPass: function(id) {
+
+    delMahasiswa: function(id_mhs) {
       const options = {
-        url: `https://volma01.herokuapp.com/pemilih/${id}`,
-        method: "get",
+        url: `https://volma01.herokuapp.com/mahasiswa/${id_mhs}`,
+        method: "delete",
       };
       axios(options)
         .then((response) => {
-          this.passAcak = response.data.data;
-          console.log(this.passAcak);
+          console.log("delMahasiswa ", response.data);
+          this.getMahasiswa();
+          this.students.splice(id_mhs, 1);
         })
         .catch((e) => {
           console.log(e);
@@ -260,64 +244,6 @@ export default {
 .modal-content {
   border: none;
   border-radius: 10px;
-}
-
-form {
-  margin: 0 5%;
-}
-.form {
-  width: 100%;
-  height: 50px;
-  position: relative;
-  overflow: hidden;
-}
-.form input {
-  width: 100%;
-  height: 100%;
-  color: #666;
-  padding-top: 16px;
-  padding-bottom: 10px;
-  border: none;
-  outline: none;
-}
-.form label {
-  position: absolute;
-  bottom: 0px;
-  left: 0%;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  border-bottom: 1px solid #666;
-}
-
-.form label::after {
-  content: "";
-  position: absolute;
-  left: 0px;
-  bottom: -1px;
-  width: 100%;
-  height: 100%;
-  border-bottom: 3px solid #2f80ed;
-  transform: translateX(-100%);
-  transition: transform 0.3s ease;
-}
-.content-name {
-  position: absolute;
-  bottom: 5px;
-  left: 0px;
-  transition: all 0.3s ease;
-}
-.form input:focus + .label-name .content-name,
-.form input:valid + .label-name .content-name,
-.form input:read-only + .label-name .content-name {
-  transform: translateY(-100%);
-  font-size: 14px;
-  color: #2f80ed;
-}
-.form input:focus + .label-name::after,
-.form input:valid + .label-name::after,
-.form input:read-only + .label-name::after {
-  transform: translateX(0%);
 }
 
 /* Media Queries */
