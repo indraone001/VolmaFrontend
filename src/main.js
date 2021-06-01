@@ -49,6 +49,7 @@ library.add(faUserFriends);
 library.add(faUserGraduate);
 library.add(faTachometerAlt);
 
+
 Vue.component('font-awesome-icon', FontAwesomeIcon);
 
 Vue.config.productionTip = false
