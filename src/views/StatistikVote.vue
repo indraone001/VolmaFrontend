@@ -192,6 +192,7 @@ export default {
 }
 .body-content {
   background: #eefafd;
+  color: rgb(66, 66, 66);
 }
 .counting {
   margin-top: 10vh;
@@ -209,6 +210,10 @@ export default {
 .card-profile {
   border-radius: 50%;
   width: 4rem;
+}
+
+p.mb-0 {
+  color: gray;
 }
 
 .name-kandidat {

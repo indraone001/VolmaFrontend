@@ -191,7 +191,7 @@ export default {
 h5 {
   margin-bottom: 0;
   font-weight: 500;
-  color: rgb(39, 39, 39);
+  color: rgb(66, 66, 66);
 }
 .navbar-toggler {
     border: none;

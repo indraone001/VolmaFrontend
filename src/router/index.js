@@ -8,6 +8,7 @@ import Landing from "../views/Landing.vue";
 import StatistikVote from "../views/StatistikVote.vue";
 import Peraturan from "../views/Peraturan.vue";
 import KelolaMahasiswa from "../views/KelolaMahasiswa.vue";
+import TambahPemilih from "../views/TambahPemilih.vue";
 /**
 * 
 * File untuk mengetur path.
@@ -55,6 +56,11 @@ const routes = [
     path: '/mahasiswa',
     name: 'KelolaMahasiswa',
     component: KelolaMahasiswa
+  },
+  {
+    path: '/tambah-pemilih',
+    name: 'TambahPemilih',
+    component: TambahPemilih
   },
 ]
 

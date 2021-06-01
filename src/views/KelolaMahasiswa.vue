@@ -38,8 +38,8 @@
                         <th scope="col">Id</th>
                         <th scope="col">NIM</th>
                         <th scope="col">Nama</th>
-                        <th scope="col">jurusan</th>
-                        <th scope="col">angkatan</th>
+                        <th scope="col">Jurusan</th>
+                        <th scope="col">Angkatan</th>
                         <th scope="col">Password</th>
                         <th scope="col">Aksi</th>
                       </tr>
@@ -227,6 +227,7 @@ export default {
   margin-left: 16%;
   transition: margin-left 200ms;
   background: #eefafd;
+  color: rgb(66, 66, 66);
 }
 .foo {
   height: 50vh;
@@ -273,7 +274,7 @@ form {
 .form input {
   width: 100%;
   height: 100%;
-  color: rgb(99, 99, 99);
+  color: #666;
   padding-top: 16px;
   padding-bottom: 10px;
   border: none;
@@ -286,7 +287,7 @@ form {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #666;
 }
 
 .form label::after {

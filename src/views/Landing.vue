@@ -197,6 +197,7 @@ export default {
   background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
   background: linear-gradient(to right, #2f80ed, #56ccf2);
   height: 100%;
+  color: rgb(66, 66, 66);
 }
 .main-content {
   padding-top: 2rem;
@@ -230,8 +231,12 @@ export default {
   color: gray;
 }
 
+.col-6 p.mb-0 {
+  color: gray;
+}
+
 .nav-tabs .nav-link {
-  color: black;
+  color: rgb(66, 66, 66);
 }
 .tab-content {
   height: 20vh;

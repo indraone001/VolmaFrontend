@@ -109,8 +109,9 @@ export default {
 .navbar {
   background-color: #fff;
 }
-.navbar-brand {
+a.navbar-brand {
   font-weight: 600;
+  color: rgb(66, 66, 66);
 }
 .nav-link {
   font-weight: 500;

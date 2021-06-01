@@ -11,9 +11,9 @@
         <h2 class="mb-4">Kelola Pemilih</h2>
         <div class="d-flex justify-content-between">
             <div class="item">
-              <button type="button" class="btn btn-primary">
+              <router-link tag="button" to="/tambah-pemilih" class="btn btn-primary" >
                 Tambahkan Pemilih
-              </button>
+              </router-link>
             </div>
 
             <div class="item search-container">
@@ -135,6 +135,7 @@ export default {
   margin-left: 16%;
   transition: margin-left 200ms;
   background: #eefafd;
+  color: rgb(66, 66, 66);
 }
 .foo {
   height: 50vh;

@@ -223,6 +223,7 @@ export default {
   margin-left: 16%;
   transition: margin-left 200ms;
   background: #eefafd;
+  color: rgb(66, 66, 66);
 }
 .main-kandidat {
   padding-top: 3rem;

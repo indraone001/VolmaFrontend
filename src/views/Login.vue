@@ -216,10 +216,9 @@ h2 {
 .line-form {
   width: 10%;
   height: 4px;
-  background-color: #000;
   margin-bottom: 3rem;
   margin-top: 0.5rem;
-  background-color: rgb(49, 49, 49);
+  background-color: #666;
 }
 .login-form {
   height: 100vh;
@@ -227,7 +226,7 @@ h2 {
   align-items: center;
   padding: 0 5rem;
   text-align: center;
-  color: rgb(49, 49, 49);
+  color: #666;
 }
 .btn {
   padding: 9px 46px;
@@ -257,7 +256,7 @@ form {
 .form input {
   width: 100%;
   height: 100%;
-  color: rgb(99, 99, 99);
+  color: #666;
   padding-top: 16px;
   padding-bottom: 10px;
   border: none;
@@ -270,7 +269,7 @@ form {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  border-bottom: 1px solid black;
+  border-bottom: 1px solid #666;
 }
 
 .form label::after {
