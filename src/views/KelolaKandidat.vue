@@ -29,16 +29,17 @@
           <section class="table-kandidat pb-4">
             <div class="card border-0 mb-4">
               <div class="card-body">
-                
-                <div class="container table-responsive" v-if="filteredData.length">
+                <div
+                  class="container table-responsive"
+                  v-if="filteredData.length"
+                >
                   <table class="table table-hover">
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Ketua</th>
-                        <th>Wakil</th>
-                        <th>Visi</th>
-                        <th>Misi</th>
+                        <th>Foto</th>
+                        <th>Ketua dan Wakil</th>
+                        <th>Visi dan Misi</th>
                         <th>Aksi</th>
                       </tr>
                     </thead>
@@ -48,13 +49,50 @@
                         :key="kandidat.id_kandidat"
                       >
                         <th>{{ kandidat.no_urut }}</th>
-                        <td>{{ kandidat.nama }}</td>
-                        <td>{{ kandidat.nama_wakil }}</td>
-                        <td>{{ kandidat.visi }}</td>
-                        <td>{{ kandidat.misi }}</td>
                         <td>
-                          <button type="button" class="btn btn-info my-3">
-                            Detail
+                          <img
+                            class="card-profile"
+                            :src="
+                              '/profilePicture/' + kandidat.img_ketua + '.jpg'
+                            "
+                            alt=""
+                            width="100%"
+                          />
+                          <br>
+                          <img
+                            class="card-profile"
+                            :src="
+                              '/profilePicture/' + kandidat.img_wakil + '.jpg'
+                            "
+                            alt=""
+                            width="100%"
+                          />
+
+                        </td>
+                        <td style="width:250px; height:50px;">
+                          <!-- Ketua -->
+                          <p class="mb-0"><b>Ketua</b></p>
+                          <p>{{ kandidat.nama }}</p> 
+
+                          <!-- Wakil -->
+                          <p class="mb-0"><b>Wakil</b></p>
+                          <p>{{ kandidat.nama_wakil }}</p>
+                        </td>
+                        <td style="width:400px;">
+                          <!-- Visi -->
+                          <p class="mb-0"><b>Visi</b></p>
+                          <p style="width:400px;">{{ kandidat.visi }}</p> 
+
+                          <!-- Misi -->
+                          <p class="mb-0"><b>Misi</b></p>
+                          <p style="width:400px;">{{ kandidat.misi }}</p> 
+                        </td>
+                        <td>
+                          <button type="button" class="btn btn-primary my-4 mr-1">
+                            Edit
+                          </button>
+                          <button type="button" class="btn btn-outline-danger my-4">
+                            Hapus
                           </button>
                         </td>
                       </tr>
@@ -65,11 +103,6 @@
                 <div v-else>
                   <h4 class="text-center not-found">Data tidak ditemukan</h4>
                 </div>
-
-
-
-
-
               </div>
             </div>
           </section>
@@ -168,10 +201,13 @@ export default {
   border: none;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-
 .not-found {
   margin: 25vh 0;
   color: grey;
+}
+.card-profile {
+  border-radius: 50%;
+  width: 3.5rem;
 }
 
 /* Media Queries */

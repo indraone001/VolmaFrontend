@@ -108,15 +108,10 @@
                                   </h5>
                                   <p>{{ student.nim }}</p>
 
-                                  <form
-                                    @click.prevent="
-                                      updateMahasiswa(student.id_mhs)
-                                    "
-                                  >
+                                  <div class="container">
                                     <div class="form text-left my-3">
                                       <input
                                         type="text"
-                                        id="nim"
                                         name="nim"
                                         v-model="nim"
                                         required
@@ -128,7 +123,6 @@
                                     <div class="form text-left my-3">
                                       <input
                                         type="text"
-                                        id="nama"
                                         name="nama"
                                         v-model="nama"
                                         required
@@ -140,7 +134,6 @@
                                     <div class="form text-left my-3">
                                       <input
                                         type="text"
-                                        id="jurusan"
                                         name="jurusan"
                                         v-model="jurusan"
                                         required
@@ -154,7 +147,6 @@
                                     <div class="form text-left my-3">
                                       <input
                                         type="text"
-                                        id="angkatan"
                                         name="angkatan"
                                         v-model="angkatan"
                                         required
@@ -168,10 +160,13 @@
                                     <button
                                       class="btn btn-primary my-4"
                                       data-dismiss="modal"
+                                      @click.prevent="
+                                        updateMahasiswa(student.id_mhs)
+                                      "
                                     >
                                       Ubah Data
                                     </button>
-                                  </form>
+                                  </div>
                                 </div>
                               </div>
                             </div>
@@ -201,7 +196,7 @@
                               role="document"
                             >
                               <div class="modal-content">
-                                <div class="modal-header">
+                                <div class="modal-header border-0">
                                   <h5
                                     class="modal-title"
                                     id="exampleModalLabel"
@@ -217,13 +212,13 @@
                                     <span aria-hidden="true">&times;</span>
                                   </button>
                                 </div>
-                                <div class="modal-body">
+                                <div class="modal-body border-0">
                                   <p>
                                     Apakah anda yakin ingin menghapus
                                     <b>{{ student.nama }}</b> ?
                                   </p>
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer border-0">
                                   <button
                                     type="button"
                                     class="btn btn-secondary"

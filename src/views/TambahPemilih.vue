@@ -12,9 +12,15 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-md-6 text-center  my-auto">
-                  <form action="">
-                    <h4 class="text-center">Input Pemilih</h4>
-                    <div class="form text-left">
+                  <form @click.prevent="addPemilih">
+                    <h4 class="text-center">Input Data Pemilih</h4>
+                    <div
+                      class="alert alert-warning text-left mb-4"
+                      role="alert"
+                    >
+                      Pemilih adalah mahasiswa yang terdaftar.
+                    </div>
+                    <div class="form text-left my-3">
                       <input
                         type="text"
                         id="nim"
@@ -26,7 +32,7 @@
                         <span class="content-name">Nim</span>
                       </label>
                     </div>
-                    <div class="form text-left">
+                    <div class="form text-left mb-4">
                       <input
                         type="text"
                         id="nama"
@@ -39,24 +45,38 @@
                       </label>
                     </div>
 
+                    <button
+                      type="button"
+                      class="btn btn-outline-primary mr-2"
+                      @click="delFormPemilih"
+                    >
+                      Clear
+                    </button>
                     <button type="button" class="btn btn-primary my-4 ">
                       Submit
                     </button>
                   </form>
                   <br />
                 </div>
-                <div class="col-md-6 table-mahasiswa my-auto">
-                  <div class="container">
-                    <div class="item search-container">
-                      <input
-                        type="text"
-                        placeholder="Cari Mahasiswa"
-                        v-model="search"
-                      />
-                    </div>
-
+                <div class="col-md-6  my-auto">
+                  <div class="container item search-container pb-4">
+                    <input
+                      type="text"
+                      placeholder="Cari Mahasiswa"
+                      v-model="search"
+                    />
+                  </div>
+                  <div class="container table-mahasiswa">
                     <div v-if="filteredData.length">
-                      <table class="table table-responsive mt-4">
+                      <table class="table table-responsive table-hover mt-4">
+                        <thead>
+                          <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Nim</th>
+                            <th scope="col">Nama</th>
+                            <th scope="col">Action</th>
+                          </tr>
+                        </thead>
                         <tbody>
                           <tr
                             v-for="student in filteredData"
@@ -65,13 +85,25 @@
                             <th scope="row">{{ student.id_mhs }}</th>
                             <td>{{ student.nim }}</td>
                             <td>{{ student.nama }}</td>
-                            <td>@mdo</td>
+                            <td>
+                              <button
+                                type="button"
+                                class="btn btn-secondary"
+                                @click="
+                                  addFormPemilih(student.nim, student.nama)
+                                "
+                              >
+                                Pilih
+                              </button>
+                            </td>
                           </tr>
                         </tbody>
                       </table>
                     </div>
                     <div v-else>
-                      <h5 class="text-center not-found"> Data tidak ditemukan</h5>
+                      <h5 class="text-center not-found">
+                        Data tidak ditemukan
+                      </h5>
                     </div>
                   </div>
                 </div>
@@ -125,6 +157,52 @@ export default {
           console.log(e);
         });
     },
+    /**
+     * Menambahkan Mahasiswa
+     *
+     */
+    addPemilih: function() {
+      if (this.nim && this.nama) {
+        let nim = this.nim;
+        let nama = this.nama;
+
+        const options = {
+          url: "https://volma01.herokuapp.com/pemilih",
+          method: "post",
+          data: {
+            nim,
+            nama,
+          },
+        };
+        axios(options)
+          .then((response) => {
+            console.log(response.data);
+            alert(response.data.message);
+            this.$router.push({ path: "pemilih" });
+          })
+          .catch((e) => {
+            console.log(e);
+            alert(e);
+            this.$router.push({ path: "pemilih" });
+          });
+      }
+    },
+    /**
+     * Mengisi form pemilih dengan menekan tombol pilih
+     *
+     */
+    addFormPemilih: function(nim, nama) {
+      this.nim = nim;
+      this.nama = nama;
+    },
+    /**
+     * Mengisi form pemilih dengan menekan tombol pilih
+     *
+     */
+    delFormPemilih: function() {
+      this.nim = "";
+      this.nama = "";
+    },
   },
   computed: {
     /**
@@ -157,9 +235,10 @@ export default {
 }
 h4 {
   margin: 2rem 0;
+  font-weight: 600;
 }
 .search-container input[type="text"] {
-  width: 50%;
+  width: 100%;
   padding: 9px 16px;
   outline: none;
   font-size: 15px;
@@ -169,7 +248,7 @@ h4 {
 }
 
 .table-mahasiswa {
-  height: 70vh;
+  height: 60vh;
   overflow: auto;
 }
 .not-found {
@@ -233,7 +312,6 @@ form {
 .form input:valid + .label-name::after {
   transform: translateX(0%);
 }
-
 
 /* Responsive */
 @media only screen and (max-width: 1200px) {

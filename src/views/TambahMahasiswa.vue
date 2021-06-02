@@ -95,6 +95,10 @@ export default {
     };
   },
   methods: {
+    /**
+     * Menambahkan Mahasiswa
+     *
+     */
     addMahasiswa: function() {
       if (this.nim && this.nama && this.jurusan && this.angkatan) {
         let nim = this.nim;

@@ -33,8 +33,10 @@
           <section class="table-pemilih pb-4">
             <div class="card border-0 mb-4">
               <div class="card-body">
-                
-                <div class="container table-responsive" v-if="filteredData.length">
+                <div
+                  class="container table-responsive"
+                  v-if="filteredData.length"
+                >
                   <table class="table table-hover">
                     <thead>
                       <tr>
@@ -59,7 +61,7 @@
                           <!-- Acak Password -->
                           <button
                             type="button"
-                            class="btn btn-outline-info mb-3 mr-1"
+                            class="btn btn-primary mt-2 mb-2"
                             data-toggle="modal"
                             :data-target="'#acakpassword' + pemilih.id_mhs"
                           >
@@ -92,6 +94,7 @@
                                     class="close"
                                     data-dismiss="modal"
                                     aria-label="Close"
+                                    @click="delFormPass"
                                   >
                                     <span aria-hidden="true">&times;</span>
                                   </button>
@@ -102,7 +105,6 @@
                                   <div class="form text-left my-4">
                                     <input
                                       type="text"
-                                      id="passAcak"
                                       name="passAcak"
                                       class="pl-0"
                                       v-model="passAcak"
@@ -125,6 +127,7 @@
                                     type="button"
                                     class="btn btn-secondary"
                                     data-dismiss="modal"
+                                    @click="delFormPass"
                                   >
                                     Close
                                   </button>
@@ -134,18 +137,10 @@
                           </div>
                         </td>
                         <td>
-                          <!-- Button Edit -->
-                          <button
-                            type="button"
-                            class="btn btn-primary my-1 mr-1"
-                          >
-                            Edit
-                          </button>
-
                           <!-- Button Delete -->
                           <button
                             type="button"
-                            class="btn btn-outline-danger my-1"
+                            class="btn btn-outline-danger my-2"
                           >
                             Hapus
                           </button>
@@ -157,9 +152,6 @@
                 <div v-else>
                   <h4 class="text-center not-found">Data tidak ditemukan</h4>
                 </div>
-
-
-
               </div>
             </div>
           </section>
@@ -227,6 +219,13 @@ export default {
           console.log(e);
           alert(e);
         });
+    },
+    /**
+     * Mengosongkan variable passAcak
+     *
+     */
+    delFormPass: function() {
+      this.passAcak = "";
     },
   },
   computed: {
