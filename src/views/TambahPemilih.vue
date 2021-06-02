@@ -1,102 +1,142 @@
 <template>
   <div>
     <sidebar />
-
     <div class="main-content">
       <header>
         <navbar-admin />
       </header>
+
       <main>
-        <!-- Form -->
-        <div class="background">
-          <div class="containerForm container">
-            <div class="screen">
-              <div class="screen-body">
-                <div class="screen-body-item left">
-                  <div class="app-title">
-                    <span>Input Data</span>
-                    <span>Pemilih</span>
-                  </div>
+        <div class="container main-tambah">
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-md-6 text-center  my-auto">
+                  <form action="">
+                    <h4 class="text-center">Input Pemilih</h4>
+                    <div class="form text-left">
+                      <input
+                        type="text"
+                        id="nim"
+                        name="nim"
+                        v-model="nim"
+                        required
+                      />
+                      <label for="nim" class="label-name">
+                        <span class="content-name">Nim</span>
+                      </label>
+                    </div>
+                    <div class="form text-left">
+                      <input
+                        type="text"
+                        id="nama"
+                        name="nama"
+                        v-model="nama"
+                        required
+                      />
+                      <label for="nama" class="label-name">
+                        <span class="content-name">Nama</span>
+                      </label>
+                    </div>
+
+                    <button type="button" class="btn btn-primary my-4 ">
+                      Submit
+                    </button>
+                  </form>
+                  <br />
                 </div>
-                <div class="screen-body-item">
-                  <div class="app-form">
-                    <form action="">
-                      <div class="app-form-group form text-left">
-                        <input
-                          type="text"
-                          id="nim"
-                          name="nim"
-                          v-model="nim"
-                          required
-                        />
-                        <label for="nim" class="label-name">
-                          <span class="content-name">Nim</span>
-                        </label>
-                      </div>
-                      <div class="app-form-group form text-left">
-                        <input
-                          type="text"
-                          id="nama"
-                          name="nama"
-                          v-model="nama"
-                          required
-                        />
-                        <label for="nama" class="label-name">
-                          <span class="content-name">Nama</span>
-                        </label>
-                      </div>
-                      <div class="app-form-group buttons">
-                        <button type="button" class="btn btn-primary">
-                          Submit
-                        </button>
-                      </div>
-                    </form>
+                <div class="col-md-6 table-mahasiswa my-auto">
+                  <div class="container">
+                    <div class="item search-container">
+                      <input
+                        type="text"
+                        placeholder="Cari Mahasiswa"
+                        v-model="search"
+                      />
+                    </div>
+
+                    <div v-if="filteredData.length">
+                      <table class="table table-responsive mt-4">
+                        <tbody>
+                          <tr
+                            v-for="student in filteredData"
+                            :key="student.id_mhs"
+                          >
+                            <th scope="row">{{ student.id_mhs }}</th>
+                            <td>{{ student.nim }}</td>
+                            <td>{{ student.nama }}</td>
+                            <td>@mdo</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div v-else>
+                      <h5 class="text-center not-found"> Data tidak ditemukan</h5>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <!-- Form -->
       </main>
     </div>
   </div>
 </template>
 
 <script>
-import NavbarAdmin from "@/components/NavbarAdmin.vue";
+import axios from "axios";
 import Sidebar from "@/components/Sidebar.vue";
-
-// import axios from "axios";
+import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
 export default {
   name: "TambahPemilih",
   components: {
-    NavbarAdmin,
     Sidebar,
+    NavbarAdmin,
   },
   data() {
     return {
-        nim: "",
-        nama: ""
+      nim: "",
+      nama: "",
+      search: "",
+      students: [],
     };
   },
-  created() {},
+  created() {
+    this.getMahasiswa();
+  },
   methods: {
-    // getPemilih() {
-    //   const options = {
-    //     url: "https://volma01.herokuapp.com/pemilih",
-    //     method: "get",
-    //   };
-    //   axios(options)
-    //     .then((response) => {
-    //       this.pemilih = response.data.data;
-    //       console.log(this.pemilih);
-    //     })
-    //     .catch((e) => {
-    //       console.log(e);
-    //     });
-    // },
+    /**
+     * @return Daftar Mahasiswa
+     *
+     */
+    getMahasiswa() {
+      const options = {
+        url: "https://volma01.herokuapp.com/mahasiswa",
+        method: "get",
+      };
+      axios(options)
+        .then((response) => {
+          this.students = response.data.data;
+          console.log("Mahasiswa: ", this.students);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    },
+  },
+  computed: {
+    /**
+     * @return data mahasiswa yang dicari
+     *
+     */
+    filteredData: function() {
+      return this.students.filter((data) => {
+        let name = data.nama.toLowerCase();
+        return name.match(this.search.toLowerCase());
+      });
+    },
   },
 };
 </script>
@@ -108,106 +148,37 @@ export default {
   transition: margin-left 200ms;
   background: #eefafd;
 }
-
-.background {
-  display: flex;
-  height: 100vh;
-}
-
-.containerForm {
-  flex: 0 1 700px;
-  margin: auto;
-}
-
-.screen {
-  position: relative;
-  background: #ffff;
-  border-radius: 15px;
+.card {
+  margin-top: 3rem;
+  padding: 1rem 0;
+  border-radius: 12px;
+  border: none;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-
-.screen:after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 40px;
-
-  right: 20px;
-  bottom: 0;
-  border-radius: 200px;
-  box-shadow: 0 20px 40px rgba(15, 15, 15, 0.4);
-  z-index: -1;
+h4 {
+  margin: 2rem 0;
 }
-
-.screen-body {
-  display: flex;
-}
-
-.screen-body-item {
-  flex: 1;
-  padding: 50px;
-}
-
-.screen-body-item.left {
-  display: flex;
-  flex-direction: column;
-}
-
-.app-title {
-  display: flex;
-  flex-direction: column;
-  position: relative;
-  color: #666;
-  font-size: 26px;
-}
-
-.app-title:after {
-  content: "";
-  display: block;
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  width: 35px;
-  height: 4px;
-  background: #666;
-}
-
-.app-form-group {
-  margin-bottom: 15px;
-}
-
-.app-form-group.message {
-  margin-top: 40px;
-}
-
-.app-form-group.buttons {
-  margin-bottom: 0;
-  text-align: right;
-}
-
-.app-form-control {
-  width: 100%;
-  padding: 10px 0;
-  background: none;
-  border: none;
-  border-bottom: 1px solid #666;
-  color: #666;
-  font-size: 14px;
+.search-container input[type="text"] {
+  width: 50%;
+  padding: 9px 16px;
   outline: none;
-  transition: border-color 0.2s;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  background: #eeeeee;
 }
 
-.app-form-control::placeholder {
-  color: #666;
+.table-mahasiswa {
+  height: 70vh;
+  overflow: auto;
 }
-
-.app-form-control:focus {
-  border-bottom-color: #666;
+.not-found {
+  margin: 25vh 0;
+  color: grey;
 }
 
 form {
-  margin: 0 5%;
+  margin: 0 10%;
 }
 .form {
   width: 100%;
@@ -264,41 +235,7 @@ form {
 }
 
 
-
-/* Query Form */
-@media screen and (max-width: 520px) {
-  .screen-body {
-    flex-direction: column;
-  }
-
-  .screen-body-item.left {
-    margin-bottom: 30px;
-  }
-
-  .app-title {
-    flex-direction: row;
-  }
-
-  .app-title span {
-    margin-right: 12px;
-  }
-
-  .app-title:after {
-    display: none;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .screen-body {
-    padding: 40px;
-  }
-
-  .screen-body-item {
-    padding: 0;
-  }
-}
-
-/* Media Queries */
+/* Responsive */
 @media only screen and (max-width: 1200px) {
   .main-content {
     margin-left: 75px;

@@ -33,7 +33,8 @@
           <section class="table-pemilih pb-4">
             <div class="card border-0 mb-4">
               <div class="card-body">
-                <div class="container table-responsive">
+                
+                <div class="container table-responsive" v-if="filteredData.length">
                   <table class="table table-hover">
                     <thead>
                       <tr>
@@ -153,6 +154,12 @@
                     </tbody>
                   </table>
                 </div>
+                <div v-else>
+                  <h4 class="text-center not-found">Data tidak ditemukan</h4>
+                </div>
+
+
+
               </div>
             </div>
           </section>
@@ -261,7 +268,7 @@ export default {
   color: rgb(66, 66, 66);
 }
 .foo {
-  height: 50vh;
+  height: 30vh;
   background: #eefafd;
 }
 .main-pemilih {
@@ -284,6 +291,10 @@ export default {
   border-radius: 12px;
   border: none;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.not-found {
+  margin: 25vh 0;
+  color: grey;
 }
 
 form {

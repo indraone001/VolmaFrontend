@@ -9,7 +9,8 @@
       <main>
         <div class="container main-dashboard">
           <h2 class="mb-1">Dashboard</h2>
-          <div class="row">
+
+          <div class="row" v-if="dashboard.jumlah_pemilih">
             <!-- Banyak Pemilih -->
             <div class="col-6 col-sm-6 col-md-3 ">
               <div class="card py-0">
@@ -70,12 +71,15 @@
               </div>
             </div>
           </div>
+          <div v-else>
+            <h4 class="text-center not-found">Harap Tunggu...</h4>
+          </div>
 
           <!-- Jumlah suara masing masing calon -->
-          <section class="mt-4 pt-4">
+          <section class="mt-4 py-4">
             <h3 class="pt-3">Perolehan Masing-masing Calon</h3>
 
-            <div class="row card-groups">
+            <div class="row card-groups" v-if="results.length">
               <div
                 class="col-sm-12 col-md-12 col-lg-4 mb-4"
                 v-for="result in results"
@@ -150,6 +154,9 @@
                   </div>
                 </div>
               </div>
+            </div>
+            <div v-else>
+              <h4 class="text-center not-found2 my-4">Harap Tunggu...</h4>
             </div>
           </section>
         </div>
@@ -267,6 +274,14 @@ export default {
 }
 .card-count h6 {
   margin: 0;
+}
+.not-found,
+.not-found2 {
+  margin: 11vh 0;
+  color: grey;
+}
+.not-found2 {
+  padding: 15vh 0;
 }
 
 /* Responsive */
