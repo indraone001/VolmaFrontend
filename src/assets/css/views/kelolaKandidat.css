@@ -15,7 +15,7 @@
 .main-kandidat h2 {
   font-weight: 600;
 }
-.main-kandidat input[type="text"] {
+.main-kandidat input[type="text"].search {
   padding: 9px 16px;
   outline-color: #2f80ed;
   font-size: 15px;
@@ -37,6 +37,70 @@
 .card-profile {
   border-radius: 50%;
   width: 3.5rem;
+}
+.modal-content {
+  border: none;
+  border-radius: 10px;
+}
+
+form {
+  margin: 0 10%;
+}
+.form {
+  width: 70%;
+  height: 50px;
+  position: relative;
+  overflow: hidden;
+}
+.form input {
+  width: 100%;
+  height: 100%;
+  color: #666;
+  padding-left: 0;
+  padding-top: 16px;
+  padding-bottom: 10px;
+  border: none;
+  outline: none;
+}
+.form label {
+  position: absolute;
+  bottom: 0px;
+  left: 0%;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  border-bottom: 1px solid #666;
+  color: #666;
+}
+
+.form label::after {
+  content: "";
+  position: absolute;
+  left: 0px;
+  bottom: -1px;
+  width: 100%;
+  height: 100%;
+  border-bottom: 3px solid #2f80ed;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+}
+.content-name {
+  position: absolute;
+  bottom: 5px;
+  left: 0px;
+  transition: all 0.3s ease;
+}
+.form input:focus + .label-name .content-name,
+.form input:valid + .label-name .content-name,
+.form input:read-only + .label-name .content-name {
+  transform: translateY(-100%);
+  font-size: 14px;
+  color: #2f80ed;
+}
+.form input:focus + .label-name::after,
+.form input:valid + .label-name::after,
+.form input:read-only + .label-name::after {
+  transform: translateX(0%);
 }
 
 /* Media Queries */

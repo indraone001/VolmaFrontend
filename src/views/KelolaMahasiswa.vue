@@ -68,6 +68,7 @@
                             class="btn btn-primary mb-3 mr-1"
                             data-toggle="modal"
                             :data-target="'#edit' + student.id_mhs"
+                            @click="fillFormEdit(student.nim, student.nama, student.jurusan, student.angkatan)"
                           >
                             Edit
                           </button>
@@ -352,6 +353,16 @@ export default {
           alert(e);
         });
     },
+    /**
+     * Mengisi dengan data kandidat yang dipilih
+     *
+     */
+    fillFormEdit: function(nim, nama, jurusan, angkatan) {
+      this.nim = nim;
+      this.nama = nama;
+      this.jurusan = jurusan;
+      this.angkatan = angkatan;
+    },
   },
   computed: {
     /**
@@ -368,5 +379,4 @@ export default {
 };
 </script>
 
-<style scoped src="../assets/css/views/kelolaMahasiswa.css">
-</style>
+<style scoped src="../assets/css/views/kelolaMahasiswa.css"></style>

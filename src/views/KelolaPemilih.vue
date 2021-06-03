@@ -63,7 +63,7 @@
                             type="button"
                             class="btn btn-primary mt-2 mb-2"
                             data-toggle="modal"
-                            :data-target="'#acakpassword' + pemilih.id_mhs"
+                            :data-target="'#acakpassword' + pemilih.id_pemilih"
                           >
                             Acak Password
                           </button>
@@ -71,7 +71,7 @@
                           <!-- Modal Acak Password -->
                           <div
                             class="modal fade"
-                            :id="'acakpassword' + pemilih.id_mhs"
+                            :id="'acakpassword' + pemilih.id_pemilih"
                             tabindex="-1"
                             role="dialog"
                             aria-labelledby="exampleModalLongTitle"
@@ -141,9 +141,56 @@
                           <button
                             type="button"
                             class="btn btn-outline-danger my-2"
+                            data-toggle="modal"
+                            :data-target="'#delete'+pemilih.id_pemilih"
                           >
                             Hapus
                           </button>
+                          <!-- Modal Button Delete -->
+                          <div
+                            class="modal fade"
+                            :id="'delete'+pemilih.id_pemilih"
+                            tabindex="-1"
+                            role="dialog"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                          >
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header border-0">
+                                  <h5
+                                    class="modal-title"
+                                    id="exampleModalLabel"
+                                  >
+                                    Hapus Pemilih
+                                  </h5>
+                                  <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                  >
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body border-0">
+                                  <p>Apakah anda yakin ingin menghapus <b>{{ pemilih.nama }}</b> ?</p>
+                                </div>
+                                <div class="modal-footer border-0">
+                                  <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-dismiss="modal"
+                                  >
+                                    Tidak
+                                  </button>
+                                  <button type="button" class="btn btn-primary" data-dismiss="modal" @click="delPemilih(pemilih.id_pemilih)">
+                                    Ya, saya yakin.
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </td>
                       </tr>
                     </tbody>
@@ -221,6 +268,26 @@ export default {
         });
     },
     /**
+     * @return Data pemilih yang dihapus
+     *
+     */
+    delPemilih: function(id_pemilih) {
+      const options = {
+        url: `https://volma01.herokuapp.com/pemilih/${id_pemilih}`,
+        method: "delete",
+      };
+      axios(options)
+        .then((response) => {
+          console.log("delPemilih ", response);
+          this.getPemilih();
+          this.pemilih.splice(id_pemilih, 1);
+        })
+        .catch((e) => {
+          console.log(e);
+          alert(e);
+        });
+    },
+    /**
      * Mengosongkan variable passAcak
      *
      */
@@ -258,5 +325,4 @@ export default {
 };
 </script>
 
-<style scoped src="../assets/css/views/kelolaPemilih.css">
-</style>
+<style scoped src="../assets/css/views/kelolaPemilih.css"></style>

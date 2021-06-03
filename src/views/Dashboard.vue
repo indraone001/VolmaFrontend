@@ -75,6 +75,8 @@
             <h4 class="text-center not-found">Harap Tunggu...</h4>
           </div>
 
+          
+
           <!-- Jumlah suara masing masing calon -->
           <section class="mt-4 py-4">
             <h3 class="pt-3">Perolehan Masing-masing Calon</h3>
