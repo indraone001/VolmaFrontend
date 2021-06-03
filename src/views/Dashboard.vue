@@ -75,7 +75,36 @@
             <h4 class="text-center not-found">Harap Tunggu...</h4>
           </div>
 
-          
+          <section class="py-3">
+            <div class="card update-periode">
+              <div class="card-body date-picker">
+                <div class="row">
+                  <div class="col-md-12 col-lg-7">
+                    <div class="container">
+                      <h3 class="mb-4 pb-3">Update Periode Pemilihan</h3>
+                      <div class="d-flex mb-3">
+                        <div class="my-auto">
+                          <label for="dateFrom">Dari tanggal:</label>
+                          <input type="date" name="dateFrom" id="dateFrom" v-model="start" />
+                        </div>
+                        <div class="divider"></div>
+                        <div class="my-auto">
+                          <label for="dateTo">Hingga tanggal:</label>
+                          <input type="date" name="dateTo" id="dateTo" v-model="end" />
+                        </div>
+                      </div>
+                      <button type="button" class="btn btn-primary mt-4" @click.prevent="updatePeriode">
+                        Ubah Periode
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-lg-5 d-none d-lg-block d-xl-block text-center ">
+                    <img src="@/assets/date.svg" class="mt-4 pt-2" alt="" width="80%">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
 
           <!-- Jumlah suara masing masing calon -->
           <section class="mt-4 py-4">
@@ -182,6 +211,8 @@ export default {
     return {
       results: [],
       dashboard: [],
+      start: new Date().toISOString().substr(0, 10),
+      end: new Date().toISOString().substr(0, 10)
     };
   },
   created() {
@@ -225,9 +256,42 @@ export default {
           console.log(e);
         });
     },
+    getPeriode: function() {
+      console.log(this.start)
+      console.log(this.end)
+    },
+    /**
+     * @return Data mahasiswa yang telah diedit
+     *
+     */
+    updatePeriode: function() {
+      if (this.start && this.end) {
+        let start = this.start;
+        let end = this.end;
+
+        const options = {
+          url: "https://volma01.herokuapp.com/periode",
+          method: "put",
+          data: {
+            start,
+            end
+          },
+        };
+        axios(options)
+          .then((response) => {
+            console.log("Update Periode: ", response);
+            alert("Berhasil Mengubah Periode");
+            this.getDashboard();
+            this.getResults();
+          })
+          .catch((e) => {
+            console.log(e);
+            alert(e);
+          });
+      }
+    },
   },
 };
 </script>
 
-<style scoped src="../assets/css/views/dashboard.css">
-</style>
+<style scoped src="../assets/css/views/dashboard.css"></style>
