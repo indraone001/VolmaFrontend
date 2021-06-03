@@ -192,37 +192,5 @@ export default {
 };
 </script>
 
-<style scoped>
-.navbar {
-  background-color: #fff;
-}
-.navbar-brand {
-  font-weight: 600;
-}
-.navbar-toggler {
-  display: none;
-  border: none;
-}
-h5 {
-  margin-bottom: 0;
-  font-weight: 500;
-  color: rgb(66, 66, 66);
-}
-.navigate-link {
-  color: rgb(110, 110, 110);
-}
-.active {
-  color: #2f80ed;
-}
-.modal-content {
-  border: none;
-  border-radius: 10px;
-}
-
-/* Responsive */
-@media only screen and (max-width: 990px) {
-  .navbar-toggler {
-    display: inline-block;
-  }
-}
+<style scoped src="../assets/css/components/navbarAdmin.css">
 </style>

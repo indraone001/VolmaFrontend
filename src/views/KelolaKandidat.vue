@@ -214,9 +214,9 @@ export default {
      * @return Data mahasiswa yang dihapus
      *
      */
-    delKandidat: function(id_kandidat) {
+    delKandidat: function(no_urut) {
       const options = {
-        url: `https://volma01.herokuapp.com/kandidat/${id_kandidat}`,
+        url: `https://volma01.herokuapp.com/kandidat/${no_urut}`,
         method: "delete",
       };
       axios(options)
@@ -224,7 +224,7 @@ export default {
           console.log("delKandidat: ", response);
           alert("Berhasil menghapus data")
           this.getKandidat();
-          this.kandidats.splice(id_kandidat, 1);
+          this.kandidats.splice(no_urut, 1);
         })
         .catch((e) => {
           console.log(e);
@@ -247,67 +247,5 @@ export default {
 };
 </script>
 
-<style scoped>
-.main-content {
-  height: 100%;
-  margin-left: 16%;
-  transition: margin-left 200ms;
-  background: #eefafd;
-  color: rgb(66, 66, 66);
-}
-.foo {
-  height: 30vh;
-  background: #eefafd;
-}
-.main-kandidat {
-  padding-top: 3rem;
-}
-.main-kandidat h2 {
-  font-weight: 600;
-}
-.main-kandidat input[type="text"] {
-  padding: 9px 16px;
-  outline-color: #2f80ed;
-  font-size: 15px;
-  border: none;
-  border-radius: 8px;
-}
-.card {
-  width: 100%;
-  margin-top: 3rem;
-  padding: 1rem 0;
-  border-radius: 12px;
-  border: none;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.not-found {
-  margin: 25vh 0;
-  color: grey;
-}
-.card-profile {
-  border-radius: 50%;
-  width: 3.5rem;
-}
-
-/* Media Queries */
-@media only screen and (max-width: 1200px) {
-  .main-content {
-    margin-left: 75px;
-  }
-  .main-content:hover {
-    margin-left: 75px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
-  }
-  .main-content:hover {
-    margin-left: 0;
-  }
-  .navbar-toggler {
-    display: inline-block;
-  }
-}
+<style scoped src="../assets/css/views/kelolaKandidat.css">
 </style>
