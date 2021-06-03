@@ -89,7 +89,7 @@
                   <div class="card-body text-center">
                     <h5 class="name-kandidat">{{ result.nama_ketua }}</h5>
                     <h6 class="no-kandidat pb-4">
-                      Nomor Urut {{ result.id_kandidat }}
+                      Nomor Urut {{ result.no_urut }}
                     </h6>
 
                     <div class="container pt-4">

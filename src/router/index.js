@@ -9,6 +9,7 @@ import StatistikVote from "../views/StatistikVote.vue";
 import KelolaPemilih from "../views/KelolaPemilih.vue";
 import TambahPemilih from "../views/TambahPemilih.vue";
 import KelolaKandidat from "../views/KelolaKandidat.vue";
+import TambahKandidat from "../views/TambahKandidat.vue";
 import KelolaMahasiswa from "../views/KelolaMahasiswa.vue";
 import TambahMahasiswa from "../views/TambahMahasiswa.vue";
 
@@ -54,6 +55,11 @@ const routes = [
     path: '/kandidat',
     name: 'KelolaKandidat',
     component: KelolaKandidat
+  },
+  {
+    path: '/tambah-kandidat',
+    name: 'TambahKandidat',
+    component: TambahKandidat
   },
   {
     path: '/mahasiswa',

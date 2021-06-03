@@ -12,9 +12,13 @@
           <div class="d-flex justify-content-between">
             <!-- Router to Tambah Kandidat -->
             <div class="item">
-              <button type="button" class="btn btn-primary">
+              <router-link
+                tag="button"
+                to="/tambah-kandidat"
+                class="btn btn-primary"
+              >
                 Tambahkan Kandidat
-              </button>
+              </router-link>
             </div>
 
             <!-- Search -->
@@ -46,7 +50,7 @@
                     <tbody>
                       <tr
                         v-for="kandidat in filteredData"
-                        :key="kandidat.id_kandidat"
+                        :key="kandidat.no_urut"
                       >
                         <th>{{ kandidat.no_urut }}</th>
                         <td>
@@ -58,7 +62,7 @@
                             alt=""
                             width="100%"
                           />
-                          <br>
+                          <br />
                           <img
                             class="card-profile"
                             :src="
@@ -67,12 +71,11 @@
                             alt=""
                             width="100%"
                           />
-
                         </td>
                         <td style="width:250px; height:50px;">
                           <!-- Ketua -->
                           <p class="mb-0"><b>Ketua</b></p>
-                          <p>{{ kandidat.nama }}</p> 
+                          <p>{{ kandidat.nama }}</p>
 
                           <!-- Wakil -->
                           <p class="mb-0"><b>Wakil</b></p>
@@ -81,19 +84,74 @@
                         <td style="width:400px;">
                           <!-- Visi -->
                           <p class="mb-0"><b>Visi</b></p>
-                          <p style="width:400px;">{{ kandidat.visi }}</p> 
+                          <p style="width:400px;">{{ kandidat.visi }}</p>
 
                           <!-- Misi -->
                           <p class="mb-0"><b>Misi</b></p>
-                          <p style="width:400px;">{{ kandidat.misi }}</p> 
+                          <p style="width:400px;">{{ kandidat.misi }}</p>
                         </td>
                         <td>
-                          <button type="button" class="btn btn-primary my-4 mr-1">
+                          <button
+                            type="button"
+                            class="btn btn-primary my-4 mr-1"
+                          >
                             Edit
                           </button>
-                          <button type="button" class="btn btn-outline-danger my-4">
+
+                          <!-- Button Hapus Kandidat -->
+                          <button
+                            type="button"
+                            class="btn btn-outline-danger my-4"
+                            data-toggle="modal"
+                            :data-target="'#hapus'+kandidat.no_urut"
+                          >
                             Hapus
                           </button>
+                          <!-- Modal -->
+                          <div
+                            class="modal fade"
+                            :id="'hapus'+kandidat.no_urut"
+                            tabindex="-1"
+                            role="dialog"
+                            aria-labelledby="exampleModalLabel"
+                            aria-hidden="true"
+                          >
+                            <div class="modal-dialog" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5
+                                    class="modal-title"
+                                    id="exampleModalLabel"
+                                  >
+                                    Hapus Kandidat
+                                  </h5>
+                                  <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                                  >
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <div class="modal-body">
+                                  <p>Apakan anda yakin ingin menghapus pasangan calon nomor {{ kandidat.no_urut }}?</p>
+                                </div>
+                                <div class="modal-footer">
+                                  <button
+                                    type="button"
+                                    class="btn btn-secondary"
+                                    data-dismiss="modal"
+                                  >
+                                    tidak
+                                  </button>
+                                  <button type="button" class="btn btn-primary" data-dismiss="modal" @click="delKandidat(kandidat.no_urut)">
+                                    Ya, saya yakin.
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                         </td>
                       </tr>
                     </tbody>
@@ -150,6 +208,27 @@ export default {
         })
         .catch((e) => {
           console.log(e);
+        });
+    },
+    /**
+     * @return Data mahasiswa yang dihapus
+     *
+     */
+    delKandidat: function(id_kandidat) {
+      const options = {
+        url: `https://volma01.herokuapp.com/kandidat/${id_kandidat}`,
+        method: "delete",
+      };
+      axios(options)
+        .then((response) => {
+          console.log("delKandidat: ", response);
+          alert("Berhasil menghapus data")
+          this.getKandidat();
+          this.kandidats.splice(id_kandidat, 1);
+        })
+        .catch((e) => {
+          console.log(e);
+          alert(e);
         });
     },
   },
