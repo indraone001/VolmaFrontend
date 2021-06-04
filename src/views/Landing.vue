@@ -135,9 +135,9 @@
                   aria-labelledby="exampleModalLabel"
                   aria-hidden="true"
                 >
-                  <div class="modal-dialog" role="document">
+                  <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                      <div class="modal-header">
+                      <div class="modal-header border-0">
                         <h5 class="modal-title" id="exampleModalLabel">
                           Nomor Urut {{ kandidat.no_urut }}
                         </h5>
@@ -150,7 +150,7 @@
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
-                      <div class="modal-body text-left">
+                      <div class="modal-body border-0 text-left">
                         <p>
                           Anda memilih pasangan calon dengan nomor urut
                           {{ kandidat.no_urut }}.
@@ -161,7 +161,7 @@
                         </p>
                         <p><b>Apakah anda yakin?</b></p>
                       </div>
-                      <div class="modal-footer">
+                      <div class="modal-footer border-0">
                         <button
                           type="button"
                           class="btn btn-secondary"

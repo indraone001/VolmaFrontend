@@ -38,9 +38,10 @@
         <div class="col-lg-7 d-none d-md-none d-lg-block d-sm-none">
           <div class="brand d-flex">
             <div class="container">
-              <h2 class="tittle">Welcome to Volma</h2>
+              <img src="@/assets/logoLogin.png" alt="" class="mb-4 pb-2" width="10%">
+              <h2 class="tittle mb-3">Welcome to <br> Volma</h2>
               <div class="line-brand"></div>
-              <p>
+              <p style="width: 30vw;">
                 VOLMA merupakan aplikasi berbasis web yang bertujuan untuk
                 membantu mahasiswa dalam melakukan pemilihan umum secara online.
               </p>
@@ -49,6 +50,7 @@
         </div>
         <div class="col-lg-5 d-flex login-form">
           <div class="container">
+            <img src="@/assets/logoTitle.png" alt="" class="m-auto pb-4 d-block d-sm-block d-md-block d-lg-none" width="15%">
             <h2
               class="d-block d-sm-block d-md-block d-lg-none title-responsive"
             >
