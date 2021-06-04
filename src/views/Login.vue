@@ -141,8 +141,7 @@ export default {
               sessionStorage.setItem("nama", token.data[0].nama);
               this.$router.push({ path: "dashboard" });
             } else {
-              console.log("Noo");
-              sessionStorage.setItem("id_mhs", token.data[0].id_mhs);
+              sessionStorage.setItem("id_pemilih", token.data[0].id_pemilih);
               sessionStorage.setItem("nama", token.data[0].nama);
               sessionStorage.setItem("status", token.data[0].status);
 

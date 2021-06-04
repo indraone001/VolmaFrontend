@@ -25,52 +25,10 @@
                     <div class="col-md-6 text-center">
                       <h5 class="text-center py-3">Data Ketua</h5>
 
-                      <!-- Id Ketua -->
-                      <div class="form text-left my-3 mx-auto">
-                        <input
-                          type="text"
-                          id="id_ketua"
-                          name="id_ketua"
-                          v-model="id_ketua"
-                          required
-                        />
-                        <label for="id_ketua" class="label-name">
-                          <span class="content-name">Id Ketua</span>
-                        </label>
-                      </div>
-
-                      <!-- Nama Ketua -->
-                      <div class="form text-left mb-4 mx-auto">
-                        <input
-                          type="text"
-                          id="namaKetua"
-                          name="namaKetua"
-                          v-model="namaKetua"
-                          required
-                        />
-                        <label for="namaKetua" class="label-name">
-                          <span class="content-name">Nama Ketua</span>
-                        </label>
-                      </div>
-
-                      <!-- Foto Ketua -->
-                      <div class="form text-left mb-4 mx-auto">
-                        <input
-                          type="text"
-                          id="imgKetua"
-                          name="imgKetua"
-                          v-model="imgKetua"
-                          required
-                        />
-                        <label for="imgKetua" class="label-name">
-                          <span class="content-name">Foto Ketua</span>
-                        </label>
-                      </div>
-
                       <!-- Button Clear Data -->
                       <button
                         type="button"
-                        class="btn btn-outline-secondary mr-2"
+                        class="btn btn-outline-secondary mr-2 mt-4"
                         @click="delFormKetua"
                       >
                         Clear
@@ -79,7 +37,7 @@
                       <!-- Pilih Ketua -->
                       <button
                         type="button"
-                        class="btn btn-secondary my-4"
+                        class="btn btn-secondary mt-4"
                         data-toggle="modal"
                         data-target="#ketua"
                       >
@@ -163,57 +121,60 @@
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div class="col-md-6 text-center">
-                      <!-- Data Wakil -->
-                      <h5 class="text-center py-3">Data Wakil</h5>
-                      
-                      <!-- Id Wakil -->
+
+                      <!-- Id Ketua -->
                       <div class="form text-left my-3 mx-auto">
                         <input
                           type="text"
-                          id="id_wakil"
-                          name="id_wakil"
-                          v-model="id_wakil"
+                          id="id_ketua"
+                          name="id_ketua"
+                          v-model="id_ketua"
                           required
                         />
-                        <label for="id_wakil" class="label-name">
-                          <span class="content-name">Id Wakil</span>
+                        <label for="id_ketua" class="label-name">
+                          <span class="content-name">Id Ketua</span>
                         </label>
                       </div>
 
-                      <!-- Nama Wakil -->
+                      <!-- Nama Ketua -->
                       <div class="form text-left mb-4 mx-auto">
                         <input
                           type="text"
-                          id="namaWakil"
-                          name="namaWakil"
-                          v-model="namaWakil"
+                          id="namaKetua"
+                          name="namaKetua"
+                          v-model="namaKetua"
                           required
                         />
-                        <label for="namaWakil" class="label-name">
-                          <span class="content-name">Nama Wakil</span>
+                        <label for="namaKetua" class="label-name">
+                          <span class="content-name">Nama Ketua</span>
                         </label>
                       </div>
 
-                      <!-- Foto Wakil -->
+                      <!-- Foto Ketua -->
                       <div class="form text-left mb-4 mx-auto">
                         <input
                           type="text"
-                          id="imgWakil"
-                          name="imgWakil"
-                          v-model="imgWakil"
+                          id="imgKetua"
+                          name="imgKetua"
+                          v-model="imgKetua"
                           required
                         />
-                        <label for="imgWakil" class="label-name">
-                          <span class="content-name">Foto Wakil</span>
+                        <label for="imgKetua" class="label-name">
+                          <span class="content-name">Foto Ketua</span>
                         </label>
                       </div>
+                    </div>
+                    
+                    <!-- Data Wakil -->
+                    <div class="col-md-6 text-center">
+                      <h5 class="text-center py-3">Data Wakil</h5>
+                      
+                      
 
                       <!-- Clear data Wakil -->
                       <button
                         type="button"
-                        class="btn btn-outline-secondary mr-2"
+                        class="btn btn-outline-secondary mr-2 mt-4"
                         @click="delFormWakil"
                       >
                         Clear
@@ -222,7 +183,7 @@
                       <!-- Pilih Wakil -->
                       <button
                         type="button"
-                        class="btn btn-secondary my-4"
+                        class="btn btn-secondary mt-4"
                         data-toggle="modal"
                         data-target="#wakil"
                       >
@@ -306,6 +267,48 @@
                             </div>
                           </div>
                         </div>
+                      </div>
+
+                      <!-- Id Wakil -->
+                      <div class="form text-left my-3 mx-auto">
+                        <input
+                          type="text"
+                          id="id_wakil"
+                          name="id_wakil"
+                          v-model="id_wakil"
+                          required
+                        />
+                        <label for="id_wakil" class="label-name">
+                          <span class="content-name">Id Wakil</span>
+                        </label>
+                      </div>
+
+                      <!-- Nama Wakil -->
+                      <div class="form text-left mb-4 mx-auto">
+                        <input
+                          type="text"
+                          id="namaWakil"
+                          name="namaWakil"
+                          v-model="namaWakil"
+                          required
+                        />
+                        <label for="namaWakil" class="label-name">
+                          <span class="content-name">Nama Wakil</span>
+                        </label>
+                      </div>
+
+                      <!-- Foto Wakil -->
+                      <div class="form text-left mb-4 mx-auto">
+                        <input
+                          type="text"
+                          id="imgWakil"
+                          name="imgWakil"
+                          v-model="imgWakil"
+                          required
+                        />
+                        <label for="imgWakil" class="label-name">
+                          <span class="content-name">Foto Wakil</span>
+                        </label>
                       </div>
                     </div>
                   </div>

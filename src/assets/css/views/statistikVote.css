@@ -41,3 +41,19 @@ p.mb-0 {
 .card-count h6 {
   margin: 0;
 }
+
+input[type="text"].search {
+  width: 100%;
+  padding: 9px 16px;
+  outline-color: #2f80ed;
+  font-size: 15px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.not-found {
+  color: grey;
+  padding: 25vh 0;
+}
+

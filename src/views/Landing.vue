@@ -6,11 +6,23 @@
       <div class="container main-content">
         <h3 class="title text-center pb-2">PEMILIHAN KETUA UMUM</h3>
 
-        <div class="row card-groups">
+        <!-- Search -->
+        <div class="item my-4 pt-4">
+          <form>
+            <input
+              type="text"
+              class="search"
+              placeholder="Cari Ketua"
+              v-model="search"
+            />
+          </form>
+        </div>
+
+        <div class="row card-groups" v-if="filteredData.length">
           <div
             class="col-sm-12 col-md-6 col-lg-6 mb-4"
-            v-for="kandidat in kandidats"
-            :key="kandidat.no_urut"
+            v-for="kandidat in filteredData"
+            :key="kandidat.id_kandidat"
           >
             <div class="card">
               <div class="card-body text-center">
@@ -144,8 +156,8 @@
                           {{ kandidat.no_urut }}.
                         </p>
                         <p>
-                          Dengan {{ kandidat.nama }} sebagai ketua dan
-                          {{ kandidat.nama_wakil }} sebagai wakil.
+                          Dengan <b>{{ kandidat.nama }}</b> sebagai ketua dan
+                          <b>{{ kandidat.nama_wakil }}</b> sebagai wakil.
                         </p>
                         <p><b>Apakah anda yakin?</b></p>
                       </div>
@@ -157,7 +169,12 @@
                         >
                           Tidak
                         </button>
-                        <button type="button" class="btn btn-primary">
+                        <button
+                          type="button"
+                          class="btn btn-primary"
+                          @click.prevent="addVote(id_mhs, kandidat.id_kandidat)"
+                          data-dismiss="modal"
+                        >
                           Ya, saya yakin.
                         </button>
                       </div>
@@ -165,6 +182,15 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+
+        <div v-else>
+          
+          <div class="card">
+            <div class="card-body">
+              <h4 class="text-center not-found">Data tidak ditemukan</h4>
             </div>
           </div>
         </div>
@@ -184,11 +210,14 @@ export default {
   },
   data() {
     return {
+      search: "",
       kandidats: [],
+      id_pemilih: null,
     };
   },
   created() {
     this.getKandidats();
+    this.id_mhs = sessionStorage.getItem("id_pemilih");
   },
   methods: {
     /**
@@ -209,9 +238,41 @@ export default {
           console.log(e);
         });
     },
+    /**
+     * Memilih Kandidat
+     *
+     */
+    addVote: function(id_mhs, id_kandidat) {
+      const options = {
+        url: `https://volma01.herokuapp.com/vote/${id_mhs}/${id_kandidat}`,
+        method: "post",
+      };
+      axios(options)
+        .then((response) => {
+          console.log("Voted: ", response);
+          sessionStorage.setItem("status", 1);
+          alert("Anda sudah melakukan vote");
+          this.$router.push({ path: "statistik-vote" });
+        })
+        .catch((e) => {
+          console.log(e);
+          alert(e);
+        });
+    },
+  },
+  computed: {
+    /**
+     * @return data kandidat yang dicari
+     *
+     */
+    filteredData: function() {
+      return this.kandidats.filter((data) => {
+        let name = data.nama.toLowerCase();
+        return name.match(this.search.toLowerCase());
+      });
+    },
   },
 };
 </script>
 
-<style scoped src="../assets/css/views/landing.css">
-</style>
+<style scoped src="../assets/css/views/landing.css"></style>

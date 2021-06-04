@@ -94,13 +94,13 @@ export default {
   data() {
     return {
       nama: "",
-      id_mhs: null,
+      id_pemilih: null,
       status: null,
     };
   },
   created() {
     this.nama = sessionStorage.getItem("nama");
-    this.id_mhs = sessionStorage.getItem("id_mhs");
+    this.id_pemilih = sessionStorage.getItem("id_pemilih");
     this.status = sessionStorage.getItem("status");
   },
   methods: {
