@@ -463,16 +463,30 @@ export default {
      *
      */
     addFormKetua: function(id_ketua, namaKetua) {
-      this.id_ketua = id_ketua;
-      this.namaKetua = namaKetua;
+      let id = id_ketua;
+      let nama = namaKetua;
+
+      if (id === this.id_wakil) {
+        alert("Maaf, mahasiswa yang anda pilih telah menjadi wakil.")
+      } else {
+        this.id_ketua = id;
+        this.namaKetua = nama;
+      }
     },
     /**
      * Mengisi form Wakil dengan menekan tombol pilih
      *
      */
     addFormWakil: function(id_wakil, namaWakil) {
-      this.id_wakil = id_wakil;
-      this.namaWakil = namaWakil;
+      let id = id_wakil;
+      let nama = namaWakil;
+
+      if (id === this.id_ketua) {
+        alert("Maaf, mahasiswa yang anda pilih telah menjadi Ketua.")
+      } else {
+        this.id_wakil = id;
+        this.namaWakil = nama;
+      }
     },
     /**
      * Clear form Ketua

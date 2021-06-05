@@ -252,13 +252,14 @@
                                             name="namaWakil"
                                             v-model="namaWakil"
                                             required
+                                            readonly
                                           />
                                           <label
                                             for="namaWakil"
                                             class="label-name"
                                           >
                                             <span class="content-name"
-                                              >Nama Wakil</span
+                                              >Nama Wakil (read only)</span
                                             >
                                           </label>
                                         </div>

@@ -3,8 +3,8 @@
     <nav class="navbar navbar-expand-lg navbar-light">
       <a class="navbar-brand d-block d-sm-block d-md-none" href="#">VOLMA</a>
       <button
-        class="navbar-toggler ml-auto text-secondary"
         type="button"
+        class="navbar-toggler ml-auto text-secondary"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
         aria-controls="navbarSupportedContent"
@@ -126,8 +126,8 @@
                 <div class="modal-content ">
                   <div class="modal-header border-0">
                     <h5
-                      class="modal-title text-secondary"
                       id="exampleModalLabel"
+                      class="modal-title text-secondary"
                     >
                       Log Out
                     </h5>
@@ -192,5 +192,4 @@ export default {
 };
 </script>
 
-<style scoped src="../assets/css/components/navbarAdmin.css">
-</style>
+<style scoped src="../assets/css/components/navbarAdmin.css"></style>
