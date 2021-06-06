@@ -258,7 +258,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/axios";
 import Sidebar from "@/components/Sidebar.vue";
 import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
@@ -288,7 +288,7 @@ export default {
      */
     getMahasiswa() {
       const options = {
-        url: "https://volma01.herokuapp.com/mahasiswa",
+        url: "mahasiswa",
         method: "get",
       };
       axios(options)
@@ -312,7 +312,7 @@ export default {
         let angkatan = this.angkatan;
 
         const options = {
-          url: `https://volma01.herokuapp.com/mahasiswa/${id_mhs}`,
+          url: `mahasiswa/${id_mhs}`,
           method: "put",
           data: {
             nim,
@@ -339,7 +339,7 @@ export default {
      */
     delMahasiswa: function(id_mhs) {
       const options = {
-        url: `https://volma01.herokuapp.com/mahasiswa/${id_mhs}`,
+        url: `mahasiswa/${id_mhs}`,
         method: "delete",
       };
       axios(options)

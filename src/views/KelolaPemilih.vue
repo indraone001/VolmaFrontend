@@ -210,7 +210,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/axios";
 import Sidebar from "@/components/Sidebar.vue";
 import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
@@ -237,7 +237,7 @@ export default {
      */
     getPemilih() {
       const options = {
-        url: "https://volma01.herokuapp.com/pemilih",
+        url: "pemilih",
         method: "get",
       };
       axios(options)
@@ -255,7 +255,7 @@ export default {
      */
     randomPass: function(id) {
       const options = {
-        url: `https://volma01.herokuapp.com/pemilih/${id}`,
+        url: `pemilih/${id}`,
         method: "get",
       };
       axios(options)
@@ -273,7 +273,7 @@ export default {
      */
     delPemilih: function(id_pemilih) {
       const options = {
-        url: `https://volma01.herokuapp.com/pemilih/${id_pemilih}`,
+        url: `pemilih/${id_pemilih}`,
         method: "delete",
       };
       axios(options)

@@ -428,7 +428,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/axios";
 import Sidebar from "@/components/Sidebar.vue";
 import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
@@ -463,7 +463,7 @@ export default {
      */
     getKandidat() {
       const options = {
-        url: "https://volma01.herokuapp.com/kandidat",
+        url: "kandidat",
         method: "get",
       };
       axios(options)
@@ -490,7 +490,7 @@ export default {
       let misi = this.misi;
 
       const options = {
-        url: `https://volma01.herokuapp.com/kandidat/${id_kandidat}`,
+        url: `kandidat/${id_kandidat}`,
         method: "put",
         data: {
           id_ketua,
@@ -520,7 +520,7 @@ export default {
      */
     delKandidat: function(no_urut) {
       const options = {
-        url: `https://volma01.herokuapp.com/kandidat/${no_urut}`,
+        url: `kandidat/${no_urut}`,
         method: "delete",
       };
       axios(options)

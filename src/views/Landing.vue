@@ -200,7 +200,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/axios";
 import NavbarUser from "@/components/NavbarUser.vue";
 
 export default {
@@ -226,7 +226,7 @@ export default {
      */
     getKandidats() {
       const options = {
-        url: "https://volma01.herokuapp.com/kandidat",
+        url: "kandidat",
         method: "get",
       };
       axios(options)
@@ -244,7 +244,7 @@ export default {
      */
     addVote: function(id_mhs, id_kandidat) {
       const options = {
-        url: `https://volma01.herokuapp.com/vote/${id_mhs}/${id_kandidat}`,
+        url: `vote/${id_mhs}/${id_kandidat}`,
         method: "post",
       };
       axios(options)

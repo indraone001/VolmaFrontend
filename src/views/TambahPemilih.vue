@@ -117,7 +117,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/axios";
 import Sidebar from "@/components/Sidebar.vue";
 import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
@@ -145,7 +145,7 @@ export default {
      */
     getMahasiswa() {
       const options = {
-        url: "https://volma01.herokuapp.com/mahasiswa",
+        url: "mahasiswa",
         method: "get",
       };
       axios(options)
@@ -167,7 +167,7 @@ export default {
         let nama = this.nama;
 
         const options = {
-          url: "https://volma01.herokuapp.com/pemilih",
+          url: "pemilih",
           method: "post",
           data: {
             nim,

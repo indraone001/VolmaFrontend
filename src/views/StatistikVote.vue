@@ -146,7 +146,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/axios";
 import NavbarUser from "@/components/NavbarUser.vue";
 
 export default {
@@ -172,7 +172,7 @@ export default {
      */
     getDashboard() {
       const options = {
-        url: "https://volma01.herokuapp.com/dashboard",
+        url: "dashboard",
         method: "get",
       };
       axios(options)
@@ -190,7 +190,7 @@ export default {
      */
     getResults() {
       const options = {
-        url: "https://volma01.herokuapp.com/result",
+        url: "result",
         method: "get",
       };
       axios(options)

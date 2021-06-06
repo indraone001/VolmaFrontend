@@ -76,7 +76,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/axios";
 import Sidebar from "@/components/Sidebar.vue";
 import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
@@ -107,7 +107,7 @@ export default {
         let angkatan = this.angkatan;
 
         const options = {
-          url: "https://volma01.herokuapp.com/mahasiswa",
+          url: "mahasiswa",
           method: "post",
           data: {
             nim,

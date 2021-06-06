@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import axios from "axios";
+import axios from "@/axios";
 
 export default {
   name: "login",
@@ -127,7 +127,7 @@ export default {
         let nim = this.nim;
         let password = this.password;
         const options = {
-          url: "https://volma01.herokuapp.com/login",
+          url: "login",
           method: "post",
           data: {
             nim,
