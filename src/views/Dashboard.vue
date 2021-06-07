@@ -137,14 +137,12 @@
                   <h3 class="py-3 mb-4">Perolehan Masing-masing Calon</h3>
                 <!-- Search -->
                 <div class="item mb-4 pb-3">
-                  <form>
                     <input
                       type="text"
                       class="search"
                       placeholder="Cari Ketua"
                       v-model="search"
                     />
-                  </form>
                 </div>
                 <div v-if="filteredData.length">
                   <table class="table text-center">

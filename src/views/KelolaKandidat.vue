@@ -23,14 +23,12 @@
 
             <!-- Search -->
             <div class="item search-container">
-              <form>
                 <input
                   type="text"
                   class="search"
                   placeholder="Cari Ketua"
                   v-model="search"
                 />
-              </form>
             </div>
           </div>
 

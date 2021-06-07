@@ -49,14 +49,12 @@
 
             <!-- Search -->
             <div class="item my-4 pt-4">
-              <form>
                 <input
                   type="text"
                   class="search"
                   placeholder="Cari Ketua"
                   v-model="search"
                 />
-              </form>
             </div>
 
             <div class="row card-groups pb-4" v-if="filteredData.length">
