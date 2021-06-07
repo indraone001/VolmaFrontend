@@ -131,7 +131,7 @@ export default {
           method: "post",
           data: {
             nim,
-            password,
+            password
           },
         };
         axios(options)
@@ -139,15 +139,15 @@ export default {
             const token = response.data;
             console.log(token);
             if (token.admin) {
-              sessionStorage.setItem("id_mhs", token.data[0].id_mhs);
-              sessionStorage.setItem("nama", token.data[0].nama);
+              sessionStorage.setItem("id_mhs", token.data.id_mhs);
+              sessionStorage.setItem("nama", token.data.nama);
               this.$router.push({ path: "dashboard" });
             } else {
-              sessionStorage.setItem("id_pemilih", token.data[0].id_pemilih);
-              sessionStorage.setItem("nama", token.data[0].nama);
-              sessionStorage.setItem("status", token.data[0].status);
+              sessionStorage.setItem("id_pemilih", token.data.id_pemilih);
+              sessionStorage.setItem("nama", token.data.nama);
+              sessionStorage.setItem("status", token.data.status);
 
-              if (token.data[0].status == 1) {
+              if (token.data.status == 1) {
                 this.$router.push({ path: "statistik-vote" });
               } else {
                 this.$router.push({ path: "peraturan" });

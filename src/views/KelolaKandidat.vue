@@ -80,7 +80,7 @@
                         <td style="width:250px; height:50px;">
                           <!-- Ketua -->
                           <p class="mb-0"><b>Ketua</b></p>
-                          <p>{{ kandidat.nama }}</p>
+                          <p>{{ kandidat.nama_ketua }}</p>
 
                           <!-- Wakil -->
                           <p class="mb-0"><b>Wakil</b></p>
@@ -106,7 +106,7 @@
                               fillFormEdit(
                                 kandidat.id_ketua,
                                 kandidat.id_wakil,
-                                kandidat.nama,
+                                kandidat.nama_ketua,
                                 kandidat.nama_wakil,
                                 kandidat.img_ketua,
                                 kandidat.img_wakil,
@@ -436,7 +436,7 @@ export default {
   name: "KelolaKandidat",
   components: {
     Sidebar,
-    NavbarAdmin,
+    NavbarAdmin
   },
   data() {
     return {
@@ -450,7 +450,7 @@ export default {
       noUrut: null,
       id_ketua: null,
       id_wakil: null,
-      kandidats: [],
+      kandidats: []
     };
   },
   created() {
@@ -482,7 +482,6 @@ export default {
     updateKandidat: function(id_kandidat) {
       let id_ketua = this.id_ketua;
       let id_wakil = this.id_wakil;
-      let nama_wakil = this.namaWakil;
       let img_ketua = this.imgKetua;
       let img_wakil = this.imgWakil;
       let no_urut = this.noUrut;
@@ -495,12 +494,11 @@ export default {
         data: {
           id_ketua,
           id_wakil,
-          nama_wakil,
           img_ketua,
           img_wakil,
           no_urut,
           visi,
-          misi,
+          misi
         },
       };
       axios(options)
@@ -518,16 +516,16 @@ export default {
      * @return Data mahasiswa yang dihapus
      *
      */
-    delKandidat: function(no_urut) {
+    delKandidat: function(id_kandidat) {
       const options = {
-        url: `kandidat/${no_urut}`,
+        url: `kandidat/${id_kandidat}`,
         method: "delete",
       };
       axios(options)
         .then((response) => {
           console.log("delKandidat: ", response);
           this.getKandidat();
-          this.kandidats.splice(no_urut, 1);
+          this.kandidats.splice(id_kandidat, 1);
         })
         .catch((e) => {
           console.log(e);
@@ -558,7 +556,7 @@ export default {
       this.noUrut = no_urut;
       this.visi = visi;
       this.misi = misi;
-    },
+    }
   },
   computed: {
     /**
@@ -567,11 +565,11 @@ export default {
      */
     filteredData: function() {
       return this.kandidats.filter((data) => {
-        let name = data.nama.toLowerCase();
+        let name = data.nama_ketua.toLowerCase();
         return name.match(this.search.toLowerCase());
       });
-    },
-  },
+    }
+  }
 };
 </script>
 

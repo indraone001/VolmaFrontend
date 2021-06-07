@@ -345,8 +345,14 @@ export default {
       axios(options)
         .then((response) => {
           console.log("delMahasiswa ", response.data);
-          this.getMahasiswa();
-          this.students.splice(id_mhs, 1);
+          if (response.data.message === "Hapus mahasiswa dari kandidat terlebih dahulu") {
+            alert(response.data.message);
+          } else {
+            this.getMahasiswa();
+            this.students.splice(id_mhs, 1);
+          }
+          // alert(response.data.message)
+          
         })
         .catch((e) => {
           console.log(e);

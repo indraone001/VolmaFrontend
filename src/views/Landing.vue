@@ -26,7 +26,7 @@
           >
             <div class="card">
               <div class="card-body text-center">
-                <h4 class="name-kandidat">{{ kandidat.nama }}</h4>
+                <h4 class="name-kandidat">{{ kandidat.nama_ketua }}</h4>
                 <h6 class="no-kandidat">Nomor Urut {{ kandidat.no_urut }}</h6>
 
                 <div class="container pt-4">
@@ -43,7 +43,7 @@
                     </div>
                     <div class="col-6 text-left my-auto">
                       <h5 class="mb-0">Ketua</h5>
-                      <p class="mb-0">{{ kandidat.nama }}</p>
+                      <p class="mb-0">{{ kandidat.nama_ketua }}</p>
                     </div>
                     <div class="col-1"></div>
                   </div>
@@ -156,7 +156,7 @@
                           {{ kandidat.no_urut }}.
                         </p>
                         <p>
-                          Dengan <b>{{ kandidat.nama }}</b> sebagai ketua dan
+                          Dengan <b>{{ kandidat.nama_ketua }}</b> sebagai ketua dan
                           <b>{{ kandidat.nama_wakil }}</b> sebagai wakil.
                         </p>
                         <p><b>Apakah anda yakin?</b></p>
@@ -267,7 +267,7 @@ export default {
      */
     filteredData: function() {
       return this.kandidats.filter((data) => {
-        let name = data.nama.toLowerCase();
+        let name = data.nama_ketua.toLowerCase();
         return name.match(this.search.toLowerCase());
       });
     },
