@@ -11,10 +11,10 @@
           </div>
         </div>
       </div>
-
       <div class="sidebar-menu">
         <ul class="align">
           <div class="items">
+            <!-- Route to Dashboard -->
             <li>
               <router-link
                 to="/dashboard"
@@ -32,6 +32,8 @@
                 </div>
               </router-link>
             </li>
+
+            <!-- Route to Kelola Mahasiswa -->
             <li>
               <router-link
                 to="/mahasiswa"
@@ -49,6 +51,8 @@
                 </div>
               </router-link>
             </li>
+
+            <!-- Route to Kelola Kandidat -->
             <li>
               <router-link
                 to="/kandidat"
@@ -66,6 +70,8 @@
                 </div>
               </router-link>
             </li>
+
+            <!-- Route to Kelola Pemilih -->
             <li>
               <router-link
                 to="/pemilih"
@@ -85,6 +91,7 @@
             </li>
           </div>
 
+          <!-- LogOut -->
           <div class="items logout">
             <li>
               <a
@@ -102,6 +109,7 @@
                 </div>
               </a>
 
+              <!-- Dropdown LogOut -->
               <div
                 class="modal fade"
                 id="Modal"
@@ -110,10 +118,13 @@
                 aria-labelledby="exampleModalLabel"
                 aria-hidden="true"
               >
-                <div class="modal-dialog" role="document">
-                  <div class="modal-content ">
-                    <div class="modal-header">
-                      <h5 class="modal-title text-secondary" id="exampleModalLabel">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header border-0">
+                      <h5
+                        class="modal-title text-secondary"
+                        id="exampleModalLabel"
+                      >
                         Log Out
                       </h5>
                       <button
@@ -125,10 +136,12 @@
                         <span aria-hidden="true">&times;</span>
                       </button>
                     </div>
-                    <div class="modal-body text-dark">
-                      Apakah anda yakin ingin keluar?
+                    <div class="modal-body text-dark border-0">
+                      <p class="py-2 text-center">
+                        Apakah anda yakin ingin keluar?
+                      </p>
                     </div>
-                    <div class="modal-footer">
+                    <div class="modal-footer border-0">
                       <button
                         type="button"
                         class="btn btn-secondary"
@@ -136,7 +149,12 @@
                       >
                         Tidak
                       </button>
-                      <button type="button" class="btn btn-primary" data-dismiss="modal" @click="logout">
+                      <button
+                        type="button"
+                        class="btn btn-primary"
+                        data-dismiss="modal"
+                        @click="logout"
+                      >
                         Ya, saya yakin
                       </button>
                     </div>
@@ -156,127 +174,22 @@ export default {
   name: "sidebar",
   data() {
     return {
-      id_mhs: "",
       nama: "",
+      id_mhs: null,
     };
   },
   created() {
-    this.id_mhs = sessionStorage.getItem("id_mhs");
     this.nama = sessionStorage.getItem("nama");
+    this.id_mhs = sessionStorage.getItem("id_mhs");
   },
   methods: {
     logout: function() {
       sessionStorage.clear();
-      this.$router.push({ path: '/' })
+      this.$router.push({ path: "/" });
     },
-  }
+  },
 };
 </script>
 
-<style scoped>
-.sidebar {
-  color: #fff;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 16%;
-  transition: width 300ms;
-  z-index: 999999;
-  background: #56ccf2;
-  background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
-  background: linear-gradient(to right, #2f80ed, #56ccf2);
-}
-
-.sidebar-brand {
-  display: flex;
-  padding: 2rem;
-  font-size: 1rem;
-  align-items: center;
-  justify-content: space-between;
-}
-.sidebar-brand span {
-  font-weight: 600;
-}
-
-.sidebar-menu {
-  margin-top: 1rem;
-  width: 100%;
-}
-.sidebar-menu ul {
-  list-style: none;
-}
-.sidebar-menu ul li .navigate-link {
-  color: #fff;
-  display: block;
-  padding: 1rem 2rem;
-  text-decoration: none;
-}
-.sidebar-menu ul li .navigate-link:hover {
-  transition: 0.3s;
-  /* padding: 1rem 1.7rem; */
-  background-color: #7fb4fa;
-
-  margin-left: 0.5rem;
-  -webkit-border-top-left-radius: 50px;
-  -webkit-border-bottom-left-radius: 50px;
-  -moz-border-radius-topleft: 50px;
-  -moz-border-radius-bottomleft: 50px;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
-}
-
-.align {
-  height: 82vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-}
-.active {
-  /* background-color: #2f80ed; */
-  margin-left: 0.5rem;
-  background-color: #7fb4fa;
-  -webkit-border-top-left-radius: 50px;
-  -webkit-border-bottom-left-radius: 50px;
-  -moz-border-radius-topleft: 50px;
-  -moz-border-radius-bottomleft: 50px;
-  border-top-left-radius: 50px;
-  border-bottom-left-radius: 50px;
-}
-
-.modal-content {
-  border: none;
-  border-radius: 10px;
-}
-
-@media only screen and (max-width: 1200px) {
-  .sidebar {
-    width: 75px;
-  }
-  .sidebar .sidebar-brand span:last-child,
-  .sidebar .sidebar-menu span:last-child {
-    display: none;
-  }
-
-  /* Hover */
-  .sidebar:hover {
-    width: 300px;
-  }
-  .sidebar:hover .sidebar-brand span:last-child,
-  .sidebar:hover .sidebar-menu span:last-child {
-    display: block;
-  }
-  .sidebar-menu ul li .navigate-link {
-    color: #fff;
-    display: block;
-    padding: 1rem 2rem;
-    text-decoration: none;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .sidebar {
-    display: none;
-  }
-}
+<style scoped src="../assets/css/components/sidebar.css">
 </style>

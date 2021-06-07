@@ -1,21 +1,21 @@
 <template>
   <div>
     <sidebar />
-
     <div class="main-content">
       <header>
         <navbar-admin />
       </header>
 
       <main>
-        <div class="container main-kandidat">
+        <div class="container main-dashboard">
           <h2 class="mb-1">Dashboard</h2>
-          <div class="row">
+
+          <div class="row" v-if="dashboard.jumlah_pemilih">
+            <!-- Banyak Pemilih -->
             <div class="col-6 col-sm-6 col-md-3 ">
-              <div class="card py-0">
-                <div class="card-body">
+              <div class="card py-0 card-dash">
+                <div class="card-body card-dashboard">
                   <h3>
-                    <!-- <i class="fas fa-users"></i> -->
                     <font-awesome-icon :icon="['fas', 'users']" />
                   </h3>
                   <h6 class="card-title">Banyak Pemilih</h6>
@@ -26,11 +26,11 @@
               </div>
             </div>
 
+            <!-- Orang yang telah memilih -->
             <div class="col-6 col-sm-6 col-md-3 ">
-              <div class="card py-0">
-                <div class="card-body">
+              <div class="card py-0 card-dash">
+                <div class="card-body card-dashboard">
                   <h3>
-                    <!-- <i class="fas fa-chart-pie"></i> -->
                     <font-awesome-icon :icon="['fas', 'chart-pie']" />
                   </h3>
                   <h6 class="card-title">Telah Memilih</h6>
@@ -41,11 +41,11 @@
               </div>
             </div>
 
+            <!-- Jumlah calon -->
             <div class="col-6 col-sm-6 col-md-3 ">
-              <div class="card py-0">
-                <div class="card-body">
+              <div class="card py-0 card-dash">
+                <div class="card-body card-dashboard">
                   <h3>
-                    <!-- <i class="fas fa-user-tie"></i> -->
                     <font-awesome-icon :icon="['fas', 'user-tie']" />
                   </h3>
                   <h6 class="card-title">Jumlah Calon</h6>
@@ -56,11 +56,11 @@
               </div>
             </div>
 
+            <!-- Periode pemilihan -->
             <div class="col-6 col-sm-6 col-md-3 ">
-              <div class="card py-0">
-                <div class="card-body">
+              <div class="card py-0 card-dash">
+                <div class="card-body card-dashboard">
                   <h3>
-                    <!-- <i class="fas fa-user-clock"></i> -->
                     <font-awesome-icon :icon="['fas', 'user-clock']" />
                   </h3>
                   <h6 class="card-title">Periode</h6>
@@ -71,79 +71,113 @@
               </div>
             </div>
           </div>
+          <div v-else>
+            <h4 class="text-center not-found">Harap Tunggu...</h4>
+          </div>
 
-          <section class="mt-4 pt-4">
-            <h3 class="pt-3">Perolehan Masing-masing Calon</h3>
-
-            <div class="row card-groups">
-              <div
-                class="col-sm-12 col-md-12 col-lg-4 mb-4"
-                v-for="result in results"
-                :key="result.id_kandidat"
-              >
-                <div class="card card-kandidat">
-                  <div class="card-body text-center">
-                    <h5 class="name-kandidat">{{ result.nama_ketua }}</h5>
-                    <h6 class="no-kandidat pb-4">
-                      Nomor Urut {{ result.id_kandidat }}
-                    </h6>
-
-                    <div class="container pt-4">
-                      <div class="row">
-                        <div class="col-4 text-right">
-                          <img
-                            class="card-profile"
-                            :src="'/profilePicture/'+result.img_ketua+'.jpg'"
-                            alt=""
-                            width="100%"
+          <section class="py-3">
+            <div class="card update-periode">
+              <div class="card-body date-picker">
+                <div class="row">
+                  <div class="col-md-12 col-lg-7">
+                    <div class="container">
+                      <h3 class="mb-4 pb-3">Update Periode Pemilihan</h3>
+                      <div class="d-flex mb-3">
+                        <div class="my-auto">
+                          <label for="dateFrom">Dari tanggal:</label>
+                          <input
+                            type="date"
+                            name="dateFrom"
+                            id="dateFrom"
+                            v-model="start"
                           />
                         </div>
-
-                        <div class="col-8 text-left my-auto">
-                          <h5 class="mb-0">Ketua</h5>
-                          <p class="mb-0">{{ result.nama_ketua }}</p>
-                        </div>
-                      </div>
-
-                      <br />
-
-                      <div class="row">
-                        <div class="col-4 text-right">
-                          <img
-                            class="card-profile"
-                            :src="'/profilePicture/'+result.img_wakil+'.jpg'"
-                            alt=""
-                            width="100%"
+                        <div class="divider"></div>
+                        <div class="my-auto">
+                          <label for="dateTo">Hingga tanggal:</label>
+                          <input
+                            type="date"
+                            name="dateTo"
+                            id="dateTo"
+                            v-model="end"
                           />
                         </div>
-
-                        <div class="col-8 text-left my-auto">
-                          <h5 class="mb-0">Wakil</h5>
-                          <p class="mb-0">{{ result.nama_wakil }}</p>
-                        </div>
                       </div>
-                    </div>
-
-                    <hr />
-                    <div class="row card-count">
-                      <div class="col-6">
-                        <h5>
-                          <!-- <i class="fas fa-user-friends"></i> -->
-                          <font-awesome-icon :icon="['fas', 'user-friends']" />
-                        </h5>
-                        <h6>Jumlah Vote</h6>
-                        <p>{{ result.jumlah }} orang</p>
-                      </div>
-                      <div class="col-6">
-                        <h5>
-                          <!-- <i class="fas fa-percent"></i> -->
-                          <font-awesome-icon :icon="['fas', 'percent']" />
-                        </h5>
-                        <h6>Persentase</h6>
-                        <p>{{ result.persentase }}%</p>
-                      </div>
+                      <button
+                        type="button"
+                        class="btn btn-primary mt-4"
+                        @click.prevent="updatePeriode"
+                      >
+                        Ubah Periode
+                      </button>
                     </div>
                   </div>
+                  <div
+                    class="col-md-12 col-lg-5 d-none d-lg-block d-xl-block text-center "
+                  >
+                    <img
+                      src="@/assets/date.svg"
+                      class="mt-4 pt-2"
+                      alt=""
+                      width="80%"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Jumlah suara masing masing calon -->
+          <section class="mt-1 py-4 result-dashboard">
+            
+
+            <div class="card mb-4">
+              <div class="card-body">
+                <div class="container">
+                  <h3 class="py-3 mb-4">Perolehan Masing-masing Calon</h3>
+                <!-- Search -->
+                <div class="item mb-4 pb-3">
+                    <input
+                      type="text"
+                      class="search"
+                      placeholder="Cari Ketua"
+                      v-model="search"
+                    />
+                </div>
+                <div v-if="filteredData.length">
+                  <table class="table text-center">
+                    <thead>
+                      <tr>
+                        <th scope="col">No</th>
+                        <th scope="col" class="text-left">Nama Calon</th>
+                        <th scope="col">Jumlah Pemilih</th>
+                        <th scope="col">%</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr
+                        v-for="result in filteredData"
+                        :key="result.id_kandidat"
+                      >
+                        <th scope="row">{{ result.no_urut }}</th>
+                        <td style="width:25rem; height:50px;" class="text-left">
+                          <!-- Ketua -->
+                          <p class="mb-0"><b>Ketua</b></p>
+                          <p>{{ result.nama_ketua }}</p>
+
+                          <!-- Wakil -->
+                          <p class="mb-0"><b>Wakil</b></p>
+                          <p>{{ result.nama_wakil }} Orang</p>
+                        </td>
+                        <td><p>{{ result.jumlah }} Orang</p></td>
+                        <td><p>{{ result.persentase }}%</p></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <div v-else>
+                  <h4 class="text-center not-found">Data tidak ditemukan</h4>
+                </div>
                 </div>
               </div>
             </div>
@@ -155,21 +189,23 @@
 </template>
 
 <script>
-import NavbarAdmin from "@/components/NavbarAdmin.vue";
+import axios from "@/axios";
 import Sidebar from "@/components/Sidebar.vue";
-
-import axios from "axios";
+import NavbarAdmin from "@/components/NavbarAdmin.vue";
 
 export default {
   name: "Dashboard",
   components: {
-    NavbarAdmin,
     Sidebar,
+    NavbarAdmin,
   },
   data() {
     return {
-      dashboard: [],
+      search: "",
       results: [],
+      dashboard: [],
+      start: new Date().toISOString().substr(0, 10),
+      end: new Date().toISOString().substr(0, 10),
     };
   },
   created() {
@@ -177,113 +213,90 @@ export default {
     this.getResults();
   },
   methods: {
-    /*
-     * @return dataset dashboard yang telah didaftarkan oleh admin.
+    /**
+     * @return Hasil perolehan vote
      *
      */
     getDashboard() {
       const options = {
-        url: "https://volma01.herokuapp.com/dashboard",
+        url: "dashboard",
         method: "get",
       };
       axios(options)
         .then((response) => {
           this.dashboard = response.data.data;
-          console.log(this.dashboard);
+          console.log("Dashboard: ", this.dashboard);
         })
         .catch((e) => {
           console.log(e);
         });
     },
-    /*
-     * @return dataset result yang telah didaftarkan oleh admin.
+    /**
+     * @return Hasil perolehan setiap kandidat
      *
      */
     getResults() {
       const options = {
-        url: "https://volma01.herokuapp.com/result",
+        url: "result",
         method: "get",
       };
       axios(options)
         .then((response) => {
           this.results = response.data.data.kandidat;
-          console.log(this.results);
+          console.log("Result: ", this.results);
         })
         .catch((e) => {
           console.log(e);
         });
     },
+    getPeriode: function() {
+      console.log(this.start);
+      console.log(this.end);
+    },
+    /**
+     * @return Data mahasiswa yang telah diedit
+     *
+     */
+    updatePeriode: function() {
+      if (this.start && this.end) {
+        let start = this.start;
+        let end = this.end;
+
+        const options = {
+          url: "periode",
+          method: "put",
+          data: {
+            start,
+            end,
+          },
+        };
+        axios(options)
+          .then((response) => {
+            console.log("Update Periode: ", response);
+            alert("Berhasil Mengubah Periode");
+            this.getDashboard();
+            this.getResults();
+          })
+          .catch((e) => {
+            console.log(e);
+            alert(e);
+          });
+      }
+    },
+  },
+  computed: {
+    /**
+     * @return data kandidat yang dicari
+     *
+     */
+    filteredData: function() {
+      return this.results.filter((data) => {
+        let name = data.nama_ketua.toLowerCase();
+        return name.match(this.search.toLowerCase());
+      });
+    },
   },
 };
 </script>
 
-<style scoped>
-.main-content {
-  height: 100%;
-  margin-left: 16%;
-  transition: margin-left 200ms;
-  background: #eefafd;
-}
-.main-kandidat {
-  padding-top: 3rem;
-}
-.main-kandidat h2 {
-  font-weight: 600;
-}
-.card {
-  width: 100%;
-  margin-top: 2rem;
-  padding: 1rem 0;
-  border-radius: 12px;
-  border: none;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.col-6 .card,
-.col-lg-4 .card {
-  border-radius: 12px;
-  border: none;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.card-profile {
-  border-radius: 50%;
-  width: 4rem;
-}
-.card-kandidat {
-  height: 58vh;
-}
-.name-kandidat {
-  margin-top: 1.5rem;
-  margin-bottom: 0;
-  font-weight: 600;
-}
-.no-kandidat {
-  margin-bottom: 0;
-  font-weight: 500;
-  color: gray;
-}
-.card-count h6 {
-  margin: 0;
-}
-
-/* Media Queries */
-@media only screen and (max-width: 1200px) {
-  .main-content {
-    margin-left: 75px;
-  }
-  .main-content:hover {
-    margin-left: 75px;
-  }
-}
-
-@media only screen and (max-width: 768px) {
-  .main-content {
-    margin-left: 0;
-  }
-  .main-content:hover {
-    margin-left: 0;
-  }
-  .navbar-toggler {
-    display: inline-block;
-  }
-}
-</style>
+<style scoped src="../assets/css/views/dashboard.css"></style>

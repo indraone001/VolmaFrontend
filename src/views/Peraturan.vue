@@ -45,8 +45,6 @@
 <script>
 import NavbarUser from "@/components/NavbarUser.vue";
 
-// import axios from "axios";
-
 export default {
   name: "Peraturan",
   components: {
@@ -90,48 +88,14 @@ export default {
             "Dengan Menekan tombol 'Saya menyetujui persyaratan' maka, Pengguna dianggap telah membaca, memahami dan menyetujui ketentuan dalam pemilihan umum.",
         },
       ],
-      status: null
+      status: null,
     };
   },
   created() {
     this.status = sessionStorage.getItem("status");
-  }
+  },
 };
 </script>
 
-<style scoped>
-.peraturan {
-  background: #56ccf2;
-  background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
-  background: linear-gradient(to right, #2f80ed, #56ccf2);
-  height: 100%;
-}
-.main-content {
-  padding-top: 2rem;
-  padding-bottom: 2cm;
-}
-
-.main-content h3 {
-  color: #fff;
-}
-
-.card {
-  border-radius: 12px;
-  border: none;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  align-items: center;
-  top: 1cm;
-}
-
-.agreement {
-  overflow: auto;
-  text-align: left;
-}
-
-.container {
-  max-height: fit-content;
-}
-.divider {
-  width: 5px;
-}
+<style scoped src="../assets/css/views/peraturan.css">
 </style>

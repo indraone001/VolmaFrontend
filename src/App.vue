@@ -26,8 +26,6 @@
   scrollbar-width: none;
 }
 ::-webkit-scrollbar {
-  /* width: 0px; 
-  background: transparent; */
   display: none;
 }
 </style>

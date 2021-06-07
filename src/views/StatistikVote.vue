@@ -12,21 +12,28 @@
             <h3 class="pb-4">Pemilihan Umum Ketua</h3>
 
             <div class="row counting text-center">
+              <!-- Jumlah Pemilih -->
               <div class="col-6 col-md-6 col-lg-3 mb-3">
                 <h2><font-awesome-icon :icon="['fas', 'users']" /></h2>
                 <h6>Banyak Pemilih</h6>
                 <p>{{ dashboard.jumlah_pemilih }} Orang</p>
               </div>
+
+              <!-- Telah Memilih -->
               <div class="col-6 col-md-6 col-lg-3 mb-3">
                 <h2><font-awesome-icon :icon="['fas', 'chart-pie']" /></h2>
                 <h6>Telah Memilih</h6>
                 <p>{{ dashboard.voted }}%</p>
               </div>
+
+              <!-- Jumlah Kandidat -->
               <div class="col-6 col-md-6 col-lg-3 mb-3">
                 <h2><font-awesome-icon :icon="['fas', 'user-tie']" /></h2>
                 <h6>Jumlah Calon</h6>
                 <p>{{ dashboard.kandidat }} Orang</p>
               </div>
+
+              <!-- Periode -->
               <div class="col-6 col-md-6 col-lg-3 mb-3">
                 <h2><font-awesome-icon :icon="['fas', 'user-clock']" /></h2>
                 <h6>Periode</h6>
@@ -36,14 +43,24 @@
           </div>
         </div>
         <div class="body-content pt-4">
+          <!-- Perolehan Masing-masing Calon -->
           <div class="container">
             <h3 class="pt-4">Perolehan Masing-masing Calon</h3>
 
-            <div class="row card-groups">
-              <div class="row card-groups">
+            <!-- Search -->
+            <div class="item my-4 pt-4">
+                <input
+                  type="text"
+                  class="search"
+                  placeholder="Cari Ketua"
+                  v-model="search"
+                />
+            </div>
+
+            <div class="row card-groups pb-4" v-if="filteredData.length">
               <div
                 class="col-sm-12 col-md-12 col-lg-4 mb-4"
-                v-for="result in results"
+                v-for="result in filteredData"
                 :key="result.id_kandidat"
               >
                 <div class="card card-kandidat">
@@ -54,16 +71,18 @@
                     </h6>
 
                     <div class="container pt-4">
+                      <!-- Ketua -->
                       <div class="row">
                         <div class="col-4 text-right">
                           <img
                             class="card-profile"
-                            :src="'/profilePicture/'+result.img_ketua+'.jpg'"
+                            :src="
+                              '/profilePicture/' + result.img_ketua + '.jpg'
+                            "
                             alt=""
                             width="100%"
                           />
                         </div>
-
                         <div class="col-8 text-left my-auto">
                           <h5 class="mb-0">Ketua</h5>
                           <p class="mb-0">{{ result.nama_ketua }}</p>
@@ -72,16 +91,18 @@
 
                       <br />
 
+                      <!-- Wakil -->
                       <div class="row">
                         <div class="col-4 text-right">
                           <img
                             class="card-profile"
-                            :src="'/profilePicture/'+result.img_wakil+'.jpg'"
+                            :src="
+                              '/profilePicture/' + result.img_wakil + '.jpg'
+                            "
                             alt=""
                             width="100%"
                           />
                         </div>
-
                         <div class="col-8 text-left my-auto">
                           <h5 class="mb-0">Wakil</h5>
                           <p class="mb-0">{{ result.nama_wakil }}</p>
@@ -90,10 +111,11 @@
                     </div>
 
                     <hr />
+
+                    <!-- Hasil vote masing-masing kandidat -->
                     <div class="row card-count">
                       <div class="col-6">
                         <h5>
-                          <!-- <i class="fas fa-user-friends"></i> -->
                           <font-awesome-icon :icon="['fas', 'user-friends']" />
                         </h5>
                         <h6>Jumlah Vote</h6>
@@ -101,7 +123,6 @@
                       </div>
                       <div class="col-6">
                         <h5>
-                          <!-- <i class="fas fa-percent"></i> -->
                           <font-awesome-icon :icon="['fas', 'percent']" />
                         </h5>
                         <h6>Persentase</h6>
@@ -112,6 +133,8 @@
                 </div>
               </div>
             </div>
+            <div v-else>
+              <h4 class="text-center not-found">Data tidak ditemukan</h4>
             </div>
           </div>
         </div>
@@ -121,9 +144,8 @@
 </template>
 
 <script>
+import axios from "@/axios";
 import NavbarUser from "@/components/NavbarUser.vue";
-
-import axios from "axios";
 
 export default {
   name: "StatistikVote",
@@ -132,8 +154,9 @@ export default {
   },
   data() {
     return {
-      dashboard: [],
+      search: "",
       results: [],
+      dashboard: [],
     };
   },
   created() {
@@ -141,13 +164,13 @@ export default {
     this.getResults();
   },
   methods: {
-    /*
+    /**
      * @return dataset dashboard yang telah didaftarkan oleh admin.
      *
      */
     getDashboard() {
       const options = {
-        url: "https://volma01.herokuapp.com/dashboard",
+        url: "dashboard",
         method: "get",
       };
       axios(options)
@@ -159,13 +182,13 @@ export default {
           console.log(e);
         });
     },
-    /*
+    /**
      * @return dataset result yang telah didaftarkan oleh admin.
      *
      */
     getResults() {
       const options = {
-        url: "https://volma01.herokuapp.com/result",
+        url: "result",
         method: "get",
       };
       axios(options)
@@ -178,51 +201,19 @@ export default {
         });
     },
   },
+  computed: {
+    /**
+     * @return data kandidat yang dicari
+     *
+     */
+    filteredData: function() {
+      return this.results.filter((data) => {
+        let name = data.nama_ketua.toLowerCase();
+        return name.match(this.search.toLowerCase());
+      });
+    },
+  },
 };
 </script>
 
-<style scoped>
-.head-content {
-  padding-top: 3rem;
-  /* background-color: #fff; */
-  background: #56ccf2;
-  background: -webkit-linear-gradient(to right, #2f80ed, #56ccf2);
-  background: linear-gradient(to right, #2f80ed, #56ccf2);
-  color: #fff;
-}
-.body-content {
-  background: #eefafd;
-}
-.counting {
-  margin-top: 10vh;
-  padding-bottom: 3vh;
-}
-
-.card {
-  border-radius: 12px;
-  border: none;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-}
-.card-groups {
-  margin-top: 3rem;
-}
-.card-profile {
-  border-radius: 50%;
-  width: 4rem;
-}
-
-.name-kandidat {
-  margin-top: 1.5rem;
-  margin-bottom: 0;
-  font-weight: 600;
-}
-.no-kandidat {
-  margin-bottom: 0;
-  font-weight: 500;
-  color: gray;
-}
-
-.card-count h6 {
-  margin: 0;
-}
-</style>
+<style scoped src="../assets/css/views/statistikVote.css"></style>

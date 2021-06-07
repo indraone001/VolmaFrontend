@@ -17,6 +17,7 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
+            <!-- Jika pemilih belum melakukan vote -->
             <li class="nav-item  px-2" v-if="status == 0">
               <router-link
                 to="/landing"
@@ -29,6 +30,8 @@
                 Home
               </router-link>
             </li>
+
+            <!-- Jika pemilih sudah melakukan vote -->
             <li class="nav-item  px-2" v-else-if="status == 1">
               <router-link
                 to="/statistik-vote"
@@ -41,6 +44,8 @@
                 Hasil Vote
               </router-link>
             </li>
+
+            <!-- Peraturan -->
             <li class="nav-item pr-2">
               <router-link
                 to="/peraturan"
@@ -54,6 +59,8 @@
               </router-link>
             </li>
           </ul>
+
+          <!-- Dropdown LogOut -->
           <ul class="navbar-nav">
             <li class="nav-item dropdown">
               <a
@@ -86,14 +93,14 @@ export default {
   name: "navbar-user",
   data() {
     return {
-      id_mhs: null,
       nama: "",
+      id_pemilih: null,
       status: null,
     };
   },
   created() {
-    this.id_mhs = sessionStorage.getItem("id_mhs");
     this.nama = sessionStorage.getItem("nama");
+    this.id_pemilih = sessionStorage.getItem("id_pemilih");
     this.status = sessionStorage.getItem("status");
   },
   methods: {
@@ -105,58 +112,5 @@ export default {
 };
 </script>
 
-<style scoped>
-.navbar {
-  background-color: #fff;
-}
-.navbar-brand {
-  font-weight: 600;
-}
-.nav-link {
-  font-weight: 500;
-}
-.nav-link,
-.navbar-brand {
-  color: #fff;
-}
-.nav-item {
-  padding: 3px 2px;
-}
-.navbar button {
-  color: #fff;
-}
-.navbar-toggler {
-  border: none;
-}
-.nav-outline::after {
-  position: relative;
-  top: 10px;
-  content: "";
-  display: block;
-  width: 0;
-  height: 3px;
-  background: #2f80ed;
-  transition: width 0.3s;
-}
-.nav-outline:hover::after {
-  width: 100%;
-}
-.active {
-  color: #2f80ed;
-}
-.active::after {
-  position: relative;
-  top: 10px;
-  content: "";
-  display: block;
-  width: 100%;
-  height: 3px;
-  background: #2f80ed;
-}
-a.nav-link.nav-outline.active {
-  color: #2f80ed;
-}
-.dropdown-item {
-  cursor: pointer;
-}
+<style scoped src="../assets/css/components/navbarUser.css">
 </style>
