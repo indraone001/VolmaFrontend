@@ -119,7 +119,7 @@
                   type="button"
                   class="btn btn-primary btn-block"
                   data-toggle="modal"
-                  :data-target="'#kandidat' + kandidat.no_urut"
+                  :data-target="'#kandidat' + kandidat.id_kandidat"
                 >
                   Pilih Calon
                 </button>
@@ -127,7 +127,7 @@
                 <!-- Modal Pilih Calon -->
                 <div
                   class="modal fade py-auto"
-                  :id="'kandidat' + kandidat.no_urut"
+                  :id="'kandidat' + kandidat.id_kandidat"
                   tabindex="-1"
                   role="dialog"
                   aria-labelledby="exampleModalLabel"

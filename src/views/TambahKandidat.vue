@@ -415,7 +415,7 @@ export default {
      */
     getMahasiswa() {
       const options = {
-        url: "mahasiswa",
+        url: "/kandidat/add/get-student",
         method: "get",
       };
       axios(options)
