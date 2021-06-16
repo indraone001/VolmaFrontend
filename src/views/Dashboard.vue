@@ -129,55 +129,60 @@
 
           <!-- Jumlah suara masing masing calon -->
           <section class="mt-1 py-4 result-dashboard">
-            
-
             <div class="card mb-4">
               <div class="card-body">
                 <div class="container">
                   <h3 class="py-3 mb-4">Perolehan Masing-masing Calon</h3>
-                <!-- Search -->
-                <div class="item mb-4 pb-3">
+                  <!-- Search -->
+                  <div class="item mb-4 pb-3">
                     <input
                       type="text"
                       class="search"
                       placeholder="Cari Ketua"
                       v-model="search"
                     />
-                </div>
-                <div v-if="filteredData.length">
-                  <table class="table text-center">
-                    <thead>
-                      <tr>
-                        <th scope="col">No</th>
-                        <th scope="col" class="text-left">Nama Calon</th>
-                        <th scope="col">Jumlah Pemilih</th>
-                        <th scope="col">%</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr
-                        v-for="result in filteredData"
-                        :key="result.id_kandidat"
-                      >
-                        <th scope="row">{{ result.no_urut }}</th>
-                        <td style="width:25rem; height:50px;" class="text-left">
-                          <!-- Ketua -->
-                          <p class="mb-0"><b>Ketua</b></p>
-                          <p>{{ result.nama_ketua }}</p>
+                  </div>
+                  <div v-if="filteredData.length">
+                    <table class="table text-center">
+                      <thead>
+                        <tr>
+                          <th scope="col">No</th>
+                          <th scope="col" class="text-left">Nama Calon</th>
+                          <th scope="col">Jumlah Pemilih</th>
+                          <th scope="col">%</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          v-for="result in filteredData"
+                          :key="result.id_kandidat"
+                        >
+                          <th scope="row">{{ result.no_urut }}</th>
+                          <td
+                            style="width:25rem; height:50px;"
+                            class="text-left"
+                          >
+                            <!-- Ketua -->
+                            <p class="mb-0"><b>Ketua</b></p>
+                            <p>{{ result.nama_ketua }}</p>
 
-                          <!-- Wakil -->
-                          <p class="mb-0"><b>Wakil</b></p>
-                          <p>{{ result.nama_wakil }} Orang</p>
-                        </td>
-                        <td><p>{{ result.jumlah }} Orang</p></td>
-                        <td><p>{{ result.persentase }}%</p></td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
-                <div v-else>
-                  <h4 class="text-center not-found">Data tidak ditemukan</h4>
-                </div>
+                            <!-- Wakil -->
+                            <p class="mb-0"><b>Wakil</b></p>
+                            <p>{{ result.nama_wakil }} Orang</p>
+                          </td>
+                          <td>
+                            <p>{{ result.jumlah }} Orang</p>
+                          </td>
+                          <td>
+                            <p>{{ result.persentase }}%</p>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div v-else>
+                    <h4 class="text-center not-found">Data tidak ditemukan</h4>
+                  </div>
                 </div>
               </div>
             </div>
@@ -261,26 +266,29 @@ export default {
       if (this.start && this.end) {
         let start = this.start;
         let end = this.end;
-
-        const options = {
-          url: "periode",
-          method: "put",
-          data: {
-            start,
-            end,
-          },
-        };
-        axios(options)
-          .then((response) => {
-            console.log("Update Periode: ", response);
-            alert("Berhasil Mengubah Periode");
-            this.getDashboard();
-            this.getResults();
-          })
-          .catch((e) => {
-            console.log(e);
-            alert(e);
-          });
+        if (start <= end) {
+          const options = {
+            url: "periode",
+            method: "put",
+            data: {
+              start,
+              end,
+            },
+          };
+          axios(options)
+            .then((response) => {
+              console.log("Update Periode: ", response);
+              alert("Berhasil Mengubah Periode");
+              this.getDashboard();
+              this.getResults();
+            })
+            .catch((e) => {
+              console.log(e);
+              alert(e);
+            });
+        } else {
+          alert("Periode mulai harus sebelum periode selesai");
+        }
       }
     },
   },
