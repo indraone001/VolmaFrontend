@@ -77,7 +77,7 @@
                       <a
                         class="nav-link active"
                         data-toggle="tab"
-                        :href="'#visi' + kandidat.no_urut"
+                        :href="'#visi' + kandidat.id_kandidat"
                         >Visi</a
                       >
                     </li>
@@ -85,7 +85,7 @@
                       <a
                         class="nav-link"
                         data-toggle="tab"
-                        :href="'#misi' + kandidat.no_urut"
+                        :href="'#misi' + kandidat.id_kandidat"
                         >Misi</a
                       >
                     </li>
@@ -94,7 +94,7 @@
                   <!-- Tab panes Visi Misi -->
                   <div class="tab-content">
                     <div
-                      :id="'visi' + kandidat.no_urut"
+                      :id="'visi' + kandidat.id_kandidat"
                       class="container tab-pane active"
                     >
                       <br />
@@ -103,7 +103,7 @@
                       </p>
                     </div>
                     <div
-                      :id="'misi' + kandidat.no_urut"
+                      :id="'misi' + kandidat.id_kandidat"
                       class="container tab-pane fade"
                     >
                       <br />

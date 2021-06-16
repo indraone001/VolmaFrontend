@@ -168,7 +168,7 @@
 
                             <!-- Wakil -->
                             <p class="mb-0"><b>Wakil</b></p>
-                            <p>{{ result.nama_wakil }} Orang</p>
+                            <p>{{ result.nama_wakil }}</p>
                           </td>
                           <td>
                             <p>{{ result.jumlah }} Orang</p>
